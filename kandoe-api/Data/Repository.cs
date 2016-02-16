@@ -10,5 +10,6 @@ namespace Kandoe.Data {
         void Update(T entity);
 
         void Delete(int id);
+
     }
 }

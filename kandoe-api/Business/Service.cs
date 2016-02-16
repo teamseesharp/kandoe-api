@@ -13,5 +13,6 @@ namespace Kandoe.Business {
         void Change(T entity);
 
         void Remove(int id);
+
     }
 }
