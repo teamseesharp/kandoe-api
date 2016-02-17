@@ -9,6 +9,7 @@ namespace Kandoe.Business.Domain {
             this.Modus = modus;
         }
 
+        public int Id { get; set; }
         public Modus Modus { get; private set; }
     }
 

@@ -49,7 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EFDB\Connection\Configuration.cs" />
-    <Compile Include="EFDB\Connection\Initialiser.cs" />
+    <Compile Include="EFDB\Connection\Initializer.cs" />
     <Compile Include="EFDB\Repositories\AccountRepository.cs" />
     <Compile Include="EFDB\Repositories\CardRepository.cs" />
     <Compile Include="EFDB\Connection\Context.cs" />
