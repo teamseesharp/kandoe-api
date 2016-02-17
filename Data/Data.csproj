@@ -30,7 +30,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="Microsoft.CSharp" />
@@ -39,10 +48,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EFDB\AccountRepository.cs" />
-    <Compile Include="EFDB\CardRepository.cs" />
-    <Compile Include="EFDB\Context.cs" />
-    <Compile Include="EFDB\Repository.cs" />
+    <Compile Include="EFDB\Connection\Configuration.cs" />
+    <Compile Include="EFDB\Connection\Initialiser.cs" />
+    <Compile Include="EFDB\Repositories\AccountRepository.cs" />
+    <Compile Include="EFDB\Repositories\CardRepository.cs" />
+    <Compile Include="EFDB\Connection\Context.cs" />
+    <Compile Include="EFDB\Repositories\CardReviewRepository.cs" />
+    <Compile Include="EFDB\Repositories\ChatMessageRepository.cs" />
+    <Compile Include="EFDB\Repositories\OrganisationRepository.cs" />
+    <Compile Include="EFDB\Repositories\Repository.cs" />
+    <Compile Include="EFDB\Repositories\SessionRepository.cs" />
+    <Compile Include="EFDB\Repositories\SubthemeRepository.cs" />
+    <Compile Include="EFDB\Repositories\ThemeRepository.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -52,6 +69,11 @@
       <Name>Domain</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -40,10 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChatMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Card.cs" />
     <Compile Include="CardReview.cs" />
-    <Compile Include="Repository.cs" />
     <Compile Include="Session.cs" />
     <Compile Include="Subtheme.cs" />
     <Compile Include="Theme.cs" />

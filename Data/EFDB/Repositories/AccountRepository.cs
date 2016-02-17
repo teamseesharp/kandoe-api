@@ -9,7 +9,7 @@ namespace Kandoe.Data.EFDB.Repositories {
         public AccountRepository() : base(new Context()) { }
 
         public override void Create(Account entity) {
-            this.context
+            throw new NotImplementedException();
         }
 
         public override void Delete(int id) {
