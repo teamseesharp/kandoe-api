@@ -41,13 +41,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Session\Card.cs" />
-    <Compile Include="Session\CardReview.cs" />
-    <Compile Include="Session\Session.cs" />
-    <Compile Include="Session\Subtheme.cs" />
-    <Compile Include="Session\Theme.cs" />
-    <Compile Include="Social\Account.cs" />
-    <Compile Include="Social\Organisation.cs" />
+    <Compile Include="Card.cs" />
+    <Compile Include="CardReview.cs" />
+    <Compile Include="Repository.cs" />
+    <Compile Include="Session.cs" />
+    <Compile Include="Subtheme.cs" />
+    <Compile Include="Theme.cs" />
+    <Compile Include="Account.cs" />
+    <Compile Include="Organisation.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

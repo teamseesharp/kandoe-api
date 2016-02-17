@@ -14,7 +14,5 @@ namespace Kandoe.Business.Domain {
         public String Name { get; private set; }
         public String Picture { get; private set; }
         public String Secret { get; private set; }
-        public String Token { get; private set; }
-
     }
 }

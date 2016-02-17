@@ -3,16 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+using Kandoe.Data;
+
 namespace Kandoe.Business {
-    public interface Service<T> {
-        void Add(T entity);
+    public abstract class Service<T> {
+        public Service(IRepository<T> repository) {
+            this.Repository = repository;
+        }
 
-        T Get(int id);
-        IEnumerable<T> Get();
+        protected IRepository<T> Repository { get; set; } 
 
-        void Change(T entity);
+        public void Add(T entity) { this.Repository.Create(entity); }
 
-        void Remove(int id);
+        public T Get(int id) { return this.Repository.Read(id); }
+        public IEnumerable<T> Get() { return this.Repository.Read(); }
 
+        public void Change(T entity) { this.Repository.Update(entity); }
+
+        public void Remove(int id) { this.Repository.Delete(id); }
     }
 }
