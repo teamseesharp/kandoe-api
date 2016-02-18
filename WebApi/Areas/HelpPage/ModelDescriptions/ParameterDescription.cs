@@ -1,12 +1,9 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace WebApi.Areas.HelpPage.ModelDescriptions
-{
-    public class ParameterDescription
-    {
-        public ParameterDescription()
-        {
+namespace Kandoe.Web.Api.Areas.HelpPage.ModelDescriptions {
+    public class ParameterDescription {
+        public ParameterDescription() {
             Annotations = new Collection<ParameterAnnotation>();
         }
 

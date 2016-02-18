@@ -11,10 +11,10 @@ using System.Net.Http.Headers;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Description;
-using WebApi.Areas.HelpPage.ModelDescriptions;
-using WebApi.Areas.HelpPage.Models;
+using Kandoe.Web.Api.Areas.HelpPage.ModelDescriptions;
+using Kandoe.Web.Api.Areas.HelpPage.Models;
 
-namespace WebApi.Areas.HelpPage
+namespace Kandoe.Web.Api.Areas.HelpPage
 {
     public static class HelpPageConfigurationExtensions
     {

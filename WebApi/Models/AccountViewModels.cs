@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace WebApi.Models
+namespace Kandoe.Web.Api.Models
 {
     // Models returned by AccountController actions.
 

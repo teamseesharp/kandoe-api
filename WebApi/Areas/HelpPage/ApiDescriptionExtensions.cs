@@ -3,7 +3,7 @@ using System.Text;
 using System.Web;
 using System.Web.Http.Description;
 
-namespace WebApi.Areas.HelpPage
+namespace Kandoe.Web.Api.Areas.HelpPage
 {
     public static class ApiDescriptionExtensions
     {

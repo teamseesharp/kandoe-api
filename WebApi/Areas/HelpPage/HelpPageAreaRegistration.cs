@@ -1,7 +1,7 @@
 using System.Web.Http;
 using System.Web.Mvc;
 
-namespace WebApi.Areas.HelpPage
+namespace Kandoe.Web.Api.Areas.HelpPage
 {
     public class HelpPageAreaRegistration : AreaRegistration
     {

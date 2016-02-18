@@ -7,7 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http;
 
-namespace WebApi.Results
+namespace Kandoe.Web.Api.Results
 {
     public class ChallengeResult : IHttpActionResult
     {

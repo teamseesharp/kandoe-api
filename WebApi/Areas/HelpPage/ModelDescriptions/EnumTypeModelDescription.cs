@@ -1,12 +1,9 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace WebApi.Areas.HelpPage.ModelDescriptions
-{
-    public class EnumTypeModelDescription : ModelDescription
-    {
-        public EnumTypeModelDescription()
-        {
+namespace Kandoe.Web.Api.Areas.HelpPage.ModelDescriptions {
+    public class EnumTypeModelDescription : ModelDescription {
+        public EnumTypeModelDescription() {
             Values = new Collection<EnumValueDescription>();
         }
 

@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
 
-namespace WebApi.Models
+namespace Kandoe.Web.Api.Models
 {
     // Models used as parameters to AccountController actions.
 

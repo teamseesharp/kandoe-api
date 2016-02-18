@@ -5,9 +5,9 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 
-[assembly: OwinStartup(typeof(WebApi.Startup))]
+[assembly: OwinStartup(typeof(Kandoe.Web.Api.Startup))]
 
-namespace WebApi {
+namespace Kandoe.Web.Api {
     public partial class Startup {
         public void Configuration(IAppBuilder app) {
             AreaRegistration.RegisterAllAreas();

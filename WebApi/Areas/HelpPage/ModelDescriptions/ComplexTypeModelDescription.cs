@@ -1,11 +1,8 @@
 using System.Collections.ObjectModel;
 
-namespace WebApi.Areas.HelpPage.ModelDescriptions
-{
-    public class ComplexTypeModelDescription : ModelDescription
-    {
-        public ComplexTypeModelDescription()
-        {
+namespace Kandoe.Web.Api.Areas.HelpPage.ModelDescriptions {
+    public class ComplexTypeModelDescription : ModelDescription {
+        public ComplexTypeModelDescription() {
             Properties = new Collection<ParameterDescription>();
         }
 

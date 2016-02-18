@@ -13,11 +13,11 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
-using WebApi.Models;
-using WebApi.Providers;
-using WebApi.Results;
+using Kandoe.Web.Api.Models;
+using Kandoe.Web.Api.Providers;
+using Kandoe.Web.Api.Results;
 
-namespace WebApi.Controllers
+namespace Kandoe.Web.Api.Controllers
 {
     [Authorize]
     [RoutePrefix("api/Account")]

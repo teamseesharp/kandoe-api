@@ -5,10 +5,9 @@ using System.Web;
 using System.Web.Mvc;
 
 namespace Kandoe.Web.Api.Controllers {
-    public class HomeController : Controller {
+    public class RouteListingController : Controller {
+        // GET: RouteListing
         public ActionResult Index() {
-            ViewBag.Title = "Home Page";
-
             return View();
         }
     }

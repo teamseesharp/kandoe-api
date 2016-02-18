@@ -1,9 +1,7 @@
 using System;
 
-namespace WebApi.Areas.HelpPage.ModelDescriptions
-{
-    public class ParameterAnnotation
-    {
+namespace Kandoe.Web.Api.Areas.HelpPage.ModelDescriptions {
+    public class ParameterAnnotation {
         public Attribute AnnotationAttribute { get; set; }
 
         public string Documentation { get; set; }

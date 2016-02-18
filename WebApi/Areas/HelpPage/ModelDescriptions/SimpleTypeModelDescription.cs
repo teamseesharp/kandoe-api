@@ -1,6 +1,4 @@
-namespace WebApi.Areas.HelpPage.ModelDescriptions
-{
-    public class SimpleTypeModelDescription : ModelDescription
-    {
+namespace Kandoe.Web.Api.Areas.HelpPage.ModelDescriptions {
+    public class SimpleTypeModelDescription : ModelDescription {
     }
 }
