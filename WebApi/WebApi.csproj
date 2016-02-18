@@ -207,9 +207,16 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\RouteListingController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Models\Dto\Account.cs" />
+    <Compile Include="Models\Dto\Card.cs" />
+    <Compile Include="Models\Dto\CardReview.cs" />
+    <Compile Include="Models\Dto\ChatMessage.cs" />
+    <Compile Include="Models\Dto\Organisation.cs" />
+    <Compile Include="Models\Dto\Session.cs" />
+    <Compile Include="Models\Dto\Subtheme.cs" />
+    <Compile Include="Models\Dto\Theme.cs" />
+    <Compile Include="Results\HttpActionResult.cs" />
+    <Compile Include="Controllers\DocumentationController.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -283,18 +290,26 @@
     <Content Include="Content\scripts\_references.js" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\RouteListing\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Content\Project_Readme.html" />
     <Content Include="Content\scripts\jquery-2.2.0.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Business\Business.csproj">
+      <Project>{948e8298-228d-4102-9747-f58e4df9b0a8}</Project>
+      <Name>Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Domain\Domain.csproj">
+      <Project>{0d1d539a-5187-40d9-90a3-9bef2cf38b70}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

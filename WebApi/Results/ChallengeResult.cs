@@ -7,12 +7,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http;
 
-namespace Kandoe.Web.Api.Results
-{
-    public class ChallengeResult : IHttpActionResult
-    {
-        public ChallengeResult(string loginProvider, ApiController controller)
-        {
+namespace Kandoe.Web.Api.Controllers.Results {
+    public class ChallengeResult : IHttpActionResult {
+        public ChallengeResult(string loginProvider, ApiController controller) {
             LoginProvider = loginProvider;
             Request = controller.Request;
         }
@@ -20,8 +17,7 @@ namespace Kandoe.Web.Api.Results
         public string LoginProvider { get; set; }
         public HttpRequestMessage Request { get; set; }
 
-        public Task<HttpResponseMessage> ExecuteAsync(CancellationToken cancellationToken)
-        {
+        public Task<HttpResponseMessage> ExecuteAsync(CancellationToken cancellationToken) {
             Request.GetOwinContext().Authentication.Challenge(LoginProvider);
 
             HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.Unauthorized);

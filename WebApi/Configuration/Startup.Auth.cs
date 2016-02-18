@@ -52,10 +52,12 @@ namespace Kandoe.Web.Api {
             //    appId: "",
             //    appSecret: "");
 
+            /*
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions() {
                 ClientId = "",
                 ClientSecret = ""
             });
+            */
         }
     }
 }
