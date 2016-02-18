@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="jumbotron">
+    <h1>Documentation</h1>
+    <p class="lead">Kandoe is a blablabla</p>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <h2>Getting started with the Web API</h2>
+        <p>
+            something something about web api
+        </p>
+        <p>@Html.ActionLink("Discover our Web API", "Api", "Documentation", new { area = "" }, new { @class = "btn btn-default" })</p>
+    </div>
+    <div class="col-md-4">
+        <h2>Get more documentation</h2>
+        <p>lorem ipsum...</p>
+        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301871">Learn more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Something seomthing</h2>
+        <p>lorem ipsum...</p>
+        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301872">Learn more &raquo;</a></p>
+    </div>
+</div>
