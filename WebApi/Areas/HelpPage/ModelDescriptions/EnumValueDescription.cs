@@ -1,4 +1,4 @@
-namespace Kandoe.Web.Api.Areas.HelpPage.ModelDescriptions {
+namespace Kandoe.Web.Areas.HelpPage.ModelDescriptions {
     public class EnumValueDescription {
         public string Documentation { get; set; }
 

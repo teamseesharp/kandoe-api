@@ -1,7 +1,7 @@
 ﻿using System;
 
-namespace Kandoe.Web.Api.Models.Dto {
-    public class Theme {
+namespace Kandoe.Web.Model.Dto {
+    public class ThemeDto {
         public int Id { get; set; }
         public String Name { get; set; }
         public String Description { get; set; }

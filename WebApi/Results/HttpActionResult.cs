@@ -4,7 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http;
 
-namespace Kandoe.Web.Api.Controllers.Results {
+namespace Kandoe.Web.Results {
     public class HttpActionResult : IHttpActionResult {
         private readonly string message;
         private readonly HttpStatusCode statusCode;

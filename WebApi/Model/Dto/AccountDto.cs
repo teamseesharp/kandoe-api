@@ -1,7 +1,7 @@
 ﻿using System;
 
-namespace Kandoe.Web.Api.Models.Dto {
-    public class Account { 
+namespace Kandoe.Web.Model.Dto {
+    public class AccountDto { 
         public int Id { get; set; }
         public String Email { get; set; }
         public String Name { get; set; }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Kandoe.Web.Api.Models {
+namespace Kandoe.Web.Model.ViewModels {
     // Models returned by AccountController actions.
 
     public class ExternalLoginViewModel {

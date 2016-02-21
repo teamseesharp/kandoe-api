@@ -1,10 +1,10 @@
 using System;
 using System.Web.Http;
 using System.Web.Mvc;
-using Kandoe.Web.Api.Areas.HelpPage.ModelDescriptions;
-using Kandoe.Web.Api.Areas.HelpPage.Models;
+using Kandoe.Web.Areas.HelpPage.ModelDescriptions;
+using Kandoe.Web.Areas.HelpPage.Models;
 
-namespace Kandoe.Web.Api.Areas.HelpPage.Controllers {
+namespace Kandoe.Web.Areas.HelpPage.Controllers {
     /// <summary>
     /// The controller that will handle requests for the help page.
     /// </summary>

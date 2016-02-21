@@ -13,7 +13,7 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Kandoe.Web.Api</RootNamespace>
+    <RootNamespace>Kandoe.Web</RootNamespace>
     <AssemblyName>WebApi</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
@@ -48,11 +48,23 @@
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="AutoMapper, Version=4.2.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.4.2.0\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Data.Edm, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.Edm.5.7.0\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.OData.5.7.0\lib\net40\Microsoft.Data.OData.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -60,11 +72,19 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Spatial, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Spatial.5.7.0\lib\net40\System.Spatial.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http.OData, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.OData.5.7.0\lib\net45\System.Web.Http.OData.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
@@ -172,9 +192,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="TODO.txt" />
     <Compile Include="Configuration\BundleConfig.cs" />
     <Compile Include="Configuration\FilterConfig.cs" />
     <Compile Include="Configuration\IdentityConfig.cs" />
+    <Compile Include="Configuration\MapperConfig.cs" />
     <Compile Include="Configuration\RouteConfig.cs" />
     <Compile Include="Configuration\Startup.Auth.cs" />
     <Compile Include="Configuration\WebApiConfig.cs" />
@@ -206,20 +228,36 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Models\Dto\Account.cs" />
-    <Compile Include="Models\Dto\Card.cs" />
-    <Compile Include="Models\Dto\CardReview.cs" />
-    <Compile Include="Models\Dto\ChatMessage.cs" />
-    <Compile Include="Models\Dto\Organisation.cs" />
-    <Compile Include="Models\Dto\Session.cs" />
-    <Compile Include="Models\Dto\Subtheme.cs" />
-    <Compile Include="Models\Dto\Theme.cs" />
+    <Compile Include="Controllers\Api\AccountController.cs" />
+    <Compile Include="Controllers\Api\CardController.cs" />
+    <Compile Include="Controllers\Api\CardReviewController.cs" />
+    <Compile Include="Controllers\Api\ChatMessageController.cs" />
+    <Compile Include="Controllers\Api\OrganisationController.cs" />
+    <Compile Include="Controllers\Api\SessionController.cs" />
+    <Compile Include="Controllers\Api\SubthemeController.cs" />
+    <Compile Include="Controllers\Api\ThemeController.cs" />
+    <Compile Include="Model\Dto\AccountDto.cs" />
+    <Compile Include="Model\Dto\CardDto.cs" />
+    <Compile Include="Model\Dto\CardReviewDto.cs" />
+    <Compile Include="Model\Dto\ChatMessageDto.cs" />
+    <Compile Include="Model\Dto\OrganisationDto.cs" />
+    <Compile Include="Model\Dto\SessionDto.cs" />
+    <Compile Include="Model\Dto\SubthemeDto.cs" />
+    <Compile Include="Model\Dto\ThemeDto.cs" />
+    <Compile Include="Model\Mapping\ModelMapper.cs" />
+    <Compile Include="Model\Mapping\Profiles\ThemeProfile.cs" />
+    <Compile Include="Model\Mapping\Profiles\SubthemeProfile.cs" />
+    <Compile Include="Model\Mapping\Profiles\SessionProfile.cs" />
+    <Compile Include="Model\Mapping\Profiles\OrganisationProfile.cs" />
+    <Compile Include="Model\Mapping\Profiles\ChatMessageProfile.cs" />
+    <Compile Include="Model\Mapping\Profiles\CardReviewProfile.cs" />
+    <Compile Include="Model\Mapping\Profiles\CardProfile.cs" />
+    <Compile Include="Model\Mapping\Profiles\AccountProfile.cs" />
     <Compile Include="Results\HttpActionResult.cs" />
     <Compile Include="Controllers\DocumentationController.cs" />
-    <Compile Include="Models\AccountBindingModels.cs" />
-    <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Model\ViewModels\AccountBindingModels.cs" />
+    <Compile Include="Model\ViewModels\AccountViewModels.cs" />
+    <Compile Include="Model\ViewModels\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />

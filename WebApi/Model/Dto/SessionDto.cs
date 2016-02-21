@@ -1,7 +1,7 @@
 ﻿using Kandoe.Business.Domain;
 
-namespace Kandoe.Web.Api.Models.Dto {
-    public class Session {
+namespace Kandoe.Web.Model.Dto {
+    public class SessionDto {
         public int Id { get; set; }
         public Modus Modus { get; set; }
     }

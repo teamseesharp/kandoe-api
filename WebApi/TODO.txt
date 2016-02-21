@@ -1,0 +1,5 @@
+﻿** http://www.codeproject.com/Articles/560798/ASP-NET-MVC-Controller-Dependency-Injection-for-Be:
+DI toepassen op controller via framework of custom controller factory (eerste lijkt beste keuze)
+--> hard dependency verwijderen op de specifieke services
+
+** automapper mapper class niet wrappen in een static class maar somehow met DI oplossen ? we'll see

@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 
-namespace Kandoe.Web.Api.Areas.HelpPage.ModelDescriptions {
+namespace Kandoe.Web.Areas.HelpPage.ModelDescriptions {
     internal static class ModelNameHelper {
         // Modify this to provide custom model name mapping.
         public static string GetModelName(Type type) {

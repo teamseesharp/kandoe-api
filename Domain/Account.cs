@@ -10,9 +10,9 @@ namespace Kandoe.Business.Domain {
         }
 
         public int Id { get; set; }
-        public String Email { get; private set; }
-        public String Name { get; private set; }
-        public String Picture { get; private set; }
-        public String Secret { get; private set; }
+        public String Email { get; protected set; }
+        public String Name { get; protected set; }
+        public String Picture { get; protected set; }
+        public String Secret { get; protected set; }
     }
 }

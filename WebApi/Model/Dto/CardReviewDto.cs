@@ -1,7 +1,7 @@
 ﻿using System;
 
-namespace Kandoe.Web.Api.Models.Dto {
-    public class CardReview {
+namespace Kandoe.Web.Model.Dto {
+    public class CardReviewDto {
         public int Id { get; set; }
         public int AccountId { get; set; }
         public int CardId { get; set; }

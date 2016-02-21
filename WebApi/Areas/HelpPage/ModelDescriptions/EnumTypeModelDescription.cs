@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace Kandoe.Web.Api.Areas.HelpPage.ModelDescriptions {
+namespace Kandoe.Web.Areas.HelpPage.ModelDescriptions {
     public class EnumTypeModelDescription : ModelDescription {
         public EnumTypeModelDescription() {
             Values = new Collection<EnumValueDescription>();

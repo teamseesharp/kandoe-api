@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
 
-namespace Kandoe.Web.Api.Models {
+namespace Kandoe.Web.Model.ViewModels {
     // Models used as parameters to AccountController actions.
 
     public class AddExternalLoginBindingModel {

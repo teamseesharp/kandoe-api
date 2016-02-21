@@ -1,6 +1,11 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
 
-namespace Kandoe.Web.Api.Controllers {
+using Kandoe.Business.Domain;
+using Kandoe.Web.Model.Dto;
+using Kandoe.Web.Model.Mapping;
+
+namespace Kandoe.Web.Controllers {
     public class DocumentationController : Controller {
         // GET: /
         public ActionResult Index() {

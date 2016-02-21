@@ -11,7 +11,7 @@ namespace Kandoe.Business.Domain {
         }
         
         public int Id { get; set; }
-        public String Name { get; private set; }
-        public int OrganiserId { get; private set; }
+        public String Name { get; protected set; }
+        public int OrganiserId { get; protected set; }
     }
 }

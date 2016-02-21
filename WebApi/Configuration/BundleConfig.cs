@@ -1,7 +1,7 @@
 ﻿using System.Web.Optimization;
 
-namespace Kandoe.Web.Api {
-    public class BundleConfig {
+namespace Kandoe.Web.Configuration {
+    public static class BundleConfig {
         public static void RegisterBundles(BundleCollection bundles) {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Content/scripts/jquery-{version}.js"

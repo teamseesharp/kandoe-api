@@ -10,7 +10,7 @@ namespace Kandoe.Business.Domain {
         }
 
         public int Id { get; set; }
-        public Modus Modus { get; private set; }
+        public Modus Modus { get; protected set; }
     }
 
     public enum Modus {

@@ -6,7 +6,7 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 
-namespace Kandoe.Web.Api.Areas.HelpPage {
+namespace Kandoe.Web.Areas.HelpPage {
     /// <summary>
     /// This class will create an object of a given type and populate it with sample data.
     /// </summary>

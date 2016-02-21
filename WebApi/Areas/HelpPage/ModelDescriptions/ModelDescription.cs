@@ -1,6 +1,6 @@
 using System;
 
-namespace Kandoe.Web.Api.Areas.HelpPage.ModelDescriptions {
+namespace Kandoe.Web.Areas.HelpPage.ModelDescriptions {
     /// <summary>
     /// Describes a type model.
     /// </summary>

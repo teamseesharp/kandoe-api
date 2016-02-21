@@ -7,17 +7,20 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.ModelBinding;
+
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
-using Kandoe.Web.Api.Models;
-using Kandoe.Web.Api.Providers;
-using Kandoe.Web.Api.Controllers.Results;
 
-namespace Kandoe.Web.Api.Controllers {
+using Kandoe.Web.Configuration;
+using Kandoe.Web.Model.ViewModels;
+using Kandoe.Web.Providers;
+using Kandoe.Web.Results;
+
+namespace Kandoe.Web.Controllers.Api {
     [Authorize]
     [RoutePrefix("api/Account")]
     public class AccountController : ApiController {

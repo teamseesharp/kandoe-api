@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
-using Kandoe.Web.Api.Models;
 
-namespace Kandoe.Web.Api.Providers {
+using Kandoe.Web.Configuration;
+using Kandoe.Web.Model.ViewModels;
+
+namespace Kandoe.Web.Providers {
     public class ApplicationOAuthProvider : OAuthAuthorizationServerProvider {
         private readonly string _publicClientId;
 

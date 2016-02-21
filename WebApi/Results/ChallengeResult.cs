@@ -7,7 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http;
 
-namespace Kandoe.Web.Api.Controllers.Results {
+namespace Kandoe.Web.Results {
     public class ChallengeResult : IHttpActionResult {
         public ChallengeResult(string loginProvider, ApiController controller) {
             LoginProvider = loginProvider;

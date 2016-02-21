@@ -8,7 +8,7 @@ namespace Kandoe.Business.Domain {
         }
 
         public int Id { get; set; }
-        public String Name { get; private set; }
-        public int ThemeId { get; private set; }
+        public String Name { get; protected set; }
+        public int ThemeId { get; protected set; }
     }
 }

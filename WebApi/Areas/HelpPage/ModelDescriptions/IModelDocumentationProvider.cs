@@ -1,7 +1,7 @@
 using System;
 using System.Reflection;
 
-namespace Kandoe.Web.Api.Areas.HelpPage.ModelDescriptions {
+namespace Kandoe.Web.Areas.HelpPage.ModelDescriptions {
     public interface IModelDocumentationProvider {
         string GetDocumentation(MemberInfo member);
 

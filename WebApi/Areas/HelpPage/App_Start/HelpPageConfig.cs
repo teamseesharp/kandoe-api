@@ -9,7 +9,7 @@ using System.Web.Http;
 using System.Web.Http.OData;
 #endif
 
-namespace Kandoe.Web.Api.Areas.HelpPage {
+namespace Kandoe.Web.Areas.HelpPage {
     /// <summary>
     /// Use this class to customize the Help Page.
     /// For example you can set a custom <see cref="System.Web.Http.Description.IDocumentationProvider"/> to supply the documentation
@@ -17,7 +17,7 @@ namespace Kandoe.Web.Api.Areas.HelpPage {
     /// </summary>
     public static class HelpPageConfig {
         [SuppressMessage("Microsoft.Globalization", "CA1303:Do not pass literals as localized parameters",
-            MessageId = "Kandoe.Web.Api.Areas.HelpPage.TextSample.#ctor(System.String)",
+            MessageId = "Kandoe.Web.Areas.HelpPage.TextSample.#ctor(System.String)",
             Justification = "End users may choose to merge this string with existing localized resources.")]
         [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly",
             MessageId = "bsonspec",

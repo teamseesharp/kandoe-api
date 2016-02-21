@@ -1,7 +1,7 @@
 ﻿using System;
 
-namespace Kandoe.Web.Api.Models.Dto {
-    public class Card {
+namespace Kandoe.Web.Model.Dto {
+    public class CardDto {
         public int Id { get; set; }
         public String Image { get; set; }
         public int SubthemeId { get; set; }

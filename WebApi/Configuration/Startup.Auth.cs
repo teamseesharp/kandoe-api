@@ -5,10 +5,10 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
-using Kandoe.Web.Api.Providers;
-using Kandoe.Web.Api.Models;
+using Kandoe.Web.Providers;
+using Kandoe.Web.Model.ViewModels;
 
-namespace Kandoe.Web.Api {
+namespace Kandoe.Web.Configuration {
     public partial class Startup {
         public static OAuthAuthorizationServerOptions OAuthOptions { get; private set; }
 
