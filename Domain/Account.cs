@@ -1,7 +1,8 @@
 ﻿using System;
 
 namespace Kandoe.Business.Domain {
-    public class Account { 
+    public class Account {
+        protected Account() { }
         public Account(String email, String name, String picture, String secret) {
             this.Email = email;
             this.Name = name;

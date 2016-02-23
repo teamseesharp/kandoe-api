@@ -2,6 +2,7 @@
 
 namespace Kandoe.Business.Domain {
     public class Theme {
+        protected Theme() { }
         public Theme(String name, String description, int organisationId, String tags) {
             this.Name = name;
             this.Description = description;

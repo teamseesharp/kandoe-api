@@ -2,6 +2,7 @@
 
 namespace Kandoe.Business.Domain {
     public class CardReview {
+        protected CardReview() { }
         public CardReview(int accountId, int cardId, String comment, int sessionId) {
             this.AccountId = accountId;
             this.CardId = cardId;

@@ -5,28 +5,53 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
+using Kandoe.Business;
+using Kandoe.Business.Domain;
+using Kandoe.Web.Model.Dto;
+using Kandoe.Web.Model.Mapping;
+using Kandoe.Web.Results;
+
 namespace Kandoe.Web.Controllers.Api {
+    [RoutePrefix("api/subtheme")]
     public class SubthemeController : ApiController {
-        // GET: api/Subtheme
-        public IEnumerable<string> Get() {
-            return new string[] { "value1", "value2" };
+        private readonly Service<Subtheme> service;
+
+        public SubthemeController() {
+            this.service = new SubthemeService();
         }
 
-        // GET: api/Subtheme/5
-        public string Get(int id) {
-            return "value";
+        [Route("")]
+        public IHttpActionResult Get() {
+            IEnumerable<Subtheme> entities = this.service.Get();
+            IEnumerable<SubthemeDto> dtos = ModelMapper.Map<IEnumerable<Subtheme>, IEnumerable<SubthemeDto>>(entities);
+            return Ok(dtos);
         }
 
-        // POST: api/Subtheme
-        public void Post([FromBody]string value) {
+        [Route("{id}")]
+        public IHttpActionResult Get(int id) {
+            Subtheme entity = this.service.Get(id);
+            SubthemeDto dto = ModelMapper.Map<SubthemeDto>(entity);
+            return Ok(dto);
         }
 
-        // PUT: api/Subtheme/5
-        public void Put(int id, [FromBody]string value) {
+        [Route("")]
+        public IHttpActionResult Post([FromBody]SubthemeDto dto) {
+            Subtheme entity = ModelMapper.Map<Subtheme>(dto);
+            this.service.Add(entity);
+            return Ok();
         }
 
-        // DELETE: api/Subtheme/5
-        public void Delete(int id) {
+        [Route("")]
+        public IHttpActionResult Put([FromBody]SubthemeDto dto) {
+            Subtheme entity = ModelMapper.Map<Subtheme>(dto);
+            this.service.Change(entity);
+            return Ok();
+        }
+
+        [Route("{id}")]
+        public IHttpActionResult Delete(int id) {
+            this.service.Remove(id);
+            return Ok();
         }
     }
 }

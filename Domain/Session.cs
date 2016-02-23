@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace Kandoe.Business.Domain {
     public class Session {
+        protected Session() { }
         public Session(Modus modus) {
             this.Modus = modus;
         }

@@ -16,8 +16,7 @@ namespace Kandoe.Web.Configuration {
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            this.ConfigureAuth(app);
-
+            DatabaseConfig.Configure();
             MapperConfig.Configure();
         }
     }

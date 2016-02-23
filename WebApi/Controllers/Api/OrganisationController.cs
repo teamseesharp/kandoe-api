@@ -5,28 +5,53 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
+using Kandoe.Business;
+using Kandoe.Business.Domain;
+using Kandoe.Web.Model.Dto;
+using Kandoe.Web.Model.Mapping;
+using Kandoe.Web.Results;
+
 namespace Kandoe.Web.Controllers.Api {
+    [RoutePrefix("api/organisation")]
     public class OrganisationController : ApiController {
-        // GET: api/Organisation
-        public IEnumerable<string> Get() {
-            return new string[] { "value1", "value2" };
+        private readonly Service<Organisation> service;
+
+        public OrganisationController() {
+            this.service = new OrganisationService();
         }
 
-        // GET: api/Organisation/5
-        public string Get(int id) {
-            return "value";
+        [Route("")]
+        public IHttpActionResult Get() {
+            IEnumerable<Organisation> entities = this.service.Get();
+            IEnumerable<OrganisationDto> dtos = ModelMapper.Map<IEnumerable<Organisation>, IEnumerable<OrganisationDto>>(entities);
+            return Ok(dtos);
         }
 
-        // POST: api/Organisation
-        public void Post([FromBody]string value) {
+        [Route("{id}")]
+        public IHttpActionResult Get(int id) {
+            Organisation entity = this.service.Get(id);
+            OrganisationDto dto = ModelMapper.Map<OrganisationDto>(entity);
+            return Ok(dto);
         }
 
-        // PUT: api/Organisation/5
-        public void Put(int id, [FromBody]string value) {
+        [Route("")]
+        public IHttpActionResult Post([FromBody]OrganisationDto dto) {
+            Organisation entity = ModelMapper.Map<Organisation>(dto);
+            this.service.Add(entity);
+            return Ok();
         }
 
-        // DELETE: api/Organisation/5
-        public void Delete(int id) {
+        [Route("")]
+        public IHttpActionResult Put([FromBody]OrganisationDto dto) {
+            Organisation entity = ModelMapper.Map<Organisation>(dto);
+            this.service.Change(entity);
+            return Ok();
+        }
+
+        [Route("{id}")]
+        public IHttpActionResult Delete(int id) {
+            this.service.Remove(id);
+            return Ok();
         }
     }
 }

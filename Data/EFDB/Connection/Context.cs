@@ -2,14 +2,14 @@
 using System.Data.Entity.ModelConfiguration.Conventions;
 
 using Kandoe.Business.Domain;
+using Kandoe.Data.Migrations;
 
 namespace Kandoe.Data.EFDB.Connection {
     [DbConfigurationType(typeof(Configuration))]
     public class Context : DbContext {
 
-        public Context() : base("KandoeDB_EFCodeFirst") {
-            Database.SetInitializer(new Initializer());
-            //Database.SetInitializer(new MigrateDatabaseToLatestVersion<EFDBContext, Migrations.Configuration>("LokaalKabaalDB_EFCodeFirst"));
+        public Context() : base("DB_9F4E1D_kandoedb1") {
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<Context, Migrations.Configuration>("DB_9F4E1D_kandoedb1"));
         }
 
         public DbSet<Account> Accounts { get; set; }

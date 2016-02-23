@@ -22,26 +22,36 @@ namespace Kandoe.Web.Controllers.Api {
 
         [Route("")]
         public IHttpActionResult Get() {
-            IEnumerable<Card> cards = this.service.Get();
-            ModelMapper.Map<CardDto>(cards);
+            IEnumerable<Card> entities = this.service.Get();
+            IEnumerable<CardDto> dtos = ModelMapper.Map<IEnumerable<Card>, IEnumerable<CardDto>>(entities);
+            return Ok(dtos);
+        }
+
+        [Route("{id}")]
+        public IHttpActionResult Get(int id) {
+            Card entity = this.service.Get(id);
+            CardDto dto = ModelMapper.Map<CardDto>(entity);
+            return Ok(dto);
+        }
+
+        [Route("")]
+        public IHttpActionResult Post([FromBody]CardDto dto) {
+            Card entity = ModelMapper.Map<Card>(dto);
+            this.service.Add(entity);
+            return Ok();
+        }
+
+        [Route("")]
+        public IHttpActionResult Put([FromBody]CardDto dto) {
+            Card entity = ModelMapper.Map<Card>(dto);
+            this.service.Change(entity);
             return Ok();
         }
 
         [Route("{id}")]
-        public string Get(int id) {
-            return "value";
-        }
-
-        [Route("")]
-        public void Post([FromBody]string value) {
-        }
-
-        [Route("{id}")]
-        public void Put(int id, [FromBody]string value) {
-        }
-
-        [Route("{id}")]
-        public void Delete(int id) {
+        public IHttpActionResult Delete(int id) {
+            this.service.Remove(id);
+            return Ok();
         }
     }
 }

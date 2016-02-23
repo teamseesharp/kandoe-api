@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Kandoe.Business.Domain {
     public class ChatMessage {
+        protected ChatMessage() { }
         public ChatMessage(String text) {
             this.Text = text;
         }

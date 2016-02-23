@@ -3,3 +3,9 @@ DI toepassen op controller via framework of custom controller factory (eerste li
 --> hard dependency verwijderen op de specifieke services
 
 ** automapper mapper class niet wrappen in een static class maar somehow met DI oplossen ? we'll see
+
+
+** bij DB fuckup:
+1) zie dat alle tables aanwezig zijn wel
+2) Update-Database –TargetMigration: 0 (reset nr 1e migration)
+3) Update-Database (update nr laatste versie, seed automatisch!)

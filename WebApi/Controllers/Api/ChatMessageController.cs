@@ -5,28 +5,52 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
+using Kandoe.Business;
+using Kandoe.Business.Domain;
+using Kandoe.Web.Model.Dto;
+using Kandoe.Web.Model.Mapping;
+
 namespace Kandoe.Web.Controllers.Api {
+    [RoutePrefix("api/chat-message")]
     public class ChatMessageController : ApiController {
-        // GET: api/ChatMessage
-        public IEnumerable<string> Get() {
-            return new string[] { "value1", "value2" };
+        private readonly Service<ChatMessage> service;
+
+        public ChatMessageController() {
+            this.service = new ChatMessageService();
         }
 
-        // GET: api/ChatMessage/5
-        public string Get(int id) {
-            return "value";
+        [Route("")]
+        public IHttpActionResult Get() {
+            IEnumerable<ChatMessage> entities = this.service.Get();
+            IEnumerable<ChatMessageDto> dtos = ModelMapper.Map<IEnumerable<ChatMessage>, IEnumerable<ChatMessageDto>>(entities);
+            return Ok(dtos);
         }
 
-        // POST: api/ChatMessage
-        public void Post([FromBody]string value) {
+        [Route("{id}")]
+        public IHttpActionResult Get(int id) {
+            ChatMessage entity = this.service.Get(id);
+            ChatMessageDto dto = ModelMapper.Map<ChatMessageDto>(entity);
+            return Ok(dto);
         }
 
-        // PUT: api/ChatMessage/5
-        public void Put(int id, [FromBody]string value) {
+        [Route("")]
+        public IHttpActionResult Post([FromBody]ChatMessageDto dto) {
+            ChatMessage entity = ModelMapper.Map<ChatMessage>(dto);
+            this.service.Add(entity);
+            return Ok();
         }
 
-        // DELETE: api/ChatMessage/5
-        public void Delete(int id) {
+        [Route("")]
+        public IHttpActionResult Put([FromBody]ChatMessageDto dto) {
+            ChatMessage entity = ModelMapper.Map<ChatMessage>(dto);
+            this.service.Change(entity);
+            return Ok();
+        }
+
+        [Route("{id}")]
+        public IHttpActionResult Delete(int id) {
+            this.service.Remove(id);
+            return Ok();
         }
     }
 }
