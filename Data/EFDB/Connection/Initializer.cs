@@ -7,6 +7,8 @@ namespace Kandoe.Data.EFDB.Connection {
             //base.Seed(context);
             var card = new Card("testImage", 0, "testText");
             context.Cards.Add(card);
+            card = new Card("testImage2", 1, "testText2");
+            context.Cards.Add(card);
             context.SaveChanges();
         }
     }
