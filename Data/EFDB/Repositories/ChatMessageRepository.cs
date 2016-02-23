@@ -3,29 +3,36 @@ using System.Collections.Generic;
 
 using Kandoe.Business.Domain;
 using Kandoe.Data.EFDB.Connection;
+using System.Linq;
 
 namespace Kandoe.Data.EFDB.Repositories {
     public class ChatMessageRepository : Repository<ChatMessage> {
         public ChatMessageRepository() : base(new Context()) { }
 
         public override void Create(ChatMessage entity) {
-            throw new NotImplementedException();
+            this.context.ChatMessages.Add(entity);
+            this.context.SaveChanges();
         }
 
         public override void Delete(int id) {
-            throw new NotImplementedException();
+            var entity = this.Read(id);
+            this.context.ChatMessages.Attach(entity);
+            this.context.ChatMessages.Remove(entity);
+            this.context.SaveChanges();
         }
 
         public override IEnumerable<ChatMessage> Read(bool lazy = true) {
-            throw new NotImplementedException();
+            return this.context.ChatMessages.AsEnumerable();
         }
 
         public override ChatMessage Read(int id, bool lazy = true) {
-            throw new NotImplementedException();
+            return this.context.ChatMessages.Find(id);
         }
 
         public override void Update(ChatMessage entity) {
-            throw new NotImplementedException();
+            this.context.ChatMessages.Attach(entity);
+            this.context.Entry(entity).State = System.Data.Entity.EntityState.Modified;
+            this.context.SaveChanges();
         }
     }
 }

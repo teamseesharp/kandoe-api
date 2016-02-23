@@ -3,29 +3,36 @@ using System.Collections.Generic;
 
 using Kandoe.Business.Domain;
 using Kandoe.Data.EFDB.Connection;
+using System.Linq;
 
 namespace Kandoe.Data.EFDB.Repositories {
     public class CardRepository : Repository<Card> {
         public CardRepository() : base(new Context()) { }
 
         public override void Create(Card entity) {
-            throw new NotImplementedException();
+            this.context.Cards.Add(entity);
+            this.context.SaveChanges();
         }
 
         public override void Delete(int id) {
-            throw new NotImplementedException();
+            var entity = this.Read(id);
+            this.context.Cards.Attach(entity);
+            this.context.Cards.Remove(entity);
+            this.context.SaveChanges();
         }
 
         public override IEnumerable<Card> Read(bool lazy = true) {
-            throw new NotImplementedException();
+            return this.context.Cards.AsEnumerable();
         }
 
         public override Card Read(int id, bool lazy = true) {
-            throw new NotImplementedException();
+            return this.context.Cards.Find(id);
         }
 
         public override void Update(Card entity) {
-            throw new NotImplementedException();
+            this.context.Cards.Attach(entity);
+            this.context.Entry(entity).State = System.Data.Entity.EntityState.Modified;
+            this.context.SaveChanges();
         }
     }
 }

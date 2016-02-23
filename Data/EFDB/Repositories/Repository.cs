@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using Kandoe.Data.EFDB.Connection;
+using System.Collections.Generic;
 using System.Data.Entity;
 
 namespace Kandoe.Data.EFDB.Repositories {
     public abstract class Repository<T> : IRepository<T> {
-        protected DbContext context;
+        protected Context context;
 
-        public Repository(DbContext context) {
+        public Repository(Context context) {
             this.context = context;
         }
 

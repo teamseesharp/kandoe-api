@@ -16,7 +16,7 @@ namespace Kandoe.Data.EFDB.Connection {
         public DbSet<Card> Cards { get; set; }
         public DbSet<CardReview> CardReviews { get; set; }
         public DbSet<ChatMessage> ChatMessages { get; set; }
-        public DbSet<Organisation> Organisation { get; set; }
+        public DbSet<Organisation> Organisations { get; set; }
         public DbSet<Session> Sessions { get; set; }
         public DbSet<Subtheme> Subthemes { get; set; }
         public DbSet<Theme> Themes { get; set; }
