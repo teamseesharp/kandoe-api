@@ -10,19 +10,28 @@ namespace Kandoe.Data.Migrations {
         }
 
         protected override void Seed(Context context) {
+            int cardId = 1;
+
             Card card = new Card("testImage", 0, "testText");
-            context.Cards.Add(card);
+            card.Id = cardId++;
+            context.Cards.AddOrUpdate(card);
 
             card = new Card("testImage2", 1, "testText2");
-            context.Cards.Add(card);
+            card.Id = cardId++;
+            context.Cards.AddOrUpdate(card);
 
             card = new Card("testImage", 0, "testText");
-            context.Cards.Add(card);
+            card.Id = cardId++;
+            context.Cards.AddOrUpdate(card);
 
             context.SaveChanges();
 
             // seed
             base.Seed(context);
+        }
+
+        private void AddOrUpdate<TEntity>(int id, TEntity entity) {
+            // meh
         }
     }
 }

@@ -194,7 +194,6 @@
   <ItemGroup>
     <Content Include="TODO.txt" />
     <Compile Include="Configuration\BundleConfig.cs" />
-    <Compile Include="Configuration\DatabaseConfig.cs" />
     <Compile Include="Configuration\FilterConfig.cs" />
     <Compile Include="Configuration\MapperConfig.cs" />
     <Compile Include="Configuration\RouteConfig.cs" />
