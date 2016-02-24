@@ -16,7 +16,6 @@ namespace Kandoe.Web.Configuration {
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            DatabaseConfig.Configure();
             MapperConfig.Configure();
         }
     }

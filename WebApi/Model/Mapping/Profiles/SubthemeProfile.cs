@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-using AutoMapper;
+﻿using AutoMapper;
 
 using Kandoe.Business.Domain;
 using Kandoe.Web.Model.Dto;
@@ -9,7 +7,13 @@ namespace Kandoe.Web.Model.Mapping {
     public class SubthemeProfile : Profile {
         protected override void Configure() {
             this.CreateMap<Subtheme, SubthemeDto>();
-            this.CreateMap<SubthemeDto, Subtheme>();
+
+            this.CreateMap<SubthemeDto, Subtheme>()
+                .ConstructUsing(
+                    dto => new Subtheme(
+                        dto.Name,
+                        dto.ThemeId
+                    ));
         }
     }
 }

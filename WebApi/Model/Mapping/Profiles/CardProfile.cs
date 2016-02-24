@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-using AutoMapper;
+﻿using AutoMapper;
 
 using Kandoe.Business.Domain;
 using Kandoe.Web.Model.Dto;
@@ -11,7 +9,12 @@ namespace Kandoe.Web.Model.Mapping {
             this.CreateMap<Card, CardDto>();
 
             this.CreateMap<CardDto, Card>()
-                .ConstructUsing(dto => new Card(dto.Image, dto.SubthemeId, dto.Text));
+                .ConstructUsing(
+                    dto => new Card(
+                        dto.Image,
+                        dto.SubthemeId,
+                        dto.Text
+                    ));
         }
     }
 }
