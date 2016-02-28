@@ -1,9 +1,9 @@
+using System;
+using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 
 using Kandoe.Business.Domain;
 using Kandoe.Data.EFDB.Connection;
-using System;
-using System.Collections;
 
 namespace Kandoe.Data.Migrations {
     public sealed class Configuration : DbMigrationsConfiguration<Context> {
@@ -18,19 +18,19 @@ namespace Kandoe.Data.Migrations {
             Account acc = new Account("thomas@gmail.com", "Thomas Van Deun", "", "abcde12345");
             context.Accounts.AddOrUpdate(acc);
 
-             acc = new Account("michelle@gmail.com", "Michelle Beckers", "", "michelle13245");
+            acc = new Account("michelle@gmail.com", "Michelle Beckers", "", "michelle13245");
             context.Accounts.AddOrUpdate(acc);
 
-             acc = new Account("olivier@gmail.com", "Olivier Van Aken", "", "oli12345");
+            acc = new Account("olivier@gmail.com", "Olivier Van Aken", "", "oli12345");
             context.Accounts.AddOrUpdate(acc);
 
-             acc = new Account("bennie@gmail.com", "Bennie Bax", "", "bennie12345");
+            acc = new Account("bennie@gmail.com", "Bennie Bax", "", "bennie12345");
             context.Accounts.AddOrUpdate(acc);
 
-             acc = new Account("joachim@gmail.com", "Joachim De SchryverDateTime.Now", "", "joa2345");
+            acc = new Account("joachim@gmail.com", "Joachim De SchryverDateTime.Now", "", "joa2345");
             context.Accounts.AddOrUpdate(acc);
 
-             acc = new Account("cas@gmail.com", "Cas Decelle", "", "cas12345");
+            acc = new Account("cas@gmail.com", "Cas Decelle", "", "cas12345");
             context.Accounts.AddOrUpdate(acc);
 
             context.SaveChanges();
@@ -53,20 +53,14 @@ namespace Kandoe.Data.Migrations {
             #endregion
 
             #region ThemeSeed
-            ArrayList list = new ArrayList();
-            list.Add("Jeugd");
-            list.Add("Werken");
-            list.Add("Geld");
+            String tags = "Jeugd;Werken;Geld";
 
-            Theme theme = new Theme("Jongerenwerking", "Hoe laten we de jeugd terug werken", 1, list);
+            Theme theme = new Theme("Jongerenwerking", "Hoe laten we de jeugd terug werken", 1, tags);
             context.Themes.AddOrUpdate(theme);
 
-            list = new ArrayList();
-            list.Add("Toekomst");
-            list.Add("Werken");
-            list.Add("Geld");
+            tags = "Toekomst;Werken;Geld";
 
-            theme = new Theme("Armoedebestrijding", "Hoe kunnen we iedereen rijk maken", 1, list);
+            theme = new Theme("Armoedebestrijding", "Hoe kunnen we iedereen rijk maken", 1, tags);
             context.Themes.AddOrUpdate(theme);
 
             context.SaveChanges();

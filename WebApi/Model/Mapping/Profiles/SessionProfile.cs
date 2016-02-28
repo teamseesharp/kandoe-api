@@ -11,7 +11,9 @@ namespace Kandoe.Web.Model.Mapping {
             this.CreateMap<SessionDto, Session>()
                 .ConstructUsing(
                     dto => new Session(
-                        dto.Modus
+                        dto.Modus,
+                        dto.Start,
+                        dto.End
                     ));
         }
     }
