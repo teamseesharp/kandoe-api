@@ -13,6 +13,8 @@ namespace Kandoe.Web.Model.Mapping {
                     dto => new Account(
                         dto.Email,
                         dto.Name,
+                        dto.Surname,
+                        dto.Password,
                         dto.Picture,
                         dto.Secret
                     ));

@@ -15,22 +15,22 @@ namespace Kandoe.Data.Migrations {
 
 
             #region UserSeed
-            Account acc = new Account("thomas@gmail.com", "Thomas Van Deun", "", "abcde12345");
+            Account acc = new Account("thomas@gmail.com", "Thomas", "Van Deun", "encryptedpassword", "", "abcde12345");
             context.Accounts.AddOrUpdate(acc);
 
-            acc = new Account("michelle@gmail.com", "Michelle Beckers", "", "michelle13245");
+            acc = new Account("michelle@gmail.com", "Michelle", "Beckers", "encryptedpassword", "", "michelle13245");
             context.Accounts.AddOrUpdate(acc);
 
-            acc = new Account("olivier@gmail.com", "Olivier Van Aken", "", "oli12345");
+            acc = new Account("olivier@gmail.com", "Olivier", "Van Aken", "encryptedpassword", "", "oli12345");
             context.Accounts.AddOrUpdate(acc);
 
-            acc = new Account("bennie@gmail.com", "Bennie Bax", "", "bennie12345");
+            acc = new Account("bennie@gmail.com", "Bennie", "Bax", "encryptedpassword", "", "bennie12345");
             context.Accounts.AddOrUpdate(acc);
 
-            acc = new Account("joachim@gmail.com", "Joachim De SchryverDateTime.Now", "", "joa2345");
+            acc = new Account("joachim@gmail.com", "Joachim", "De Schryver", "encryptedpassword", "", "joa2345");
             context.Accounts.AddOrUpdate(acc);
 
-            acc = new Account("cas@gmail.com", "Cas Decelle", "", "cas12345");
+            acc = new Account("cas@gmail.com", "Cas", "Decelle", "encryptedpassword", "", "cas12345");
             context.Accounts.AddOrUpdate(acc);
 
             context.SaveChanges();
