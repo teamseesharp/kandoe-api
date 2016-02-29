@@ -12,9 +12,12 @@ namespace Kandoe.Data.Migrations {
         }
 
         protected override void Seed(Context context) {
+            int userId = 0;
+
             #region UserSeed
-            Account acc = new Account("thomastvd@gmail.com", "Thomas", "Van Deun", "picture", "auth0|56d4591317aca91f1aff5dfb");
-            context.Accounts.AddOrUpdate(acc);
+            Account account = new Account("thomastvd@gmail.com", "Thomas", "Van Deun", "picture", "auth0|56d4591317aca91f1aff5dfb");
+            account.Id = ++userId;
+            context.Accounts.AddOrUpdate(account);
 
             //acc = new Account("michelle@gmail.com", "Michelle", "Beckers", "picture", "", "michelle13245");
             //context.Accounts.AddOrUpdate(acc);
@@ -22,17 +25,20 @@ namespace Kandoe.Data.Migrations {
             //acc = new Account("olivier@gmail.com", "Olivier", "Van Aken", "picture", "", "oli12345");
             //context.Accounts.AddOrUpdate(acc);
 
-            acc = new Account("helsen.bennie@gmail.com", "Bennie", "Bax", "picture", "google-oauth2|104916923787165182658");
-            context.Accounts.AddOrUpdate(acc);
+            account = new Account("helsen.bennie@gmail.com", "Bennie", "Bax", "picture", "google-oauth2|104916923787165182658");
+            account.Id = ++userId;
+            context.Accounts.AddOrUpdate(account);
 
             //acc = new Account("joachim@gmail.com", "Joachim", "De Schryver", "picture", "", "joa2345");
             //context.Accounts.AddOrUpdate(acc);
 
-            acc = new Account("cas.decelle@gmail.com", "Cas", "Decelle", "picture", "auth0|56d49e6d6568e621399e379c");
-            context.Accounts.AddOrUpdate(acc);
+            account = new Account("cas.decelle@gmail.com", "Cas", "Decelle", "picture", "auth0|56d49e6d6568e621399e379c");
+            account.Id = ++userId;
+            context.Accounts.AddOrUpdate(account);
 
-            acc = new Account("cas.decelle@gmail.com", "Cas", "Decelle", "picture", "google-oauth2|112196091859139010399");
-            context.Accounts.AddOrUpdate(acc);
+            account = new Account("cas.decelle@gmail.com", "Cas", "Decelle", "picture", "google-oauth2|112196091859139010399");
+            account.Id = ++userId;
+            context.Accounts.AddOrUpdate(account);
 
             context.SaveChanges();
 
