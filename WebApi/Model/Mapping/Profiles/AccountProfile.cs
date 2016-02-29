@@ -14,7 +14,6 @@ namespace Kandoe.Web.Model.Mapping {
                         dto.Email,
                         dto.Name,
                         dto.Surname,
-                        dto.Password,
                         dto.Picture,
                         dto.Secret
                     ));

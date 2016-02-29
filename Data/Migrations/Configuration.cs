@@ -12,25 +12,26 @@ namespace Kandoe.Data.Migrations {
         }
 
         protected override void Seed(Context context) {
-
-
             #region UserSeed
-            Account acc = new Account("thomas@gmail.com", "Thomas", "Van Deun", "encryptedpassword", "", "abcde12345");
+            Account acc = new Account("thomastvd@gmail.com", "Thomas", "Van Deun", "picture", "auth0|56d4591317aca91f1aff5dfb");
             context.Accounts.AddOrUpdate(acc);
 
-            acc = new Account("michelle@gmail.com", "Michelle", "Beckers", "encryptedpassword", "", "michelle13245");
+            //acc = new Account("michelle@gmail.com", "Michelle", "Beckers", "picture", "", "michelle13245");
+            //context.Accounts.AddOrUpdate(acc);
+
+            //acc = new Account("olivier@gmail.com", "Olivier", "Van Aken", "picture", "", "oli12345");
+            //context.Accounts.AddOrUpdate(acc);
+
+            acc = new Account("helsen.bennie@gmail.com", "Bennie", "Bax", "picture", "google-oauth2|104916923787165182658");
             context.Accounts.AddOrUpdate(acc);
 
-            acc = new Account("olivier@gmail.com", "Olivier", "Van Aken", "encryptedpassword", "", "oli12345");
+            //acc = new Account("joachim@gmail.com", "Joachim", "De Schryver", "picture", "", "joa2345");
+            //context.Accounts.AddOrUpdate(acc);
+
+            acc = new Account("cas.decelle@gmail.com", "Cas", "Decelle", "picture", "auth0|56d49e6d6568e621399e379c");
             context.Accounts.AddOrUpdate(acc);
 
-            acc = new Account("bennie@gmail.com", "Bennie", "Bax", "encryptedpassword", "", "bennie12345");
-            context.Accounts.AddOrUpdate(acc);
-
-            acc = new Account("joachim@gmail.com", "Joachim", "De Schryver", "encryptedpassword", "", "joa2345");
-            context.Accounts.AddOrUpdate(acc);
-
-            acc = new Account("cas@gmail.com", "Cas", "Decelle", "encryptedpassword", "", "cas12345");
+            acc = new Account("cas.decelle@gmail.com", "Cas", "Decelle", "picture", "google-oauth2|112196091859139010399");
             context.Accounts.AddOrUpdate(acc);
 
             context.SaveChanges();
