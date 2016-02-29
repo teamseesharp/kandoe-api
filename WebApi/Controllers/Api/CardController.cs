@@ -20,6 +20,7 @@ namespace Kandoe.Web.Controllers.Api {
             this.service = new CardService();
         }
 
+        [Authorize]
         [Route("")]
         public IHttpActionResult Get() {
             IEnumerable<Card> entities = this.service.Get();

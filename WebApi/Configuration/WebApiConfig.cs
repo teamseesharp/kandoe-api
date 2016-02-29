@@ -1,5 +1,7 @@
-﻿using System.Web.Http;
-using Microsoft.Owin.Security.OAuth;
+﻿using System.Web.Configuration;
+using System.Web.Http;
+
+using Kandoe.Web.Auth0;
 
 namespace Kandoe.Web.Configuration {
     public static class WebApiConfig {
@@ -9,16 +11,19 @@ namespace Kandoe.Web.Configuration {
             //config.SuppressDefaultHostAuthentication();
             //config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
 
+            // Web API configuration and services
+            config.EnableCors();
+
+            var clientID = WebConfigurationManager.AppSettings["auth0:ClientId"];
+            var clientSecret = WebConfigurationManager.AppSettings["auth0:ClientSecret"];
+
+            config.MessageHandlers.Add(new JsonWebTokenValidationHandler() {
+                Audience = clientID,  // client id
+                SymmetricKey = clientSecret   // client secret
+            });
+
             // Web API routes
             config.MapHttpAttributeRoutes();
-
-            /*
-            config.Routes.MapHttpRoute(
-                name: "Card",
-                routeTemplate: "api/card/{id}",
-                defaults: new { controller = "Card", id = RouteParameter.Optional },
-                constraints: new { controller = "Card" }
-            );*/
 
             /* Default */
             config.Routes.MapHttpRoute(
