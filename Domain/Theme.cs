@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 
 namespace Kandoe.Business.Domain {
     public class Theme {

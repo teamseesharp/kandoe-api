@@ -4,6 +4,7 @@ DI toepassen op controller via framework of custom controller factory (eerste li
 
 ** automapper mapper class niet wrappen in een static class maar somehow met DI oplossen ? we'll see
 
+TODO: - session ophalen adhv userid - organisaties ophalen adhv userid - thema ophalen adhv userid en bijhorende subthema
 
 ** bij DB fuckup:
 1) zie dat alle tables aanwezig zijn wel

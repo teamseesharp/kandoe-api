@@ -13,6 +13,9 @@ namespace Kandoe.Data.Migrations {
 
         protected override void Seed(Context context) {
             int userId = 0;
+            int sessionId = 0;
+            int themeId = 0;
+            int cardId = 0;
 
             #region UserSeed
             Account account = new Account("thomastvd@gmail.com", "Thomas", "Van Deun", "picture", "auth0|56d4591317aca91f1aff5dfb");
@@ -41,54 +44,52 @@ namespace Kandoe.Data.Migrations {
             context.Accounts.AddOrUpdate(account);
 
             context.SaveChanges();
-
             #endregion
 
             #region SessionSeed
-            
             Session session = new Session(Modus.Sync, DateTime.Now, DateTime.Now.AddDays(15));
+            session.Id = ++sessionId;
             context.Sessions.AddOrUpdate(session);
 
-             session = new Session(Modus.Sync, DateTime.Now, DateTime.Now.AddDays(5));
+            session = new Session(Modus.Sync, DateTime.Now, DateTime.Now.AddDays(5));
+            session.Id = ++sessionId;
             context.Sessions.AddOrUpdate(session);
 
             session = new Session(Modus.Async, DateTime.Now, DateTime.Now.AddDays(20));
+            session.Id = ++sessionId;
             context.Sessions.AddOrUpdate(session);
 
             context.SaveChanges();
-
             #endregion
 
             #region ThemeSeed
             String tags = "Jeugd;Werken;Geld";
 
             Theme theme = new Theme("Jongerenwerking", "Hoe laten we de jeugd terug werken", 1, tags);
+            theme.Id = ++themeId;
             context.Themes.AddOrUpdate(theme);
 
             tags = "Toekomst;Werken;Geld";
 
             theme = new Theme("Armoedebestrijding", "Hoe kunnen we iedereen rijk maken", 1, tags);
+            theme.Id = ++themeId;
             context.Themes.AddOrUpdate(theme);
 
             context.SaveChanges();
-
             #endregion
 
             #region CardSeed
-
-
             Card card = new Card("testImage", 0, "Armoede");
-           
+            card.Id = ++cardId;
             context.Cards.AddOrUpdate(card);
 
             card = new Card("testImage2", 1, "Jeugdhuis");
-           
+            card.Id = ++cardId;
             context.Cards.AddOrUpdate(card);
 
             card = new Card("testImage", 0, "Werkloosheid");
-            
+            card.Id = ++cardId;
             context.Cards.AddOrUpdate(card);
-
             #endregion
 
             context.SaveChanges();
