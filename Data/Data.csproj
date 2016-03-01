@@ -60,17 +60,9 @@
     <Compile Include="EFDB\Repositories\SubthemeRepository.cs" />
     <Compile Include="EFDB\Repositories\ThemeRepository.cs" />
     <Compile Include="IRepository.cs" />
-    <Compile Include="Migrations\201602232207136_Initial.cs" />
-    <Compile Include="Migrations\201602232207136_Initial.Designer.cs">
-      <DependentUpon>201602232207136_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602281846291_Second.cs" />
-    <Compile Include="Migrations\201602281846291_Second.Designer.cs">
-      <DependentUpon>201602281846291_Second.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602292258397_Third.cs" />
-    <Compile Include="Migrations\201602292258397_Third.Designer.cs">
-      <DependentUpon>201602292258397_Third.cs</DependentUpon>
+    <Compile Include="Migrations\201603011244261_Initial.cs" />
+    <Compile Include="Migrations\201603011244261_Initial.Designer.cs">
+      <DependentUpon>201603011244261_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -86,14 +78,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602232207136_Initial.resx">
-      <DependentUpon>201602232207136_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602281846291_Second.resx">
-      <DependentUpon>201602281846291_Second.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602292258397_Third.resx">
-      <DependentUpon>201602292258397_Third.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603011244261_Initial.resx">
+      <DependentUpon>201603011244261_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

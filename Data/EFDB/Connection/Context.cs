@@ -8,8 +8,8 @@ namespace Kandoe.Data.EFDB.Connection {
     [DbConfigurationType(typeof(Configuration))]
     public class Context : DbContext {
 
-        public Context() : base("DB_9F4E1D_kandoedb1") {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<Context, Migrations.Configuration>("DB_9F4E1D_kandoedb1"));
+        public Context() : base("DB_9F4E1D_kandoedb2") {
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<Context, Migrations.Configuration>("DB_9F4E1D_kandoedb2"));
         }
 
         public DbSet<Account> Accounts { get; set; }
