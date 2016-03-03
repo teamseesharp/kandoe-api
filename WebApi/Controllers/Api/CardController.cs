@@ -12,6 +12,7 @@ using Kandoe.Web.Model.Mapping;
 using Kandoe.Web.Results;
 
 namespace Kandoe.Web.Controllers.Api {
+    [Authorize]
     [RoutePrefix("api/card")]
     public class CardController : ApiController {
         private readonly Service<Card> service;
@@ -20,7 +21,6 @@ namespace Kandoe.Web.Controllers.Api {
             this.service = new CardService();
         }
 
-        [Authorize]
         [Route("")]
         public IHttpActionResult Get() {
             IEnumerable<Card> entities = this.service.Get();

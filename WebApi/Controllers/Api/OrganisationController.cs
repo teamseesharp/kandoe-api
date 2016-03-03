@@ -12,6 +12,7 @@ using Kandoe.Web.Model.Mapping;
 using Kandoe.Web.Results;
 
 namespace Kandoe.Web.Controllers.Api {
+    [Authorize]
     [RoutePrefix("api/organisation")]
     public class OrganisationController : ApiController {
         private readonly Service<Organisation> service;

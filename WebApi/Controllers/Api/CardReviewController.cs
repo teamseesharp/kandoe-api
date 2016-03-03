@@ -11,6 +11,7 @@ using Kandoe.Web.Model.Dto;
 using Kandoe.Web.Model.Mapping;
 
 namespace Kandoe.Web.Controllers.Api {
+    [Authorize]
     [RoutePrefix("api/card-review")]
     public class CardReviewController : ApiController {
         private readonly Service<CardReview> service;

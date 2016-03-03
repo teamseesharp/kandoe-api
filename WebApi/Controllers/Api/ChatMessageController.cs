@@ -11,6 +11,7 @@ using Kandoe.Web.Model.Dto;
 using Kandoe.Web.Model.Mapping;
 
 namespace Kandoe.Web.Controllers.Api {
+    [Authorize]
     [RoutePrefix("api/chat-message")]
     public class ChatMessageController : ApiController {
         private readonly Service<ChatMessage> service;
