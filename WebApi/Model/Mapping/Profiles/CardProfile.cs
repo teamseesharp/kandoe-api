@@ -11,6 +11,7 @@ namespace Kandoe.Web.Model.Mapping {
             this.CreateMap<CardDto, Card>()
                 .ConstructUsing(
                     dto => new Card(
+                        dto.CreatorId,
                         dto.Image,
                         dto.SubthemeId,
                         dto.Text

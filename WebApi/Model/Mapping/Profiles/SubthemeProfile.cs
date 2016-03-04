@@ -12,6 +12,7 @@ namespace Kandoe.Web.Model.Mapping {
                 .ConstructUsing(
                     dto => new Subtheme(
                         dto.Name,
+                        dto.OrganiserId,
                         dto.ThemeId
                     ));
         }

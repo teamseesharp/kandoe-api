@@ -1,21 +1,40 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Kandoe.Business.Domain {
     public class Session {
         protected Session() { }
-
-
-        public Session(Modus modus, DateTime start, DateTime end) {
+        public Session(bool cardCreationAllowed, bool cardReviewsAllowed, bool isFinished, int maxCardsToChoose, int maxParticipants, Modus modus, int organisationId, int round, int subthemeId, DateTime start, DateTime end) {
+            this.CardCreationAllowed = cardCreationAllowed;
+            this.CardReviewsAllowed = cardReviewsAllowed;
+            this.IsFinished = isFinished;
             this.End = end;
+            this.MaxCardsToChoose = maxCardsToChoose;
+            this.MaxParticipants = maxParticipants;
             this.Modus = modus;
+            this.OrganisationId = organisationId;
+            this.Round = round;
+            this.SubthemeId = subthemeId;
             this.Start = start;
         }
 
-
         public int Id { get; set; }
+        public bool CardCreationAllowed { get; protected set; }
+        public bool CardReviewsAllowed { get; protected set; }
         public DateTime End { get; protected set; }
+        public bool IsFinished { get; protected set; }
+        public int MaxCardsToChoose { get; protected set; }
+        public int MaxParticipants { get; protected set; }
         public Modus Modus { get; protected set; }
+        public int OrganisationId { get; protected set; }
+        public int Round { get; protected set; }
+        public int SubthemeId { get; protected set; }
         public DateTime Start { get; protected set; }
+
+        public virtual ICollection<Card> Cards { get; set; }
+        public virtual ICollection<ChatMessage> ChatMessages { get; set; }
+        public virtual ICollection<Account> Organisers { get; set; }
+        public virtual ICollection<Account> Participants { get; set; }
     }
 
     public enum Modus {

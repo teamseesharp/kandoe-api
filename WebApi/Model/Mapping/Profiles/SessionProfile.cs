@@ -11,7 +11,15 @@ namespace Kandoe.Web.Model.Mapping {
             this.CreateMap<SessionDto, Session>()
                 .ConstructUsing(
                     dto => new Session(
+                        dto.CardCreationAllowed,
+                        dto.CardReviewsAllowed,
+                        dto.IsFinished,
+                        dto.MaxCardsToChoose,
+                        dto.MaxParticipants,
                         dto.Modus,
+                        dto.OrganisationId,
+                        dto.Round,
+                        dto.SubthemeId,
                         dto.Start,
                         dto.End
                     ));

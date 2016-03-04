@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EFDB\Connection\Configuration.cs" />
+    <Compile Include="EFDB\Connection\Initialiser.cs" />
     <Compile Include="EFDB\Repositories\AccountRepository.cs" />
     <Compile Include="EFDB\Repositories\CardRepository.cs" />
     <Compile Include="EFDB\Connection\Context.cs" />
@@ -60,9 +61,9 @@
     <Compile Include="EFDB\Repositories\SubthemeRepository.cs" />
     <Compile Include="EFDB\Repositories\ThemeRepository.cs" />
     <Compile Include="IRepository.cs" />
-    <Compile Include="Migrations\201603011244261_Initial.cs" />
-    <Compile Include="Migrations\201603011244261_Initial.Designer.cs">
-      <DependentUpon>201603011244261_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201603040207433_Initial.cs" />
+    <Compile Include="Migrations\201603040207433_Initial.Designer.cs">
+      <DependentUpon>201603040207433_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -78,8 +79,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201603011244261_Initial.resx">
-      <DependentUpon>201603011244261_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603040207433_Initial.resx">
+      <DependentUpon>201603040207433_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

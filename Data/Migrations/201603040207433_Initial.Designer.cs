@@ -13,7 +13,7 @@ namespace Kandoe.Data.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201603011244261_Initial"; }
+            get { return "201603040207433_Initial"; }
         }
         
         string IMigrationMetadata.Source

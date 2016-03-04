@@ -5,6 +5,8 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 
+using Kandoe.Data.EFDB.Connection;
+
 [assembly: OwinStartup(typeof(Kandoe.Web.Configuration.Startup))]
 
 namespace Kandoe.Web.Configuration {
@@ -17,6 +19,10 @@ namespace Kandoe.Web.Configuration {
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             MapperConfig.Configure();
+
+            // Create and initialize database here, because AuthConfig uses the same database
+            Context ctx = new Context();
+            ctx.Database.CreateIfNotExists();
         }
     }
 }

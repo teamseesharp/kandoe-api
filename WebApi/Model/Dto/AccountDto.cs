@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Kandoe.Web.Model.Dto {
     public class AccountDto { 
@@ -8,5 +9,14 @@ namespace Kandoe.Web.Model.Dto {
         public String Picture { get; set; }
         public String Secret { get; set; }
         public String Surname { get; set; }
+
+        public ICollection<CardDto> Cards { get; set; }
+        public ICollection<CardReviewDto> CardReviews { get; set; }
+        public ICollection<ChatMessageDto> ChatMessages { get; set; }
+        public ICollection<OrganisationDto> Organisations { get; set; }
+        public ICollection<SessionDto> OrganisedSessions { get; set; }
+        public ICollection<SessionDto> ParticipatingSessions { get; set; }
+        public ICollection<SubthemeDto> Subthemes { get; set; }
+        public ICollection<ThemeDto> Themes { get; set; }
     }
 }

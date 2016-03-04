@@ -8,8 +8,23 @@ namespace Kandoe.Data.EFDB.Connection {
     [DbConfigurationType(typeof(Configuration))]
     public class Context : DbContext {
 
-        public Context() : base("DB_9F4E1D_kandoedb2") {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<Context, Migrations.Configuration>("DB_9F4E1D_kandoedb2"));
+        /*
+        public Context() : base("DB_9F4E1D_kandoedb4") {
+            Database.SetInitializer();
+        }
+        */
+        /*
+        public Context() : base("KandoeDB_EFCodeFirst_Local") {
+            Database.SetInitializer(new Initialiser());
+        }
+        */
+        /*
+        public Context() : base("kandoedb") {
+            Database.SetInitializer(new Initialiser());
+        }
+        */
+        public Context() : base("KandoeDB_EFCodeFirst_Combell") {
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<Context, Migrations.Configuration>("KandoeDB_EFCodeFirst_Combell"));
         }
 
         public DbSet<Account> Accounts { get; set; }
@@ -28,6 +43,15 @@ namespace Kandoe.Data.EFDB.Connection {
             modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
 
             /* Primary Keys */
+            this.SetPrimaryKeys(modelBuilder);
+
+            /* Foreign Keys */
+            this.SetForeignKeys(modelBuilder);
+
+            /* Properties */
+        }
+
+        private void SetPrimaryKeys(DbModelBuilder modelBuilder) {
             modelBuilder.Entity<Account>().HasKey(a => a.Id);
             modelBuilder.Entity<Card>().HasKey(c => c.Id);
             modelBuilder.Entity<CardReview>().HasKey(cr => cr.Id);
@@ -36,6 +60,103 @@ namespace Kandoe.Data.EFDB.Connection {
             modelBuilder.Entity<Session>().HasKey(s => s.Id);
             modelBuilder.Entity<Subtheme>().HasKey(st => st.Id);
             modelBuilder.Entity<Theme>().HasKey(t => t.Id);
+        }
+
+        private void SetForeignKeys(DbModelBuilder modelBuilder) {
+            this.SetOneToMany(modelBuilder);
+            this.SetManyToMany(modelBuilder);
+        }
+
+        private void SetOneToMany(DbModelBuilder modelBuilder) {
+            // Card
+            modelBuilder.Entity<Account>().HasMany(a => a.Cards)
+                .WithRequired()
+                .HasForeignKey(c => c.CreatorId);
+            modelBuilder.Entity<Subtheme>().HasMany(s => s.Cards)
+                .WithRequired()
+                .HasForeignKey(c => c.SubthemeId);
+
+            // CardReview
+            modelBuilder.Entity<Account>().HasMany(a => a.CardReviews)
+                .WithRequired()
+                .HasForeignKey(cr => cr.ReviewerId);
+            modelBuilder.Entity<Card>().HasMany(c => c.CardReviews)
+                .WithRequired()
+                .HasForeignKey(cr => cr.CardId);
+
+            // ChatMessage
+            modelBuilder.Entity<Account>().HasMany(a => a.ChatMessages)
+                .WithRequired()
+                .HasForeignKey(cm => cm.MessengerId);
+            modelBuilder.Entity<Session>().HasMany(s => s.ChatMessages)
+                .WithRequired()
+                .HasForeignKey(cm => cm.SessionId);
+
+            // Organisation
+            modelBuilder.Entity<Account>().HasMany(a => a.Organisations)
+                .WithRequired()
+                .HasForeignKey(o => o.OrganiserId);
+
+            // Session
+            modelBuilder.Entity<Organisation>().HasMany(o => o.Sessions)
+                .WithRequired()
+                .HasForeignKey(s => s.OrganisationId);
+            modelBuilder.Entity<Subtheme>().HasMany(st => st.Sessions)
+                .WithOptional()
+                .HasForeignKey(s => s.SubthemeId);
+
+            // Subtheme
+            modelBuilder.Entity<Account>().HasMany(a => a.Subthemes)
+                .WithRequired()
+                .HasForeignKey(st => st.OrganiserId);
+            modelBuilder.Entity<Theme>().HasMany(t => t.Subthemes)
+                .WithRequired()
+                .HasForeignKey(st => st.ThemeId);
+
+            // Theme
+            modelBuilder.Entity<Account>().HasMany(a => a.Themes)
+                .WithRequired()
+                .HasForeignKey(t => t.OrganiserId);
+            modelBuilder.Entity<Organisation>().HasMany(o => o.Themes)
+                .WithRequired()
+                .HasForeignKey(t => t.OrganisationId);
+        }
+        private void SetManyToMany(DbModelBuilder modelBuilder) {
+            // Accounts 1..n - 0..n Sessions (Managed)
+            modelBuilder.Entity<Account>()
+                .HasMany(a => a.OrganisedSessions)
+                .WithMany(ms => ms.Organisers)
+                .Map(t => t.MapLeftKey("OrganiserId")
+                    .MapRightKey("OrganisedSessionId")
+                    .ToTable("OrganisedSessions"));
+
+            // Accounts 1..n - 0..n Sessions (Participating)
+            modelBuilder.Entity<Account>()
+                .HasMany(a => a.ParticipatingSessions)
+                .WithMany(ms => ms.Participants)
+                .Map(t => t.MapLeftKey("ParticipantId")
+                    .MapRightKey("ParticipatingSessionId")
+                    .ToTable("ParticipatingSessions"));
+
+            // Sessions 0..n - 1..n Cards 
+            modelBuilder.Entity<Session>()
+                .HasMany(s => s.Cards)
+                .WithMany(c => c.Sessions)
+                .Map(t => t.MapLeftKey("SessionId")
+                    .MapRightKey("CardId")
+                    .ToTable("SessionCards"));
+
+            // Subtheme 1..n - 0..n Cards 
+            modelBuilder.Entity<Subtheme>()
+                .HasMany(st => st.Cards)
+                .WithMany(c => c.Subthemes)
+                .Map(t => t.MapLeftKey("SubthemeId")
+                    .MapRightKey("CardId")
+                    .ToTable("SubthemeCards"));
+        }
+
+        private void SetProperties(DbModelBuilder modelBuilder) {
+
         }
     }
 }

@@ -9,14 +9,6 @@ TODO: - session ophalen adhv userid - organisaties ophalen adhv userid - thema o
 
 TODO (voor Thomas)
 
-in Model:
-
-wijziging Organisation
-+attribuut List<Session> of List<int sessionId>
-
-wijziging Session
-+attribuut int currentNumberOfPlayers, int maxPlayers, int maxCards, List<Card> (of List<int cardId>) allowedCards , int maxRounds, int currentRound, int themaId, bool visible, bool finished, int organisatieId, bool reviewAllowed, bool addingCardsAllowed;
-
 API:
 
 ik wil een call  GET getOrganisationsWithSessions()

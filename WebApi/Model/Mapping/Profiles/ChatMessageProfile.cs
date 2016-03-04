@@ -11,6 +11,8 @@ namespace Kandoe.Web.Model.Mapping {
             this.CreateMap<ChatMessageDto, ChatMessage>()
                 .ConstructUsing(
                     dto => new ChatMessage(
+                        dto.MessengerId,
+                        dto.SessionId,
                         dto.Text
                     ));
         }

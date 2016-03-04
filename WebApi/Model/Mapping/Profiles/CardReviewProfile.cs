@@ -11,10 +11,9 @@ namespace Kandoe.Web.Model.Mapping {
             this.CreateMap<CardReviewDto, CardReview>()
                 .ConstructUsing(
                     dto => new CardReview (
-                        dto.AccountId,
                         dto.CardId,
                         dto.Comment,
-                        dto.SessionId
+                        dto.ReviewerId
                     ));
         }
     }
