@@ -14,13 +14,6 @@ namespace Kandoe.Data.EFDB.Repositories {
             this.context.SaveChanges();
         }
 
-        public override void Delete(int id) {
-            var entity = this.Read(id);
-            this.context.Sessions.Attach(entity);
-            this.context.Sessions.Remove(entity);
-            this.context.SaveChanges();
-        }
-
         public override IEnumerable<Session> Read(bool lazy = true) {
             return this.context.Sessions.AsEnumerable();
         }
@@ -32,6 +25,11 @@ namespace Kandoe.Data.EFDB.Repositories {
         public override void Update(Session entity) {
             this.context.Sessions.Attach(entity);
             this.context.Entry(entity).State = System.Data.Entity.EntityState.Modified;
+            this.context.SaveChanges();
+        }
+
+        public override void Delete(int id) {
+            this.context.Sessions.Remove(this.Read(id));
             this.context.SaveChanges();
         }
     }

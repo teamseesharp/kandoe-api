@@ -14,13 +14,6 @@ namespace Kandoe.Data.EFDB.Repositories {
             this.context.SaveChanges();
         }
 
-        public override void Delete(int id) {
-            var entity = this.Read(id);
-            this.context.Subthemes.Attach(entity);
-            this.context.Subthemes.Remove(entity);
-            this.context.SaveChanges();
-        }
-
         public override IEnumerable<Subtheme> Read(bool lazy = true) {
             return this.context.Subthemes.AsEnumerable();
         }
@@ -32,6 +25,11 @@ namespace Kandoe.Data.EFDB.Repositories {
         public override void Update(Subtheme entity) {
             this.context.Subthemes.Attach(entity);
             this.context.Entry(entity).State = System.Data.Entity.EntityState.Modified;
+            this.context.SaveChanges();
+        }
+
+        public override void Delete(int id) {
+            this.context.Subthemes.Remove(this.Read(id));
             this.context.SaveChanges();
         }
     }

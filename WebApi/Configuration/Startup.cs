@@ -20,9 +20,13 @@ namespace Kandoe.Web.Configuration {
 
             MapperConfig.Configure();
 
-            // Create and initialize database here, because AuthConfig uses the same database
+            
+
+            /*
+            // Create and initialize local database here, because AuthConfig uses the same database
             Context ctx = new Context();
-            ctx.Database.CreateIfNotExists();
+            ctx.Database.Initialize(true);
+            */
         }
     }
 }
