@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 using Kandoe.Business.Domain;
 using Kandoe.Data.EFDB.Connection;
-using System.Linq;
 
 namespace Kandoe.Data.EFDB.Repositories {
     public class OrganisationRepository : Repository<Organisation> {
@@ -14,11 +13,11 @@ namespace Kandoe.Data.EFDB.Repositories {
             this.context.SaveChanges();
         }
 
-        public override IEnumerable<Organisation> Read(bool lazy = true) {
+        public override IEnumerable<Organisation> Read(bool eager = false) {
             return this.context.Organisations.AsEnumerable();
         }
 
-        public override Organisation Read(int id, bool lazy = true) {
+        public override Organisation Read(int id, bool eager = false) {
             return this.context.Organisations.Find(id);
         }
 

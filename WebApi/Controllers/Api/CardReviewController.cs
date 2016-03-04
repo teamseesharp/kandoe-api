@@ -12,7 +12,7 @@ using Kandoe.Web.Model.Mapping;
 
 namespace Kandoe.Web.Controllers.Api {
     [Authorize]
-    [RoutePrefix("api/card-review")]
+    [RoutePrefix("api/card-reviews")]
     public class CardReviewController : ApiController {
         private readonly Service<CardReview> service;
 
@@ -52,6 +52,14 @@ namespace Kandoe.Web.Controllers.Api {
         public IHttpActionResult Delete(int id) {
             this.service.Remove(id);
             return Ok();
+        }
+
+        [Route("by-card/{id}")]
+        [HttpGet]
+        public IHttpActionResult GetByCard(int id) {
+            IEnumerable<CardReview> entities = this.service.Get(cr => cr.CardId == id);
+            IEnumerable<CardReviewDto> dtos = ModelMapper.Map<IEnumerable<CardReview>, IEnumerable<CardReviewDto>>(entities);
+            return Ok(dtos);
         }
     }
 }

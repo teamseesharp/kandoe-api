@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 using Kandoe.Business.Domain;
 using Kandoe.Data.EFDB.Connection;
-using System.Linq;
 
 namespace Kandoe.Data.EFDB.Repositories {
     public class ThemeRepository : Repository<Theme> {
@@ -14,11 +14,11 @@ namespace Kandoe.Data.EFDB.Repositories {
             this.context.SaveChanges();
         }
 
-        public override IEnumerable<Theme> Read(bool lazy = true) {
+        public override IEnumerable<Theme> Read(bool eager = false) {
             return this.context.Themes.AsEnumerable();
         }
 
-        public override Theme Read(int id, bool lazy = true) {
+        public override Theme Read(int id, bool eager = false) {
             return this.context.Themes.Find(id);
         }
 

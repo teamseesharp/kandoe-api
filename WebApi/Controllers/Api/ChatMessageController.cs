@@ -12,7 +12,7 @@ using Kandoe.Web.Model.Mapping;
 
 namespace Kandoe.Web.Controllers.Api {
     [Authorize]
-    [RoutePrefix("api/chat-message")]
+    [RoutePrefix("api/chat-messages")]
     public class ChatMessageController : ApiController {
         private readonly Service<ChatMessage> service;
 
@@ -52,6 +52,14 @@ namespace Kandoe.Web.Controllers.Api {
         public IHttpActionResult Delete(int id) {
             this.service.Remove(id);
             return Ok();
+        }
+
+        [Route("by-session/{id}")]
+        [HttpGet]
+        public IHttpActionResult GetBySession(int id) {
+            IEnumerable<ChatMessage> entities = this.service.Get(cm => cm.SessionId == id);
+            IEnumerable<ChatMessageDto> dtos = ModelMapper.Map<IEnumerable<ChatMessage>, IEnumerable<ChatMessageDto>>(entities);
+            return Ok(dtos);
         }
     }
 }

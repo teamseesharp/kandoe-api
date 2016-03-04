@@ -13,7 +13,7 @@ using Kandoe.Web.Results;
 
 namespace Kandoe.Web.Controllers.Api {
     [Authorize]
-    [RoutePrefix("api/subtheme")]
+    [RoutePrefix("api/subthemes")]
     public class SubthemeController : ApiController {
         private readonly Service<Subtheme> service;
 

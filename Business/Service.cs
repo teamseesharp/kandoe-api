@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 using Kandoe.Data;
 
@@ -14,6 +16,7 @@ namespace Kandoe.Business {
 
         public T Get(int id) { return this.Repository.Read(id); }
         public IEnumerable<T> Get() { return this.Repository.Read(); }
+        public IEnumerable<T> Get(Func<T, bool> condition) { return this.Repository.Read().Where(condition); }
 
         public void Change(T entity) { this.Repository.Update(entity); }
 

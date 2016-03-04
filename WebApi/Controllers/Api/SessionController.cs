@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+﻿using System.Collections.Generic;
 using System.Web.Http;
 
 using Kandoe.Business;
@@ -13,7 +9,7 @@ using Kandoe.Web.Results;
 
 namespace Kandoe.Web.Controllers.Api {
     [Authorize]
-    [RoutePrefix("api/session")]
+    [RoutePrefix("api/sessions")]
     public class SessionController : ApiController {
         private readonly Service<Session> service;
 
@@ -53,6 +49,14 @@ namespace Kandoe.Web.Controllers.Api {
         public IHttpActionResult Delete(int id) {
             this.service.Remove(id);
             return Ok();
+        }
+
+        [Route("by-organisation/{id}")]
+        [HttpGet]
+        public IHttpActionResult GetByOrganisation(int id) {
+            IEnumerable<Session> entities = this.service.Get(session => session.OrganisationId == id);
+            IEnumerable<SessionDto> dtos = ModelMapper.Map<IEnumerable<Session>, IEnumerable<SessionDto>>(entities);
+            return Ok(dtos);
         }
     }
 }

@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 using Kandoe.Business.Domain;
 using Kandoe.Data.EFDB.Connection;
-using System.Linq;
 
 namespace Kandoe.Data.EFDB.Repositories {
     public class ChatMessageRepository : Repository<ChatMessage> {
@@ -14,11 +13,11 @@ namespace Kandoe.Data.EFDB.Repositories {
             this.context.SaveChanges();
         }
 
-        public override IEnumerable<ChatMessage> Read(bool lazy = true) {
+        public override IEnumerable<ChatMessage> Read(bool eager = false) {
             return this.context.ChatMessages.AsEnumerable();
         }
 
-        public override ChatMessage Read(int id, bool lazy = true) {
+        public override ChatMessage Read(int id, bool eager = false) {
             return this.context.ChatMessages.Find(id);
         }
 
@@ -29,7 +28,7 @@ namespace Kandoe.Data.EFDB.Repositories {
         }
 
         public override void Delete(int id) {
-            this.context.ChatMessages.Remove(this.Read(id);
+            this.context.ChatMessages.Remove(this.Read(id));
             this.context.SaveChanges();
         }
     }

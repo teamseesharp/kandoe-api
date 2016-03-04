@@ -13,7 +13,7 @@ using Kandoe.Web.Results;
 
 namespace Kandoe.Web.Controllers.Api {
     [Authorize]
-    [RoutePrefix("api/card")]
+    [RoutePrefix("api/cards")]
     public class CardController : ApiController {
         private readonly Service<Card> service;
 

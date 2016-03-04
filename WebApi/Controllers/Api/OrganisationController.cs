@@ -13,24 +13,25 @@ using Kandoe.Web.Results;
 
 namespace Kandoe.Web.Controllers.Api {
     [Authorize]
-    [RoutePrefix("api/organisation")]
+    [RoutePrefix("api/organisations")]
     public class OrganisationController : ApiController {
-        private readonly Service<Organisation> service;
+        private readonly Service<Organisation> organisationService;
+        private readonly Service<Session> sessionService;
 
         public OrganisationController() {
-            this.service = new OrganisationService();
+            this.organisationService = new OrganisationService();
         }
 
         [Route("")]
         public IHttpActionResult Get() {
-            IEnumerable<Organisation> entities = this.service.Get();
+            IEnumerable<Organisation> entities = this.organisationService.Get();
             IEnumerable<OrganisationDto> dtos = ModelMapper.Map<IEnumerable<Organisation>, IEnumerable<OrganisationDto>>(entities);
             return Ok(dtos);
         }
 
         [Route("{id}")]
         public IHttpActionResult Get(int id) {
-            Organisation entity = this.service.Get(id);
+            Organisation entity = this.organisationService.Get(id);
             OrganisationDto dto = ModelMapper.Map<OrganisationDto>(entity);
             return Ok(dto);
         }
@@ -38,20 +39,20 @@ namespace Kandoe.Web.Controllers.Api {
         [Route("")]
         public IHttpActionResult Post([FromBody]OrganisationDto dto) {
             Organisation entity = ModelMapper.Map<Organisation>(dto);
-            this.service.Add(entity);
+            this.organisationService.Add(entity);
             return Ok();
         }
 
         [Route("")]
         public IHttpActionResult Put([FromBody]OrganisationDto dto) {
             Organisation entity = ModelMapper.Map<Organisation>(dto);
-            this.service.Change(entity);
+            this.organisationService.Change(entity);
             return Ok();
         }
 
         [Route("{id}")]
         public IHttpActionResult Delete(int id) {
-            this.service.Remove(id);
+            this.organisationService.Remove(id);
             return Ok();
         }
     }
