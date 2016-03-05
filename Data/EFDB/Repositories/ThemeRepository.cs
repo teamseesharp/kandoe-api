@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 
 using Kandoe.Business.Domain;
@@ -15,16 +15,26 @@ namespace Kandoe.Data.EFDB.Repositories {
         }
 
         public override IEnumerable<Theme> Read(bool eager = false) {
+            if (eager) {
+                return this.context.Themes
+                    .Include(t => t.Subthemes)
+                    .AsEnumerable();
+            }
             return this.context.Themes.AsEnumerable();
         }
 
         public override Theme Read(int id, bool eager = false) {
+            if (eager) {
+                return this.context.Themes
+                    .Include(t => t.Subthemes)
+                    .SingleOrDefault(t => t.Id == id);
+            }
             return this.context.Themes.Find(id);
         }
 
         public override void Update(Theme entity) {
             this.context.Themes.Attach(entity);
-            this.context.Entry(entity).State = System.Data.Entity.EntityState.Modified;
+            this.context.Entry(entity).State = EntityState.Modified;
             this.context.SaveChanges();
         }
 

@@ -12,7 +12,7 @@ namespace Kandoe.Web.Controllers.Api {
     [Authorize]
     [RoutePrefix("api/sessions")]
     public class SessionController : ApiController {
-        private readonly Service<Session> service;
+        private readonly IService<Session> service;
 
         public SessionController() {
             this.service = new SessionService();
@@ -70,7 +70,7 @@ namespace Kandoe.Web.Controllers.Api {
 
         [Route("by-start-date/{date}")]
         [HttpGet]
-        public IHttpActionResult ByStartDate(DateTime date) {
+        public IHttpActionResult GetByStartDate(DateTime date) {
             IEnumerable<Session> entities = this.service.Get(session => session.Start.Date == date);
             IEnumerable<SessionDto> dtos = ModelMapper.Map<IEnumerable<Session>, IEnumerable<SessionDto>>(entities);
             return Ok(dtos);
@@ -78,7 +78,7 @@ namespace Kandoe.Web.Controllers.Api {
 
         [Route("by-end-date/{date}")]
         [HttpGet]
-        public IHttpActionResult ByEndDate(DateTime date) {
+        public IHttpActionResult GetByEndDate(DateTime date) {
             IEnumerable<Session> entities = this.service.Get(session => session.End.Date == date);
             IEnumerable<SessionDto> dtos = ModelMapper.Map<IEnumerable<Session>, IEnumerable<SessionDto>>(entities);
             return Ok(dtos);

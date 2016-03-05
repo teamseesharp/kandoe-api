@@ -15,7 +15,7 @@ namespace Kandoe.Web.Controllers.Api {
     [Authorize]
     [RoutePrefix("api/subthemes")]
     public class SubthemeController : ApiController {
-        private readonly Service<Subtheme> service;
+        private readonly IService<Subtheme> service;
 
         public SubthemeController() {
             this.service = new SubthemeService();

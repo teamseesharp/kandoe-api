@@ -4,8 +4,8 @@ namespace Kandoe.Data {
     public interface IRepository<T> {
         void Create(T entity);
 
-        T Read(int id, bool lazy = true);
-        IEnumerable<T> Read(bool lazy = true);
+        T Read(int id, bool eager = false);
+        IEnumerable<T> Read(bool eager = false);
 
         void Update(T entity);
 

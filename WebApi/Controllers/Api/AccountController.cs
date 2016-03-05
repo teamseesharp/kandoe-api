@@ -15,7 +15,7 @@ namespace Kandoe.Web.Controllers.Api {
     [Authorize]
     [RoutePrefix("api/accounts")]
     public class AccountController : ApiController {
-        private readonly Service<Account> service;
+        private readonly IService<Account> service;
 
         public AccountController() {
             this.service = new AccountService();

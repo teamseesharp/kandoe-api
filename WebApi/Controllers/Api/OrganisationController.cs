@@ -15,7 +15,7 @@ namespace Kandoe.Web.Controllers.Api {
     [Authorize]
     [RoutePrefix("api/organisations")]
     public class OrganisationController : ApiController {
-        private readonly Service<Organisation> service;
+        private readonly IService<Organisation> service;
 
         public OrganisationController() {
             this.service = new OrganisationService();
@@ -23,14 +23,14 @@ namespace Kandoe.Web.Controllers.Api {
 
         [Route("")]
         public IHttpActionResult Get() {
-            IEnumerable<Organisation> entities = this.service.Get();
+            IEnumerable<Organisation> entities = this.service.Get(collections: false);
             IEnumerable<OrganisationDto> dtos = ModelMapper.Map<IEnumerable<Organisation>, IEnumerable<OrganisationDto>>(entities);
             return Ok(dtos);
         }
 
         [Route("{id}")]
         public IHttpActionResult Get(int id) {
-            Organisation entity = this.service.Get(id);
+            Organisation entity = this.service.Get(id, collections: false);
             OrganisationDto dto = ModelMapper.Map<OrganisationDto>(entity);
             return Ok(dto);
         }
@@ -60,6 +60,20 @@ namespace Kandoe.Web.Controllers.Api {
             IEnumerable<Organisation> entities = this.service.Get(o => o.OrganiserId == id);
             IEnumerable<OrganisationDto> dtos = ModelMapper.Map<IEnumerable<Organisation>, IEnumerable<OrganisationDto>>(entities);
             return Ok(dtos);
+        }
+
+        [Route("~/api/verbose/organisations")]
+        public IHttpActionResult GetVerbose() {
+            IEnumerable<Organisation> entities = this.service.Get(collections: true);
+            IEnumerable<OrganisationDto> dtos = ModelMapper.Map<IEnumerable<Organisation>, IEnumerable<OrganisationDto>>(entities);
+            return Ok(dtos);
+        }
+
+        [Route("~/api/verbose/organisations/{id}")]
+        public IHttpActionResult GetVerbose(int id) {
+            Organisation entity = this.service.Get(id, collections: true);
+            OrganisationDto dto = ModelMapper.Map<OrganisationDto>(entity);
+            return Ok(dto);
         }
     }
 }

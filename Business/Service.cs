@@ -5,7 +5,7 @@ using System.Linq;
 using Kandoe.Data;
 
 namespace Kandoe.Business {
-    public abstract class Service<T> {
+    public abstract class Service<T> : IService<T> {
         public Service(IRepository<T> repository) {
             this.Repository = repository;
         }
@@ -14,12 +14,14 @@ namespace Kandoe.Business {
 
         public void Add(T entity) { this.Repository.Create(entity); }
 
-        public T Get(int id) { return this.Repository.Read(id); }
-        public IEnumerable<T> Get() { return this.Repository.Read(); }
-        public IEnumerable<T> Get(Func<T, bool> condition) { return this.Repository.Read().Where(condition); }
+        public virtual T Get(int id, bool collections = false) { return this.Repository.Read(id, eager: collections); }
+        public virtual IEnumerable<T> Get(bool collections = false) { return this.Repository.Read(eager: collections); }
+        public virtual IEnumerable<T> Get(Func<T, bool> condition, bool collections = false) {
+            return this.Repository.Read(eager: collections).Where(condition);
+        }
 
-        public void Change(T entity) { this.Repository.Update(entity); }
+        public virtual void Change(T entity) { this.Repository.Update(entity); }
 
-        public void Remove(int id) { this.Repository.Delete(id); }
+        public virtual void Remove(int id) { this.Repository.Delete(id); }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 
 using Kandoe.Business.Domain;
@@ -14,16 +15,28 @@ namespace Kandoe.Data.EFDB.Repositories {
         }
 
         public override IEnumerable<Subtheme> Read(bool eager = false) {
+            if (eager) {
+                return this.context.Subthemes
+                    .Include(st => st.Cards)
+                    .Include(st => st.Sessions)
+                    .AsEnumerable();
+            }
             return this.context.Subthemes.AsEnumerable();
         }
 
         public override Subtheme Read(int id, bool eager = false) {
+            if (eager) {
+                return this.context.Subthemes
+                    .Include(st => st.Cards)
+                    .Include(st => st.Sessions)
+                    .FirstOrDefault(st => st.Id == id);
+            }
             return this.context.Subthemes.Find(id);
         }
 
         public override void Update(Subtheme entity) {
             this.context.Subthemes.Attach(entity);
-            this.context.Entry(entity).State = System.Data.Entity.EntityState.Modified;
+            this.context.Entry(entity).State = EntityState.Modified;
             this.context.SaveChanges();
         }
 

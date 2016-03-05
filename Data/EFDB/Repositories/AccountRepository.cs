@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 
 using Kandoe.Business.Domain;
@@ -14,16 +15,40 @@ namespace Kandoe.Data.EFDB.Repositories {
         }
 
         public override IEnumerable<Account> Read(bool eager = false) {
+            if (eager) {
+                return this.context.Accounts
+                    .Include(a => a.CardReviews)
+                    .Include(a => a.Cards)
+                    .Include(a => a.ChatMessages)
+                    .Include(a => a.Organisations)
+                    .Include(a => a.OrganisedSessions)
+                    .Include(a => a.ParticipatingSessions)
+                    .Include(a => a.Subthemes)
+                    .Include(a => a.Themes)
+                    .AsEnumerable();
+            }
             return this.context.Accounts.AsEnumerable();
         }
 
         public override Account Read(int id, bool eager = false) {
+            if (eager) {
+                return this.context.Accounts
+                    .Include(a => a.CardReviews)
+                    .Include(a => a.Cards)
+                    .Include(a => a.ChatMessages)
+                    .Include(a => a.Organisations)
+                    .Include(a => a.OrganisedSessions)
+                    .Include(a => a.ParticipatingSessions)
+                    .Include(a => a.Subthemes)
+                    .Include(a => a.Themes)
+                    .FirstOrDefault(a => a.Id == id);
+            }
             return this.context.Accounts.Find(id);
         }
 
         public override void Update(Account entity) {
             this.context.Accounts.Attach(entity);
-            this.context.Entry(entity).State = System.Data.Entity.EntityState.Modified;
+            this.context.Entry(entity).State = EntityState.Modified;
             this.context.SaveChanges();
         }
 

@@ -14,7 +14,7 @@ namespace Kandoe.Web.Controllers.Api {
     [Authorize]
     [RoutePrefix("api/chat-messages")]
     public class ChatMessageController : ApiController {
-        private readonly Service<ChatMessage> service;
+        private readonly IService<ChatMessage> service;
 
         public ChatMessageController() {
             this.service = new ChatMessageService();

@@ -14,7 +14,7 @@ namespace Kandoe.Web.Controllers.Api {
     [Authorize]
     [RoutePrefix("api/card-reviews")]
     public class CardReviewController : ApiController {
-        private readonly Service<CardReview> service;
+        private readonly IService<CardReview> service;
 
         public CardReviewController() {
             this.service = new CardReviewService();
