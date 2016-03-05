@@ -13,7 +13,7 @@ namespace Kandoe.Business.Domain {
         public String Name { get; protected set; }
         public int OrganiserId { get; protected set; }
 
-        public virtual ICollection<Session> Sessions { get; set; }
-        public virtual ICollection<Theme> Themes { get; set; }
+        public ICollection<Session> Sessions { get; set; }
+        public ICollection<Theme> Themes { get; set; }
     }
 }

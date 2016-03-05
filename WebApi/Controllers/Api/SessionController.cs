@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Web.Http;
 
 using Kandoe.Business;
@@ -55,6 +56,30 @@ namespace Kandoe.Web.Controllers.Api {
         [HttpGet]
         public IHttpActionResult GetByOrganisation(int id) {
             IEnumerable<Session> entities = this.service.Get(session => session.OrganisationId == id);
+            IEnumerable<SessionDto> dtos = ModelMapper.Map<IEnumerable<Session>, IEnumerable<SessionDto>>(entities);
+            return Ok(dtos);
+        }
+
+        [Route("by-subtheme/{id}")]
+        [HttpGet]
+        public IHttpActionResult GetBySubtheme(int id) {
+            IEnumerable<Session> entities = this.service.Get(session => session.SubthemeId == id);
+            IEnumerable<SessionDto> dtos = ModelMapper.Map<IEnumerable<Session>, IEnumerable<SessionDto>>(entities);
+            return Ok(dtos);
+        }
+
+        [Route("by-start-date/{date}")]
+        [HttpGet]
+        public IHttpActionResult ByStartDate(DateTime date) {
+            IEnumerable<Session> entities = this.service.Get(session => session.Start.Date == date);
+            IEnumerable<SessionDto> dtos = ModelMapper.Map<IEnumerable<Session>, IEnumerable<SessionDto>>(entities);
+            return Ok(dtos);
+        }
+
+        [Route("by-end-date/{date}")]
+        [HttpGet]
+        public IHttpActionResult ByEndDate(DateTime date) {
+            IEnumerable<Session> entities = this.service.Get(session => session.End.Date == date);
             IEnumerable<SessionDto> dtos = ModelMapper.Map<IEnumerable<Session>, IEnumerable<SessionDto>>(entities);
             return Ok(dtos);
         }

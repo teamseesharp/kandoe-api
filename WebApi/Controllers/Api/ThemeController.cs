@@ -54,5 +54,19 @@ namespace Kandoe.Web.Controllers.Api {
             this.service.Remove(id);
             return Ok();
         }
+
+        [Route("by-organisation/{id}")]
+        public IHttpActionResult GetByOrganisation(int id) {
+            IEnumerable<Theme> entities = this.service.Get(theme => theme.OrganisationId == id);
+            IEnumerable<ThemeDto> dtos = ModelMapper.Map<IEnumerable<Theme>, IEnumerable<ThemeDto>>(entities);
+            return Ok(dtos);
+        }
+
+        [Route("by-tag/{tag}")]
+        public IHttpActionResult GetByTag(string tag) {
+            IEnumerable<Theme> entities = this.service.Get(theme => theme.Tags.Contains(tag));
+            IEnumerable<ThemeDto> dtos = ModelMapper.Map<IEnumerable<Theme>, IEnumerable<ThemeDto>>(entities);
+            return Ok(dtos);
+        }
     }
 }

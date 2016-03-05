@@ -66,13 +66,13 @@ namespace Kandoe.Data.Migrations {
             #endregion
 
             #region ThemeSeed
-            String tags = "Jeugd;Werken;Geld";
+            String tags = "jeugd;werken;geld";
 
             Theme theme = new Theme("Jongerenwerking", "Hoe laten we de jeugd terug werken", 1, 1, tags);
             theme.Id = ++themeId;
             context.Themes.AddOrUpdate(theme);
 
-            tags = "Toekomst;Werken;Geld";
+            tags = "toekomst;werken;geld";
 
             theme = new Theme("Armoedebestrijding", "Hoe kunnen we iedereen rijk maken", 1, 1, tags);
             theme.Id = ++themeId;

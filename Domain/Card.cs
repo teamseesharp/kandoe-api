@@ -17,8 +17,8 @@ namespace Kandoe.Business.Domain {
         public int SubthemeId { get; protected set; }
         public String Text { get; protected set; }
 
-        public virtual ICollection<Subtheme> Subthemes { get; set; }
-        public virtual ICollection<Session> Sessions { get; set; }
-        public virtual ICollection<CardReview> CardReviews { get; set; }
+        public ICollection<Subtheme> Subthemes { get; set; }
+        public ICollection<Session> Sessions { get; set; }
+        public ICollection<CardReview> CardReviews { get; set; }
     }
 }
