@@ -116,7 +116,7 @@ namespace Kandoe.Data.EFDB.Connection {
             card.Id = ++cardId;
             context.Cards.AddOrUpdate(card);
 
-            card = new Card(1, "testImage", 2, "Werkloosheid");
+            card = new Card(1, "testImage", 3, "Werkloosheid");
             card.Id = ++cardId;
             context.Cards.AddOrUpdate(card);
 
