@@ -13,7 +13,8 @@ namespace Kandoe.Web.Model.Mapping {
                     dto => new ChatMessage(
                         dto.MessengerId,
                         dto.SessionId,
-                        dto.Text
+                        dto.Text,
+                        dto.Timestamp
                     ));
         }
     }
