@@ -96,11 +96,11 @@ namespace Kandoe.Data.EFDB.Connection {
             session.Id = ++sessionId;
             context.Sessions.AddOrUpdate(session);
 
-            session = new Session(false, false, false, 3, 8, Modus.Sync, 2, 1, 1, DateTime.Now, DateTime.Now.AddDays(5));
+            session = new Session(false, false, false, 3, 8, Modus.Sync, 2, 1, 2, DateTime.Now, DateTime.Now.AddDays(5));
             session.Id = ++sessionId;
             context.Sessions.AddOrUpdate(session);
 
-            session = new Session(false, false, false, 3, 8, Modus.Async, 3, 1, 1, DateTime.Now, DateTime.Now.AddDays(20));
+            session = new Session(false, false, false, 3, 8, Modus.Async, 3, 1, 3, DateTime.Now, DateTime.Now.AddDays(20));
             session.Id = ++sessionId;
             context.Sessions.AddOrUpdate(session);
 
