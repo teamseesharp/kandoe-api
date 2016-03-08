@@ -74,7 +74,7 @@ namespace Kandoe.Data.Migrations {
 
             tags = "toekomst;werken;geld";
 
-            theme = new Theme("Armoedebestrijding", "Hoe kunnen we iedereen rijk maken", 1, 1, tags);
+            theme = new Theme("Armoedebestrijding", "Hoe kunnen we iedereen rijk maken", 2, 2, tags);
             theme.Id = ++themeId;
             context.Themes.AddOrUpdate(theme);
 
@@ -86,11 +86,11 @@ namespace Kandoe.Data.Migrations {
             subtheme.Id = ++subthemeId;
             context.Subthemes.AddOrUpdate(subtheme);
 
-            subtheme = new Subtheme("Ik ben sexy", 1, 2);
+            subtheme = new Subtheme("Ik ben sexy", 2, 2);
             subtheme.Id = ++subthemeId;
             context.Subthemes.AddOrUpdate(subtheme);
 
-            subtheme = new Subtheme("Ik ben sexy2", 1, 2);
+            subtheme = new Subtheme("Ik ben sexy2", 3, 2);
             subtheme.Id = ++subthemeId;
             context.Subthemes.AddOrUpdate(subtheme);
 
