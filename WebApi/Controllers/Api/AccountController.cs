@@ -12,7 +12,7 @@ using Kandoe.Web.Model.Mapping;
 using Kandoe.Web.Results;
 
 namespace Kandoe.Web.Controllers.Api {
-    [Authorize]
+    //[Authorize]
     [RoutePrefix("api/accounts")]
     public class AccountController : ApiController {
         private readonly IService<Account> service;
@@ -53,6 +53,13 @@ namespace Kandoe.Web.Controllers.Api {
         public IHttpActionResult Delete(int id) {
             this.service.Remove(id);
             return Ok();
+        }
+
+        [Route("by-auth0-user-id/{id}")]
+        public IHttpActionResult GetByAuth0UserId(string id) {
+            IEnumerable<Account> entities = this.service.Get(a => a.Secret == id);
+            AccountDto dto = ModelMapper.Map<AccountDto>(entities.First());
+            return Ok(dto);
         }
     }
 }

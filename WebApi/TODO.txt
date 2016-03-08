@@ -6,17 +6,6 @@ DI toepassen op controller via framework of custom controller factory (eerste li
 
 TODO: - session ophalen adhv userid - organisaties ophalen adhv userid - thema ophalen adhv userid en bijhorende subthema
 
-
-TODO (voor Thomas)
-
-API:
-
-ik wil een call  GET getOrganisationsWithSessions()
-- hier wil een een lijst terugkrijgen van alle organisaties, en bij elke organisatie een geneste lijst van de bijhorende sessie;
-
-Er moeten ook kaartjes toegevoegd kunnen worden door spelers dus put van card moet mogelijkzijn. Dit kaartje bevat enkel een tekst
--PUT: card 
-
 ** bij DB fuckup:
 1) zie dat alle tables aanwezig zijn wel
 2) Update-Database –TargetMigration: 0 (reset nr 1e migration)
