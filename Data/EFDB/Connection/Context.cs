@@ -191,22 +191,10 @@ namespace Kandoe.Data.EFDB.Connection {
 
             // CardReview
             modelBuilder.Entity<CardReview>()
-                .Property(c => c.CardId)
-                .IsRequired();
-            modelBuilder.Entity<CardReview>()
                 .Property(c => c.Comment)
-                .IsRequired();
-            modelBuilder.Entity<CardReview>()
-                .Property(c => c.ReviewerId)
                 .IsRequired();
 
             // ChatMessage
-            modelBuilder.Entity<ChatMessage>()
-                .Property(cm => cm.MessengerId)
-                .IsRequired();
-            modelBuilder.Entity<ChatMessage>()
-                .Property(cm => cm.SessionId)
-                .IsRequired();
             modelBuilder.Entity<ChatMessage>()
                 .Property(cm => cm.Text)
                 .IsRequired();
@@ -218,9 +206,6 @@ namespace Kandoe.Data.EFDB.Connection {
             modelBuilder.Entity<Organisation>()
                 .Property(o => o.Name)
                 .IsRequired();
-            modelBuilder.Entity<Organisation>()
-                .Property(o => o.OrganiserId)
-                .IsRequired();
 
             // Session
             modelBuilder.Entity<Session>()
@@ -230,7 +215,7 @@ namespace Kandoe.Data.EFDB.Connection {
                 .Property(s => s.CardReviewsAllowed)
                 .IsRequired();
             modelBuilder.Entity<Session>()
-                .Property(s => s.CurrentPlayerId)
+                .Property(s => s.CurrentPlayerIndex)
                 .IsRequired();
             modelBuilder.Entity<Session>()
                 .Property(s => s.IsFinished)
@@ -246,12 +231,6 @@ namespace Kandoe.Data.EFDB.Connection {
             modelBuilder.Entity<Subtheme>()
                 .Property(st => st.Name)
                 .IsRequired();
-            modelBuilder.Entity<Subtheme>()
-                .Property(st => st.OrganiserId)
-                .IsRequired();
-            modelBuilder.Entity<Subtheme>()
-                .Property(st => st.ThemeId)
-                .IsRequired();
 
             // Theme
             modelBuilder.Entity<Theme>()
@@ -259,12 +238,6 @@ namespace Kandoe.Data.EFDB.Connection {
                 .IsRequired();
             modelBuilder.Entity<Theme>()
                 .Property(t => t.Name)
-                .IsRequired();
-            modelBuilder.Entity<Theme>()
-                .Property(t => t.OrganisationId)
-                .IsRequired();
-            modelBuilder.Entity<Theme>()
-                .Property(t => t.OrganiserId)
                 .IsRequired();
         }
     }

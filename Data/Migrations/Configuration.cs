@@ -102,8 +102,6 @@ namespace Kandoe.Data.Migrations {
             theme.Id = ++themeId;
             context.Themes.AddOrUpdate(theme);
 
-
-
             context.SaveChanges();
             #endregion
 
@@ -187,7 +185,6 @@ namespace Kandoe.Data.Migrations {
             card = new Card(2, "testImage", 6, "campagnes");
             card.Id = ++cardId;
             context.Cards.AddOrUpdate(card);
-
 
             context.SaveChanges();
             #endregion

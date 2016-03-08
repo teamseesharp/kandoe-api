@@ -7,7 +7,7 @@ namespace Kandoe.Business.Domain {
         public Session(bool cardCreationAllowed, bool cardReviewsAllowed,int currentPlayerId, bool isFinished, int maxCardsToChoose, int maxParticipants, Modus modus, int organisationId, int round, int subthemeId, DateTime start, DateTime end) {
             this.CardCreationAllowed = cardCreationAllowed;
             this.CardReviewsAllowed = cardReviewsAllowed;
-            this.CurrentPlayerId = currentPlayerId;
+            this.CurrentPlayerIndex = currentPlayerId;
             this.IsFinished = isFinished;
             this.End = end;
             this.MaxCardsToChoose = maxCardsToChoose;
@@ -22,7 +22,7 @@ namespace Kandoe.Business.Domain {
         public int Id { get; set; }
         public bool CardCreationAllowed { get; protected set; }
         public bool CardReviewsAllowed { get; protected set; }
-        public int CurrentPlayerId { get;protected set; }
+        public int CurrentPlayerIndex { get; protected set; }
         public DateTime End { get; protected set; }
         public bool IsFinished { get; protected set; }
         public int MaxCardsToChoose { get; protected set; }
