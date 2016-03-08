@@ -43,9 +43,9 @@
   <ItemGroup>
     <Compile Include="ChatMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Card.cs" />
-    <Compile Include="CardReview.cs" />
+    <Compile Include="SelectionCard.cs" />
     <Compile Include="Session.cs" />
+    <Compile Include="SessionCard.cs" />
     <Compile Include="Subtheme.cs" />
     <Compile Include="Theme.cs" />
     <Compile Include="Account.cs" />

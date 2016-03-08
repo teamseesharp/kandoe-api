@@ -9,7 +9,6 @@ namespace Kandoe.Web.Configuration {
                 cfg => {
                     cfg.AddProfile<AccountProfile>();
                     cfg.AddProfile<CardProfile>();
-                    cfg.AddProfile<CardReviewProfile>();
                     cfg.AddProfile<ChatMessageProfile>();
                     cfg.AddProfile<OrganisationProfile>();
                     cfg.AddProfile<SessionProfile>();

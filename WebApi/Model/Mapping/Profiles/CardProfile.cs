@@ -6,14 +6,25 @@ using Kandoe.Web.Model.Dto;
 namespace Kandoe.Web.Model.Mapping {
     public class CardProfile : Profile {
         protected override void Configure() {
-            this.CreateMap<Card, CardDto>();
+            this.CreateMap<SelectionCard, CardDto>();
 
-            this.CreateMap<CardDto, Card>()
+            this.CreateMap<CardDto, SelectionCard>()
                 .ConstructUsing(
-                    dto => new Card(
-                        dto.CreatorId,
+                    dto => new SelectionCard(
                         dto.Image,
-                        dto.SubthemeId,
+                        dto.Text,
+                        dto.ThemeId,
+                        dto.SubthemeId
+                    ));
+
+            this.CreateMap<SessionCard, CardDto>();
+
+            this.CreateMap<CardDto, SessionCard>()
+                .ConstructUsing(
+                    dto => new SessionCard(
+                        dto.Image,
+                        dto.SessionId,
+                        dto.SessionLevel,
                         dto.Text
                     ));
         }

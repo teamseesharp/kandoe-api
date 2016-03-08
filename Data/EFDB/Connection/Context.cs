@@ -31,10 +31,10 @@ namespace Kandoe.Data.EFDB.Connection {
         }
 
         public DbSet<Account> Accounts { get; set; }
-        public DbSet<Card> Cards { get; set; }
-        public DbSet<CardReview> CardReviews { get; set; }
         public DbSet<ChatMessage> ChatMessages { get; set; }
         public DbSet<Organisation> Organisations { get; set; }
+        public DbSet<SelectionCard> SelectionCards { get; set; }
+        public DbSet<SessionCard> SessionCards { get; set; }
         public DbSet<Session> Sessions { get; set; }
         public DbSet<Subtheme> Subthemes { get; set; }
         public DbSet<Theme> Themes { get; set; }
@@ -58,11 +58,11 @@ namespace Kandoe.Data.EFDB.Connection {
 
         private void SetPrimaryKeys(DbModelBuilder modelBuilder) {
             modelBuilder.Entity<Account>().HasKey(a => a.Id);
-            modelBuilder.Entity<Card>().HasKey(c => c.Id);
-            modelBuilder.Entity<CardReview>().HasKey(cr => cr.Id);
             modelBuilder.Entity<ChatMessage>().HasKey(cm => cm.Id);
             modelBuilder.Entity<Organisation>().HasKey(o => o.Id);
+            modelBuilder.Entity<SelectionCard>().HasKey(slc => slc.Id);
             modelBuilder.Entity<Session>().HasKey(s => s.Id);
+            modelBuilder.Entity<SessionCard>().HasKey(sc => sc.Id);
             modelBuilder.Entity<Subtheme>().HasKey(st => st.Id);
             modelBuilder.Entity<Theme>().HasKey(t => t.Id);
         }
@@ -73,22 +73,6 @@ namespace Kandoe.Data.EFDB.Connection {
         }
 
         private void SetOneToMany(DbModelBuilder modelBuilder) {
-            // Card
-            modelBuilder.Entity<Account>().HasMany(a => a.Cards)
-                .WithRequired()
-                .HasForeignKey(c => c.CreatorId);
-            modelBuilder.Entity<Subtheme>().HasMany(s => s.Cards)
-                .WithRequired()
-                .HasForeignKey(c => c.SubthemeId);
-
-            // CardReview
-            modelBuilder.Entity<Account>().HasMany(a => a.CardReviews)
-                .WithRequired()
-                .HasForeignKey(cr => cr.ReviewerId);
-            modelBuilder.Entity<Card>().HasMany(c => c.CardReviews)
-                .WithRequired()
-                .HasForeignKey(cr => cr.CardId);
-
             // ChatMessage
             modelBuilder.Entity<Account>().HasMany(a => a.ChatMessages)
                 .WithRequired()
@@ -102,13 +86,26 @@ namespace Kandoe.Data.EFDB.Connection {
                 .WithRequired()
                 .HasForeignKey(o => o.OrganiserId);
 
+            // SelectionCard
+            modelBuilder.Entity<Subtheme>().HasMany(s => s.SelectionCards)
+                .WithOptional()
+                .HasForeignKey(c => c.SubthemeId);
+            modelBuilder.Entity<Theme>().HasMany(s => s.SelectionCards)
+                .WithRequired()
+                .HasForeignKey(c => c.ThemeId);
+
             // Session
             modelBuilder.Entity<Organisation>().HasMany(o => o.Sessions)
                 .WithRequired()
                 .HasForeignKey(s => s.OrganisationId);
             modelBuilder.Entity<Subtheme>().HasMany(st => st.Sessions)
-                .WithOptional()
+                .WithRequired()
                 .HasForeignKey(s => s.SubthemeId);
+
+            // SessionCard
+            modelBuilder.Entity<Session>().HasMany(s => s.SessionCards)
+                .WithRequired()
+                .HasForeignKey(sc => sc.SessionId);
 
             // Subtheme
             modelBuilder.Entity<Account>().HasMany(a => a.Subthemes)
@@ -142,22 +139,6 @@ namespace Kandoe.Data.EFDB.Connection {
                 .Map(t => t.MapLeftKey("ParticipantId")
                     .MapRightKey("ParticipatingSessionId")
                     .ToTable("ParticipatingSessions"));
-
-            // Sessions 0..n - 1..n Cards 
-            modelBuilder.Entity<Session>()
-                .HasMany(s => s.Cards)
-                .WithMany(c => c.Sessions)
-                .Map(t => t.MapLeftKey("SessionId")
-                    .MapRightKey("CardId")
-                    .ToTable("SessionCards"));
-
-            // Subtheme 1..n - 0..n Cards 
-            modelBuilder.Entity<Subtheme>()
-                .HasMany(st => st.Cards)
-                .WithMany(c => c.Subthemes)
-                .Map(t => t.MapLeftKey("SubthemeId")
-                    .MapRightKey("CardId")
-                    .ToTable("SubthemeCards"));
         }
 
         private void SetOptionalProperties(DbModelBuilder modelBuilder) {
@@ -166,6 +147,20 @@ namespace Kandoe.Data.EFDB.Connection {
                 .Property(a => a.Picture)
                 .IsOptional();
 
+            // SelectionCard
+            modelBuilder.Entity<SelectionCard>()
+                .Property(slc => slc.Image)
+                .IsOptional();
+            modelBuilder.Entity<SelectionCard>()
+                .Property(slc => slc.SubthemeId)
+                .IsOptional();
+
+            // SessionCard
+            modelBuilder.Entity<SessionCard>()
+                .Property(slc => slc.Image)
+                .IsOptional();
+
+            // Theme
             modelBuilder.Entity<Theme>()
                 .Property(t => t.Tags)
                 .IsOptional();
@@ -186,14 +181,6 @@ namespace Kandoe.Data.EFDB.Connection {
                 .Property(a => a.Surname)
                 .IsRequired();
 
-            // Card
-            // NOG DOEN
-
-            // CardReview
-            modelBuilder.Entity<CardReview>()
-                .Property(c => c.Comment)
-                .IsRequired();
-
             // ChatMessage
             modelBuilder.Entity<ChatMessage>()
                 .Property(cm => cm.Text)
@@ -205,6 +192,11 @@ namespace Kandoe.Data.EFDB.Connection {
             // Organisation
             modelBuilder.Entity<Organisation>()
                 .Property(o => o.Name)
+                .IsRequired();
+
+            // SelectionCard
+            modelBuilder.Entity<SelectionCard>()
+                .Property(slc => slc.Text)
                 .IsRequired();
 
             // Session
@@ -225,6 +217,14 @@ namespace Kandoe.Data.EFDB.Connection {
                 .IsRequired();
             modelBuilder.Entity<Session>()
                 .Property(s => s.CardCreationAllowed)
+                .IsRequired();
+
+            // SessionCard
+            modelBuilder.Entity<SessionCard>()
+                .Property(slc => slc.SessionLevel)
+                .IsRequired();
+            modelBuilder.Entity<SessionCard>()
+                .Property(slc => slc.Text)
                 .IsRequired();
 
             // Subtheme

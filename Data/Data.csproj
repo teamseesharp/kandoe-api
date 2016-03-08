@@ -51,12 +51,12 @@
     <Compile Include="EFDB\Connection\Configuration.cs" />
     <Compile Include="EFDB\Connection\Initialiser.cs" />
     <Compile Include="EFDB\Repositories\AccountRepository.cs" />
-    <Compile Include="EFDB\Repositories\CardRepository.cs" />
     <Compile Include="EFDB\Connection\Context.cs" />
-    <Compile Include="EFDB\Repositories\CardReviewRepository.cs" />
     <Compile Include="EFDB\Repositories\ChatMessageRepository.cs" />
     <Compile Include="EFDB\Repositories\OrganisationRepository.cs" />
     <Compile Include="EFDB\Repositories\Repository.cs" />
+    <Compile Include="EFDB\Repositories\SelectionCardRepository.cs" />
+    <Compile Include="EFDB\Repositories\SessionCardRepository.cs" />
     <Compile Include="EFDB\Repositories\SessionRepository.cs" />
     <Compile Include="EFDB\Repositories\SubthemeRepository.cs" />
     <Compile Include="EFDB\Repositories\ThemeRepository.cs" />

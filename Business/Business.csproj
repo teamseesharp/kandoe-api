@@ -41,13 +41,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountService.cs" />
-    <Compile Include="CardReviewService.cs" />
     <Compile Include="ChatMessageService.cs" />
     <Compile Include="IService.cs" />
     <Compile Include="OrganisationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SelectionCardService.cs" />
     <Compile Include="Service.cs" />
-    <Compile Include="CardService.cs" />
+    <Compile Include="SessionCardService.cs" />
     <Compile Include="SessionService.cs" />
     <Compile Include="SubthemeService.cs" />
     <Compile Include="ThemeService.cs" />

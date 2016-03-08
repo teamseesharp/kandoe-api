@@ -17,7 +17,8 @@ namespace Kandoe.Data.Migrations {
             int sessionId = 0;
             int themeId = 0;
             int subthemeId = 0;
-            int cardId = 0;
+            int selectionCardId = 0;
+            int sessionCardId = 0;
             int organisationId = 0;
 
             #region AccountSeed
@@ -161,30 +162,50 @@ namespace Kandoe.Data.Migrations {
             context.SaveChanges();
             #endregion
 
-            #region CardSeed
-            Card card = new Card(1, "testImage", 2, "Muziek");
-            card.Id = ++cardId;
-            context.Cards.AddOrUpdate(card);
+            #region SelectionCardSeed
+            SelectionCard selectionCard = new SelectionCard("testImage", "Muziek", 1);
+            selectionCard.Id = ++selectionCardId;
+            context.SelectionCards.AddOrUpdate(selectionCard);
 
-            card = new Card(1, "testImage2", 1, "Horeca");
-            card.Id = ++cardId;
-            context.Cards.AddOrUpdate(card);
+            selectionCard = new SelectionCard("testImage2", "Horeca", 1);
+            selectionCard.Id = ++selectionCardId;
+            context.SelectionCards.AddOrUpdate(selectionCard);
 
-            card = new Card(2, "testImage", 3, "Voedselbank");
-            card.Id = ++cardId;
-            context.Cards.AddOrUpdate(card);
+            selectionCard = new SelectionCard("testImage", "Muziek", 1, 1);
+            selectionCard.Id = ++selectionCardId;
+            context.SelectionCards.AddOrUpdate(selectionCard);
 
-            card = new Card(3, "testImage", 4, "President");
-            card.Id = ++cardId;
-            context.Cards.AddOrUpdate(card);
+            selectionCard = new SelectionCard("testImage2", "Horeca", 1, 1);
+            selectionCard.Id = ++selectionCardId;
+            context.SelectionCards.AddOrUpdate(selectionCard);
 
-            card = new Card(4, "testImage", 5, "Stemrondes");
-            card.Id = ++cardId;
-            context.Cards.AddOrUpdate(card);
+            selectionCard = new SelectionCard("testImage", "Voedselbank", 3);
+            selectionCard.Id = ++selectionCardId;
+            context.SelectionCards.AddOrUpdate(selectionCard);
 
-            card = new Card(2, "testImage", 6, "campagnes");
-            card.Id = ++cardId;
-            context.Cards.AddOrUpdate(card);
+            selectionCard = new SelectionCard("testImage", "President", 4);
+            selectionCard.Id = ++selectionCardId;
+            context.SelectionCards.AddOrUpdate(selectionCard);
+
+            selectionCard = new SelectionCard("testImage", "Stemrondes", 5);
+            selectionCard.Id = ++selectionCardId;
+            context.SelectionCards.AddOrUpdate(selectionCard);
+
+            selectionCard = new SelectionCard("testImage", "Campagnes", 6);
+            selectionCard.Id = ++selectionCardId;
+            context.SelectionCards.AddOrUpdate(selectionCard);
+
+            context.SaveChanges();
+            #endregion
+
+            #region SesssionCardSeed
+            SessionCard sessionCard = new SessionCard("testImage", 1, 10, "Muziek");
+            sessionCard.Id = ++sessionCardId;
+            //context.SessionCards.AddOrUpdate(sessionCard);
+
+            sessionCard = new SessionCard("testImage2", 1, 10, "Horeca");
+            sessionCard.Id = ++sessionCardId;
+            //context.SessionCards.AddOrUpdate(sessionCard);
 
             context.SaveChanges();
             #endregion

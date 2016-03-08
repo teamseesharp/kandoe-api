@@ -17,8 +17,6 @@ namespace Kandoe.Data.EFDB.Repositories {
         public override IEnumerable<Account> Read(bool eager = false) {
             if (eager) {
                 return this.context.Accounts
-                    .Include(a => a.CardReviews)
-                    .Include(a => a.Cards)
                     .Include(a => a.ChatMessages)
                     .Include(a => a.Organisations)
                     .Include(a => a.OrganisedSessions)
@@ -33,8 +31,6 @@ namespace Kandoe.Data.EFDB.Repositories {
         public override Account Read(int id, bool eager = false) {
             if (eager) {
                 return this.context.Accounts
-                    .Include(a => a.CardReviews)
-                    .Include(a => a.Cards)
                     .Include(a => a.ChatMessages)
                     .Include(a => a.Organisations)
                     .Include(a => a.OrganisedSessions)

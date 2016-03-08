@@ -19,6 +19,7 @@ namespace Kandoe.Business.Domain {
         public int OrganiserId { get; protected set; }
         public String Tags { get; protected set; }
 
+        public ICollection<SelectionCard> SelectionCards { get; set; }
         public ICollection<Subtheme> Subthemes { get; set; }
     }
 }

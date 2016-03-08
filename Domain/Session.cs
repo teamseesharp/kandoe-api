@@ -33,7 +33,7 @@ namespace Kandoe.Business.Domain {
         public int SubthemeId { get; protected set; }
         public DateTime Start { get; protected set; }
 
-        public ICollection<Card> Cards { get; set; }
+        public ICollection<SessionCard> SessionCards { get; set; }
         public ICollection<ChatMessage> ChatMessages { get; set; }
         public ICollection<Account> Organisers { get; set; }
         public ICollection<Account> Participants { get; set; }

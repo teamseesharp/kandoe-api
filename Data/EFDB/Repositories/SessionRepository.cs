@@ -17,10 +17,10 @@ namespace Kandoe.Data.EFDB.Repositories {
         public override IEnumerable<Session> Read(bool eager = false) {
             if (eager) {
                 return this.context.Sessions
-                    .Include(s => s.Cards)
                     .Include(s => s.ChatMessages)
                     .Include(s => s.Organisers)
                     .Include(s => s.Participants)
+                    .Include(s => s.SessionCards)
                     .AsEnumerable();
             }
             return this.context.Sessions.AsEnumerable();
@@ -29,10 +29,10 @@ namespace Kandoe.Data.EFDB.Repositories {
         public override Session Read(int id, bool eager = false) {
             if (eager) {
                 return this.context.Sessions
-                    .Include(s => s.Cards)
                     .Include(s => s.ChatMessages)
                     .Include(s => s.Organisers)
                     .Include(s => s.Participants)
+                    .Include(s => s.SessionCards)
                     .FirstOrDefault(s => s.Id == id);
             }
             return this.context.Sessions.Find(id);

@@ -17,7 +17,7 @@ namespace Kandoe.Data.EFDB.Repositories {
         public override IEnumerable<Subtheme> Read(bool eager = false) {
             if (eager) {
                 return this.context.Subthemes
-                    .Include(st => st.Cards)
+                    .Include(st => st.SelectionCards)
                     .Include(st => st.Sessions)
                     .AsEnumerable();
             }
@@ -27,7 +27,7 @@ namespace Kandoe.Data.EFDB.Repositories {
         public override Subtheme Read(int id, bool eager = false) {
             if (eager) {
                 return this.context.Subthemes
-                    .Include(st => st.Cards)
+                    .Include(st => st.SelectionCards)
                     .Include(st => st.Sessions)
                     .FirstOrDefault(st => st.Id == id);
             }
