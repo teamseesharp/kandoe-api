@@ -13,6 +13,7 @@ namespace Kandoe.Web.Model.Mapping {
                     dto => new Session(
                         dto.CardCreationAllowed,
                         dto.CardReviewsAllowed,
+                        dto.CurrentPlayerId,
                         dto.IsFinished,
                         dto.MaxCardsToChoose,
                         dto.MaxParticipants,

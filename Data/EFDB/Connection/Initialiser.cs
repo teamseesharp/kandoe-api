@@ -92,15 +92,15 @@ namespace Kandoe.Data.EFDB.Connection {
             #endregion
 
             #region SessionSeed
-            Session session = new Session(false, false, false, 3, 8, Modus.Sync, 1, 1, 1, DateTime.Now, DateTime.Now.AddDays(15));
+            Session session = new Session(false, false, 1, false, 3, 8, Modus.Sync, 1, 1, 1, DateTime.Now, DateTime.Now.AddDays(15));
             session.Id = ++sessionId;
             context.Sessions.AddOrUpdate(session);
 
-            session = new Session(false, false, false, 3, 8, Modus.Sync, 2, 1, 2, DateTime.Now, DateTime.Now.AddDays(5));
+            session = new Session(false, false, 2, false, 3, 8, Modus.Sync, 2, 1, 2, DateTime.Now, DateTime.Now.AddDays(5));
             session.Id = ++sessionId;
             context.Sessions.AddOrUpdate(session);
 
-            session = new Session(false, false, false, 3, 8, Modus.Async, 3, 1, 3, DateTime.Now, DateTime.Now.AddDays(20));
+            session = new Session(false, false, 3, false, 3, 8, Modus.Async, 3, 1, 3, DateTime.Now, DateTime.Now.AddDays(20));
             session.Id = ++sessionId;
             context.Sessions.AddOrUpdate(session);
 
