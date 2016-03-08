@@ -136,27 +136,27 @@ namespace Kandoe.Data.Migrations {
             #endregion
 
             #region SessionSeed
-            Session session = new Session(false, false, false, 3, 8, Modus.Sync, 1, 1, 1, DateTime.Now, DateTime.Now.AddDays(15));
+            Session session = new Session(false, false, false, 3, 8, Modus.Sync, 1, 0, 1, DateTime.Now, DateTime.Now.AddDays(15));
             session.Id = ++sessionId;
             context.Sessions.AddOrUpdate(session);
 
-            session = new Session(false, false, false, 3, 8, Modus.Sync, 1, 1, 2, DateTime.Now, DateTime.Now.AddDays(5));
+            session = new Session(false, false, false, 3, 8, Modus.Sync, 1, 0, 2, DateTime.Now, DateTime.Now.AddDays(5));
             session.Id = ++sessionId;
             context.Sessions.AddOrUpdate(session);
 
-            session = new Session(false, false, false, 3, 8, Modus.Async, 2, 1, 3, DateTime.Now, DateTime.Now.AddDays(20));
+            session = new Session(false, false, false, 3, 8, Modus.Async, 2, 0, 3, DateTime.Now, DateTime.Now.AddDays(20));
             session.Id = ++sessionId;
             context.Sessions.AddOrUpdate(session);
 
-            session = new Session(false, false, false, 3, 8, Modus.Async, 3, 1, 4, DateTime.Now, DateTime.Now.AddDays(20));
+            session = new Session(false, false, false, 3, 8, Modus.Async, 3, 0, 4, DateTime.Now, DateTime.Now.AddDays(20));
             session.Id = ++sessionId;
             context.Sessions.AddOrUpdate(session);
 
-            session = new Session(false, false, false, 3, 8, Modus.Async, 3, 1, 5, DateTime.Now, DateTime.Now.AddDays(20));
+            session = new Session(false, false, false, 3, 8, Modus.Async, 3, 0, 5, DateTime.Now, DateTime.Now.AddDays(20));
             session.Id = ++sessionId;
             context.Sessions.AddOrUpdate(session);
 
-            session = new Session(false, false, false, 3, 8, Modus.Async, 3, 1, 6, DateTime.Now, DateTime.Now.AddDays(20));
+            session = new Session(false, false, false, 3, 8, Modus.Async, 3, 0, 6, DateTime.Now, DateTime.Now.AddDays(20));
             session.Id = ++sessionId;
             context.Sessions.AddOrUpdate(session);
 
