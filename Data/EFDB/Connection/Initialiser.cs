@@ -48,11 +48,11 @@ namespace Kandoe.Data.EFDB.Connection {
             organisation.Id = ++organisationId;
             context.Organisations.AddOrUpdate(organisation);
 
-            organisation = new Organisation("nog meer paljaskes", 1);
+            organisation = new Organisation("nog meer paljaskes", 2);
             organisation.Id = ++organisationId;
             context.Organisations.AddOrUpdate(organisation);
 
-            organisation = new Organisation("Limburg 4 no-life", 1);
+            organisation = new Organisation("Limburg 4 no-life", 3);
             organisation.Id = ++organisationId;
             context.Organisations.AddOrUpdate(organisation);
 
@@ -60,31 +60,69 @@ namespace Kandoe.Data.EFDB.Connection {
             #endregion
 
             #region ThemeSeed
-            String tags = "Jeugd;Werken;Geld";
+            String tags = "jeugd;werken;geld";
 
             Theme theme = new Theme("Jongerenwerking", "Hoe laten we de jeugd terug werken", 1, 1, tags);
             theme.Id = ++themeId;
             context.Themes.AddOrUpdate(theme);
 
-            tags = "Toekomst;Werken;Geld";
+            tags = "feest;fuiven";
 
-            theme = new Theme("Armoedebestrijding", "Hoe kunnen we iedereen rijk maken", 1, 1, tags);
+            theme = new Theme("Feest", "Organiseren van fuiven", 1, 1, tags);
             theme.Id = ++themeId;
             context.Themes.AddOrUpdate(theme);
+
+            tags = "toekomst;werken;geld";
+
+            theme = new Theme("Armoedebestrijding", "Hoe kunnen we iedereen rijk maken", 2, 2, tags);
+            theme.Id = ++themeId;
+            context.Themes.AddOrUpdate(theme);
+
+            tags = "geld";
+
+            theme = new Theme("Financien", "Hoe om gaan met geld", 3, 3, tags);
+            theme.Id = ++themeId;
+            context.Themes.AddOrUpdate(theme);
+
+            tags = "geld";
+
+            theme = new Theme("Politiek", "Politieke ideeen", 3, 3, tags);
+            theme.Id = ++themeId;
+            context.Themes.AddOrUpdate(theme);
+
+            tags = "geld";
+
+            theme = new Theme("Pesten", "Stop het pesten!", 3, 3, tags);
+            theme.Id = ++themeId;
+            context.Themes.AddOrUpdate(theme);
+
+
 
             context.SaveChanges();
             #endregion
 
             #region Subtheme
-            Subtheme subtheme = new Subtheme("gayy", 1, 1);
+            Subtheme subtheme = new Subtheme("Vakantiejobs", 1, 1);
             subtheme.Id = ++subthemeId;
             context.Subthemes.AddOrUpdate(subtheme);
 
-            subtheme = new Subtheme("Ik ben sexy", 1, 2);
+            subtheme = new Subtheme("Feest in jeugdhuis", 1, 2);
             subtheme.Id = ++subthemeId;
             context.Subthemes.AddOrUpdate(subtheme);
 
-            subtheme = new Subtheme("Ik ben sexy2", 1, 2);
+            subtheme = new Subtheme("Help de armen!", 2, 3);
+            subtheme.Id = ++subthemeId;
+            context.Subthemes.AddOrUpdate(subtheme);
+
+            subtheme = new Subtheme("Democratie", 3, 5);
+            subtheme.Id = ++subthemeId;
+            context.Subthemes.AddOrUpdate(subtheme);
+
+            subtheme = new Subtheme("Verkiezingen", 3, 5);
+            subtheme.Id = ++subthemeId;
+            context.Subthemes.AddOrUpdate(subtheme);
+
+            subtheme = new Subtheme("Tip voor pesten tegen te gaan", 3, 6);
             subtheme.Id = ++subthemeId;
             context.Subthemes.AddOrUpdate(subtheme);
 
@@ -92,15 +130,27 @@ namespace Kandoe.Data.EFDB.Connection {
             #endregion
 
             #region SessionSeed
-            Session session = new Session(false, false, 1, false, 3, 8, Modus.Sync, 1, 1, 1, DateTime.Now, DateTime.Now.AddDays(15));
+            Session session = new Session(false, false, 1, false, 3, 8, Modus.Sync, 1, 0, 1, DateTime.Now, DateTime.Now.AddDays(15));
             session.Id = ++sessionId;
             context.Sessions.AddOrUpdate(session);
 
-            session = new Session(false, false, 2, false, 3, 8, Modus.Sync, 2, 1, 2, DateTime.Now, DateTime.Now.AddDays(5));
+            session = new Session(false, false, 1, false, 3, 8, Modus.Sync, 1, 0, 2, DateTime.Now, DateTime.Now.AddDays(5));
             session.Id = ++sessionId;
             context.Sessions.AddOrUpdate(session);
 
-            session = new Session(false, false, 3, false, 3, 8, Modus.Async, 3, 1, 3, DateTime.Now, DateTime.Now.AddDays(20));
+            session = new Session(false, false, 2, false, 3, 8, Modus.Async, 2, 0, 3, DateTime.Now, DateTime.Now.AddDays(20));
+            session.Id = ++sessionId;
+            context.Sessions.AddOrUpdate(session);
+
+            session = new Session(false, false, 3, false, 3, 8, Modus.Async, 3, 0, 4, DateTime.Now, DateTime.Now.AddDays(20));
+            session.Id = ++sessionId;
+            context.Sessions.AddOrUpdate(session);
+
+            session = new Session(false, false, 3, false, 3, 8, Modus.Async, 3, 0, 5, DateTime.Now, DateTime.Now.AddDays(20));
+            session.Id = ++sessionId;
+            context.Sessions.AddOrUpdate(session);
+
+            session = new Session(false, false, 3, false, 3, 8, Modus.Async, 3, 0, 6, DateTime.Now, DateTime.Now.AddDays(20));
             session.Id = ++sessionId;
             context.Sessions.AddOrUpdate(session);
 
@@ -108,17 +158,30 @@ namespace Kandoe.Data.EFDB.Connection {
             #endregion
 
             #region CardSeed
-            Card card = new Card(1, "testImage", 2, "Armoede");
+            Card card = new Card(1, "testImage", 2, "Muziek");
             card.Id = ++cardId;
             context.Cards.AddOrUpdate(card);
 
-            card = new Card(1, "testImage2", 1, "Jeugdhuis");
+            card = new Card(1, "testImage2", 1, "Horeca");
             card.Id = ++cardId;
             context.Cards.AddOrUpdate(card);
 
-            card = new Card(1, "testImage", 3, "Werkloosheid");
+            card = new Card(2, "testImage", 3, "Voedselbank");
             card.Id = ++cardId;
             context.Cards.AddOrUpdate(card);
+
+            card = new Card(3, "testImage", 4, "President");
+            card.Id = ++cardId;
+            context.Cards.AddOrUpdate(card);
+
+            card = new Card(4, "testImage", 5, "Stemrondes");
+            card.Id = ++cardId;
+            context.Cards.AddOrUpdate(card);
+
+            card = new Card(2, "testImage", 6, "campagnes");
+            card.Id = ++cardId;
+            context.Cards.AddOrUpdate(card);
+
 
             context.SaveChanges();
             #endregion

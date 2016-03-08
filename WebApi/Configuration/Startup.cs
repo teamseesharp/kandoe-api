@@ -19,14 +19,6 @@ namespace Kandoe.Web.Configuration {
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             MapperConfig.Configure();
-
-            
-
-            /*
-            // Create and initialize local database here, because AuthConfig uses the same database
-            Context ctx = new Context();
-            ctx.Database.Initialize(true);
-            */
         }
     }
 }

@@ -13,16 +13,19 @@ namespace Kandoe.Data.EFDB.Connection {
             Database.SetInitializer();
         }
         */
+
         /*
         public Context() : base("KandoeDB_EFCodeFirst_Local") {
-            Database.SetInitializer(new Initialiser());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<Context, Migrations.Configuration>("KandoeDB_EFCodeFirst_Local"));
         }
         */
+
         /*
         public Context() : base("kandoedb") {
             Database.SetInitializer(new Initialiser());
         }
         */
+
         public Context() : base("KandoeDB_EFCodeFirst_Combell") {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<Context, Migrations.Configuration>("KandoeDB_EFCodeFirst_Combell"));
         }
@@ -49,6 +52,8 @@ namespace Kandoe.Data.EFDB.Connection {
             this.SetForeignKeys(modelBuilder);
 
             /* Properties */
+            this.SetOptionalProperties(modelBuilder);
+            this.SetRequiredProperties(modelBuilder);
         }
 
         private void SetPrimaryKeys(DbModelBuilder modelBuilder) {
@@ -155,8 +160,112 @@ namespace Kandoe.Data.EFDB.Connection {
                     .ToTable("SubthemeCards"));
         }
 
-        private void SetProperties(DbModelBuilder modelBuilder) {
+        private void SetOptionalProperties(DbModelBuilder modelBuilder) {
+            // Account
+            modelBuilder.Entity<Account>()
+                .Property(a => a.Picture)
+                .IsOptional();
 
+            modelBuilder.Entity<Theme>()
+                .Property(t => t.Tags)
+                .IsOptional();
+        }
+
+        private void SetRequiredProperties(DbModelBuilder modelBuilder) {
+            // Account
+            modelBuilder.Entity<Account>()
+                .Property(a => a.Email)
+                .IsRequired();
+            modelBuilder.Entity<Account>()
+                .Property(a => a.Name)
+                .IsRequired();
+            modelBuilder.Entity<Account>()
+                .Property(a => a.Secret)
+                .IsRequired();
+            modelBuilder.Entity<Account>()
+                .Property(a => a.Surname)
+                .IsRequired();
+
+            // Card
+            // NOG DOEN
+
+            // CardReview
+            modelBuilder.Entity<CardReview>()
+                .Property(c => c.CardId)
+                .IsRequired();
+            modelBuilder.Entity<CardReview>()
+                .Property(c => c.Comment)
+                .IsRequired();
+            modelBuilder.Entity<CardReview>()
+                .Property(c => c.ReviewerId)
+                .IsRequired();
+
+            // ChatMessage
+            modelBuilder.Entity<ChatMessage>()
+                .Property(cm => cm.MessengerId)
+                .IsRequired();
+            modelBuilder.Entity<ChatMessage>()
+                .Property(cm => cm.SessionId)
+                .IsRequired();
+            modelBuilder.Entity<ChatMessage>()
+                .Property(cm => cm.Text)
+                .IsRequired();
+            modelBuilder.Entity<ChatMessage>()
+                .Property(cm => cm.Timestamp)
+                .IsRequired();
+
+            // Organisation
+            modelBuilder.Entity<Organisation>()
+                .Property(o => o.Name)
+                .IsRequired();
+            modelBuilder.Entity<Organisation>()
+                .Property(o => o.OrganiserId)
+                .IsRequired();
+
+            // Session
+            modelBuilder.Entity<Session>()
+                .Property(s => s.CardCreationAllowed)
+                .IsRequired();
+            modelBuilder.Entity<Session>()
+                .Property(s => s.CardReviewsAllowed)
+                .IsRequired();
+            modelBuilder.Entity<Session>()
+                .Property(s => s.CurrentPlayerId)
+                .IsRequired();
+            modelBuilder.Entity<Session>()
+                .Property(s => s.IsFinished)
+                .IsRequired();
+            modelBuilder.Entity<Session>()
+                .Property(s => s.MaxCardsToChoose)
+                .IsRequired();
+            modelBuilder.Entity<Session>()
+                .Property(s => s.CardCreationAllowed)
+                .IsRequired();
+
+            // Subtheme
+            modelBuilder.Entity<Subtheme>()
+                .Property(st => st.Name)
+                .IsRequired();
+            modelBuilder.Entity<Subtheme>()
+                .Property(st => st.OrganiserId)
+                .IsRequired();
+            modelBuilder.Entity<Subtheme>()
+                .Property(st => st.ThemeId)
+                .IsRequired();
+
+            // Theme
+            modelBuilder.Entity<Theme>()
+                .Property(t => t.Description)
+                .IsRequired();
+            modelBuilder.Entity<Theme>()
+                .Property(t => t.Name)
+                .IsRequired();
+            modelBuilder.Entity<Theme>()
+                .Property(t => t.OrganisationId)
+                .IsRequired();
+            modelBuilder.Entity<Theme>()
+                .Property(t => t.OrganiserId)
+                .IsRequired();
         }
     }
 }
