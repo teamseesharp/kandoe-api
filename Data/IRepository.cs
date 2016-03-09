@@ -2,7 +2,7 @@
 
 namespace Kandoe.Data {
     public interface IRepository<T> {
-        void Create(T entity);
+        T Create(T entity);
 
         T Read(int id, bool eager = false);
         IEnumerable<T> Read(bool eager = false);

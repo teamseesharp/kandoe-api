@@ -39,7 +39,8 @@ namespace Kandoe.Web.Controllers.Api {
         public IHttpActionResult Post([FromBody]CardDto dto) {
             SessionCard entity = ModelMapper.Map<SessionCard>(dto);
             this.service.Add(entity);
-            return Ok();
+            dto = ModelMapper.Map<CardDto>(entity);
+            return Ok(dto);
         }
 
         [Route("")]

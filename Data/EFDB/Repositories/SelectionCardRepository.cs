@@ -9,9 +9,10 @@ namespace Kandoe.Data.EFDB.Repositories {
     public class SelectionCardRepository : Repository<SelectionCard> {
         public SelectionCardRepository() : base(new Context()) { }
 
-        public override void Create(SelectionCard entity) {
+        public override SelectionCard Create(SelectionCard entity) {
             this.context.SelectionCards.Add(entity);
             this.context.SaveChanges();
+            return entity;
         }
 
         public override IEnumerable<SelectionCard> Read(bool eager = false) {

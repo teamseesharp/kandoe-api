@@ -38,7 +38,8 @@ namespace Kandoe.Web.Controllers.Api {
         public IHttpActionResult Post([FromBody]ChatMessageDto dto) {
             ChatMessage entity = ModelMapper.Map<ChatMessage>(dto);
             this.service.Add(entity);
-            return Ok();
+            dto = ModelMapper.Map<ChatMessageDto>(entity);
+            return Ok(dto);
         }
 
         [Route("")]

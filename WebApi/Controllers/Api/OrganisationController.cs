@@ -12,7 +12,7 @@ using Kandoe.Web.Model.Mapping;
 using Kandoe.Web.Results;
 
 namespace Kandoe.Web.Controllers.Api {
-    [Authorize]
+    //[Authorize]
     [RoutePrefix("api/organisations")]
     public class OrganisationController : ApiController {
         private readonly IService<Organisation> service;
@@ -39,7 +39,8 @@ namespace Kandoe.Web.Controllers.Api {
         public IHttpActionResult Post([FromBody]OrganisationDto dto) {
             Organisation entity = ModelMapper.Map<Organisation>(dto);
             this.service.Add(entity);
-            return Ok();
+            dto = ModelMapper.Map<OrganisationDto>(entity);
+            return Ok(dto);
         }
 
         [Route("")]

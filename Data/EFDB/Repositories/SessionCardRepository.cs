@@ -9,9 +9,10 @@ namespace Kandoe.Data.EFDB.Repositories {
     public class SessionCardRepository : Repository<SessionCard> {
         public SessionCardRepository() : base(new Context()) { }
 
-        public override void Create(SessionCard entity) {
+        public override SessionCard Create(SessionCard entity) {
             this.context.SessionCards.Add(entity);
             this.context.SaveChanges();
+            return entity;
         }
 
         public override IEnumerable<SessionCard> Read(bool eager = false) {

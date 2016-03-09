@@ -9,9 +9,10 @@ namespace Kandoe.Data.EFDB.Repositories {
     public class AccountRepository : Repository<Account> {
         public AccountRepository() : base(new Context()) { }
 
-        public override void Create(Account entity) {
+        public override Account Create(Account entity) {
             this.context.Accounts.Add(entity);
             this.context.SaveChanges();
+            return entity;
         }
 
         public override IEnumerable<Account> Read(bool eager = false) {

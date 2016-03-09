@@ -12,7 +12,7 @@ namespace Kandoe.Business {
 
         protected IRepository<T> Repository { get; set; } 
 
-        public void Add(T entity) { this.Repository.Create(entity); }
+        public T Add(T entity) { return this.Repository.Create(entity); }
 
         public virtual T Get(int id, bool collections = false) { return this.Repository.Read(id, eager: collections); }
         public virtual IEnumerable<T> Get(bool collections = false) { return this.Repository.Read(eager: collections); }

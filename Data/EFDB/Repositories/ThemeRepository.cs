@@ -9,9 +9,10 @@ namespace Kandoe.Data.EFDB.Repositories {
     public class ThemeRepository : Repository<Theme> {
         public ThemeRepository() : base(new Context()) { }
 
-        public override void Create(Theme entity) {
+        public override Theme Create(Theme entity) {
             this.context.Themes.Add(entity);
             this.context.SaveChanges();
+            return entity;
         }
 
         public override IEnumerable<Theme> Read(bool eager = false) {

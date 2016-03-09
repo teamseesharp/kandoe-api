@@ -39,7 +39,8 @@ namespace Kandoe.Web.Controllers.Api {
         public IHttpActionResult Post([FromBody]SubthemeDto dto) {
             Subtheme entity = ModelMapper.Map<Subtheme>(dto);
             this.service.Add(entity);
-            return Ok();
+            dto = ModelMapper.Map<SubthemeDto>(entity);
+            return Ok(dto);
         }
 
         [Route("")]

@@ -10,7 +10,7 @@ namespace Kandoe.Data.EFDB.Repositories {
             this.context = context;
         }
 
-        public abstract void Create(T entity);
+        public abstract T Create(T entity);
         public abstract IEnumerable<T> Read(bool eager = false);
         public abstract T Read(int id, bool eager = false);
         public abstract void Update(T entity);

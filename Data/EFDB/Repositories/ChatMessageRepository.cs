@@ -9,9 +9,10 @@ namespace Kandoe.Data.EFDB.Repositories {
     public class ChatMessageRepository : Repository<ChatMessage> {
         public ChatMessageRepository() : base(new Context()) { }
 
-        public override void Create(ChatMessage entity) {
+        public override ChatMessage Create(ChatMessage entity) {
             this.context.ChatMessages.Add(entity);
             this.context.SaveChanges();
+            return entity;
         }
 
         public override IEnumerable<ChatMessage> Read(bool eager = false) {
