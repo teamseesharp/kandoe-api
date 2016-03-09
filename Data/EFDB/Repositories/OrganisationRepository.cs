@@ -19,7 +19,7 @@ namespace Kandoe.Data.EFDB.Repositories {
             if (eager) {
                 return this.context.Organisations
                     .Include(o => o.Sessions)
-                    .Include(o => o.Themes)
+                    .Include(o => o.Themes.Select(t => t.Subthemes))
                     .AsEnumerable();
             }
             return this.context.Organisations.AsEnumerable();
