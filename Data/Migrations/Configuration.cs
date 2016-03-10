@@ -51,15 +51,15 @@ namespace Kandoe.Data.Migrations {
             #endregion
 
             #region Organisations
-            Organisation organisation = new Organisation("paljaskes", 1);
+            Organisation organisation = new Organisation("Jeugd", 1);
             organisation.Id = ++organisationId;
             context.Organisations.AddOrUpdate(organisation);
 
-            organisation = new Organisation("nog meer paljaskes", 2);
+            organisation = new Organisation("OCMW", 2);
             organisation.Id = ++organisationId;
             context.Organisations.AddOrUpdate(organisation);
 
-            organisation = new Organisation("Limburg 4 no-life", 3);
+            organisation = new Organisation("Overheid", 3);
             organisation.Id = ++organisationId;
             context.Organisations.AddOrUpdate(organisation);
 
@@ -111,6 +111,10 @@ namespace Kandoe.Data.Migrations {
             subtheme.Id = ++subthemeId;
             context.Subthemes.AddOrUpdate(subtheme);
 
+            subtheme = new Subtheme("Speelplein", 1, 1);
+            subtheme.Id = ++subthemeId;
+            context.Subthemes.AddOrUpdate(subtheme);
+
             subtheme = new Subtheme("Feest in jeugdhuis", 1, 2);
             subtheme.Id = ++subthemeId;
             context.Subthemes.AddOrUpdate(subtheme);
@@ -143,19 +147,23 @@ namespace Kandoe.Data.Migrations {
             session.Id = ++sessionId;
             context.Sessions.AddOrUpdate(session);
 
-            session = new Session(false, false, 2, false, 3, 8, Modus.Async, 2, 0, 3, DateTime.Now, DateTime.Now.AddDays(20));
+            session = new Session(false, false, 1, false, 3, 8, Modus.Sync, 1, 0, 2, DateTime.Now.AddDays(2), DateTime.Now.AddDays(10));
             session.Id = ++sessionId;
             context.Sessions.AddOrUpdate(session);
 
-            session = new Session(false, false, 3, false, 3, 8, Modus.Async, 3, 0, 4, DateTime.Now, DateTime.Now.AddDays(20));
+            session = new Session(false, false, 2, false, 3, 8, Modus.Async, 1, 0, 3, DateTime.Now, DateTime.Now.AddDays(20));
             session.Id = ++sessionId;
             context.Sessions.AddOrUpdate(session);
 
-            session = new Session(false, false, 3, false, 3, 8, Modus.Async, 3, 0, 5, DateTime.Now, DateTime.Now.AddDays(20));
+            session = new Session(false, false, 3, false, 3, 8, Modus.Async, 2, 0, 4, DateTime.Now.AddDays(10), DateTime.Now.AddDays(20));
             session.Id = ++sessionId;
             context.Sessions.AddOrUpdate(session);
 
-            session = new Session(false, false, 3, false, 3, 8, Modus.Async, 3, 0, 6, DateTime.Now, DateTime.Now.AddDays(20));
+            session = new Session(false, false, 3, false, 3, 8, Modus.Async, 3, 0, 7, DateTime.Now.AddDays(8), DateTime.Now.AddDays(20));
+            session.Id = ++sessionId;
+            context.Sessions.AddOrUpdate(session);
+
+            session = new Session(false, false, 3, false, 3, 8, Modus.Async, 3, 0, 7, DateTime.Now, DateTime.Now.AddDays(20));
             session.Id = ++sessionId;
             context.Sessions.AddOrUpdate(session);
 
@@ -163,49 +171,329 @@ namespace Kandoe.Data.Migrations {
             #endregion
 
             #region SelectionCardSeed
-            SelectionCard selectionCard = new SelectionCard("testImage", "Muziek", 1);
+            //THEMA 1
+            SelectionCard selectionCard = new SelectionCard("testImage", "Toneel", 1);
             selectionCard.Id = ++selectionCardId;
             context.SelectionCards.AddOrUpdate(selectionCard);
 
-            selectionCard = new SelectionCard("testImage2", "Horeca", 1);
+                 //SUBTHEMA 1
+                 selectionCard = new SelectionCard("testImage", "Flexibele uren", 1, 1);
+                 selectionCard.Id = ++selectionCardId;
+
+                 context.SelectionCards.AddOrUpdate(selectionCard);
+                 selectionCard = new SelectionCard("testImage", "Toffe collega's ", 1, 1);
+                 selectionCard.Id = ++selectionCardId;
+
+                 context.SelectionCards.AddOrUpdate(selectionCard);
+                 selectionCard = new SelectionCard("testImage", "Minumumloon", 1, 1);
+                 selectionCard.Id = ++selectionCardId;
+
+                 context.SelectionCards.AddOrUpdate(selectionCard);
+                 selectionCard = new SelectionCard("testImage", "Uren/week", 1, 1);
+                 selectionCard.Id = ++selectionCardId;
+
+                 context.SelectionCards.AddOrUpdate(selectionCard);
+                 selectionCard = new SelectionCard("testImage", "Zomerjob", 1, 1);
+                 selectionCard.Id = ++selectionCardId;
+                 context.SelectionCards.AddOrUpdate(selectionCard);
+
+                 //SUBTHEMA 2
+                 selectionCard = new SelectionCard("testImage", "Opvang", 1,2);
+                 selectionCard.Id = ++selectionCardId;
+                 context.SelectionCards.AddOrUpdate(selectionCard);
+
+                 selectionCard = new SelectionCard("testImage", "Sport", 1, 2);
+                 selectionCard.Id = ++selectionCardId;
+                 context.SelectionCards.AddOrUpdate(selectionCard);
+
+                 selectionCard = new SelectionCard("testImage", "Vrijwilligerswerk", 1, 2);
+                 selectionCard.Id = ++selectionCardId;
+                 context.SelectionCards.AddOrUpdate(selectionCard);
+
+                 selectionCard = new SelectionCard("testImage", "Kinderen < 12", 1, 2);
+                 selectionCard.Id = ++selectionCardId;
+                 context.SelectionCards.AddOrUpdate(selectionCard);
+
+                 selectionCard = new SelectionCard("testImage", "Kinderen > 12", 1, 2);
+                 selectionCard.Id = ++selectionCardId;
+                 context.SelectionCards.AddOrUpdate(selectionCard);
+
+                 selectionCard = new SelectionCard("testImage", "Locatie", 1, 2);
+                 selectionCard.Id = ++selectionCardId;
+                 context.SelectionCards.AddOrUpdate(selectionCard);
+
+            //THEMA 2
+            selectionCard = new SelectionCard("testImage", "Goede locatie", 2);
             selectionCard.Id = ++selectionCardId;
             context.SelectionCards.AddOrUpdate(selectionCard);
 
-            selectionCard = new SelectionCard("testImage", "Muziek", 1, 1);
+            selectionCard = new SelectionCard("testImage", "Grote capaciteit", 2);
             selectionCard.Id = ++selectionCardId;
             context.SelectionCards.AddOrUpdate(selectionCard);
 
-            selectionCard = new SelectionCard("testImage2", "Horeca", 1, 1);
+                 //SUBTHEMA 3
+                 selectionCard = new SelectionCard("testImage", "Vestiare", 2, 3);
+                 selectionCard.Id = ++selectionCardId;
+                 context.SelectionCards.AddOrUpdate(selectionCard);
+
+                 selectionCard = new SelectionCard("testImage", "Cocktailbar", 2, 3);
+                 selectionCard.Id = ++selectionCardId;
+                 context.SelectionCards.AddOrUpdate(selectionCard);
+
+                 selectionCard = new SelectionCard("testImage", "Goede muziekinstallatie", 2, 3);
+                 selectionCard.Id = ++selectionCardId;
+                 context.SelectionCards.AddOrUpdate(selectionCard);
+
+                 selectionCard = new SelectionCard("testImage", "Lichten", 2, 3);
+                 selectionCard.Id = ++selectionCardId;
+                 context.SelectionCards.AddOrUpdate(selectionCard);
+
+                 selectionCard = new SelectionCard("testImage", "Minimumleeftijd", 1, 3);
+                 selectionCard.Id = ++selectionCardId;
+                 context.SelectionCards.AddOrUpdate(selectionCard);
+
+                 selectionCard = new SelectionCard("testImage", "Einduur", 1, 3);
+                 selectionCard.Id = ++selectionCardId;
+                 context.SelectionCards.AddOrUpdate(selectionCard);
+
+            //THEMA 3
+                 //SUBTHEMA 4
+                 selectionCard = new SelectionCard("testImage", "Voedselbank", 3, 4);
+                 selectionCard.Id = ++selectionCardId;
+                 context.SelectionCards.AddOrUpdate(selectionCard);
+
+                 selectionCard = new SelectionCard("testImage", "Kledingverzamelactie", 3, 4);
+                 selectionCard.Id = ++selectionCardId;
+                 context.SelectionCards.AddOrUpdate(selectionCard);
+
+                 selectionCard = new SelectionCard("testImage", "Opvangcentra", 3, 4);
+                 selectionCard.Id = ++selectionCardId;
+                 context.SelectionCards.AddOrUpdate(selectionCard);
+
+                 selectionCard = new SelectionCard("testImage", "Dekens uitdelen", 3, 4);
+                 selectionCard.Id = ++selectionCardId;
+                 context.SelectionCards.AddOrUpdate(selectionCard);
+
+                 selectionCard = new SelectionCard("testImage", "Geld geven", 3, 4);
+                 selectionCard.Id = ++selectionCardId;
+                 context.SelectionCards.AddOrUpdate(selectionCard);
+
+            //THEMA 4
+            selectionCard = new SelectionCard("testImage", "Begroting", 4);
             selectionCard.Id = ++selectionCardId;
             context.SelectionCards.AddOrUpdate(selectionCard);
 
-            selectionCard = new SelectionCard("testImage", "Voedselbank", 3);
+            selectionCard = new SelectionCard("testImage", "Kamer van koophandel", 4);
             selectionCard.Id = ++selectionCardId;
             context.SelectionCards.AddOrUpdate(selectionCard);
 
-            selectionCard = new SelectionCard("testImage", "President", 4);
+            //THEMA 5
+            selectionCard = new SelectionCard("testImage", "Debat", 5);
             selectionCard.Id = ++selectionCardId;
             context.SelectionCards.AddOrUpdate(selectionCard);
 
-            selectionCard = new SelectionCard("testImage", "Stemrondes", 5);
+            selectionCard = new SelectionCard("testImage", "Eerste minister", 5);
             selectionCard.Id = ++selectionCardId;
             context.SelectionCards.AddOrUpdate(selectionCard);
 
-            selectionCard = new SelectionCard("testImage", "Campagnes", 6);
+
+                  //SUBTHEMA 5
+                  selectionCard = new SelectionCard("testImage", "President", 5, 5);
+                  selectionCard.Id = ++selectionCardId;
+                  context.SelectionCards.AddOrUpdate(selectionCard);
+
+                  selectionCard = new SelectionCard("testImage", "Koning", 5, 5);
+                  selectionCard.Id = ++selectionCardId;
+                  context.SelectionCards.AddOrUpdate(selectionCard);
+
+
+
+                  //SUBTHEMA 6
+                  selectionCard = new SelectionCard("testImage", "Groen", 5, 6);
+                  selectionCard.Id = ++selectionCardId;
+                  context.SelectionCards.AddOrUpdate(selectionCard);
+
+                  selectionCard = new SelectionCard("testImage", "SPA", 5, 6);
+                  selectionCard.Id = ++selectionCardId;
+                  context.SelectionCards.AddOrUpdate(selectionCard);
+
+                  selectionCard = new SelectionCard("testImage", "Vlaams belang", 5, 6);
+                  selectionCard.Id = ++selectionCardId;
+                  context.SelectionCards.AddOrUpdate(selectionCard);
+
+                  selectionCard = new SelectionCard("testImage", "CD&V", 5, 6);
+                  selectionCard.Id = ++selectionCardId;
+                  context.SelectionCards.AddOrUpdate(selectionCard);
+
+                  selectionCard = new SelectionCard("testImage", "MR", 5, 6);
+                  selectionCard.Id = ++selectionCardId;
+                  context.SelectionCards.AddOrUpdate(selectionCard);
+
+
+
+            //THEMA 6
+            selectionCard = new SelectionCard("testImage", "Pesters", 6);
             selectionCard.Id = ++selectionCardId;
             context.SelectionCards.AddOrUpdate(selectionCard);
+
+            selectionCard = new SelectionCard("testImage", "Slachtoffers", 6);
+            selectionCard.Id = ++selectionCardId;
+            context.SelectionCards.AddOrUpdate(selectionCard);
+
+                //SUBTHEMA 7
+                selectionCard = new SelectionCard("testImage", "Campagnes", 6, 7);
+                selectionCard.Id = ++selectionCardId;
+                context.SelectionCards.AddOrUpdate(selectionCard);
+
+                selectionCard = new SelectionCard("testImage", "Anti-pesten helpnummer", 6, 7);
+                selectionCard.Id = ++selectionCardId;
+                context.SelectionCards.AddOrUpdate(selectionCard);
+
+                selectionCard = new SelectionCard("testImage", "Anonieme helpchat", 6, 7);
+                selectionCard.Id = ++selectionCardId;
+                context.SelectionCards.AddOrUpdate(selectionCard);
+
+                selectionCard = new SelectionCard("testImage", "Website", 6, 7);
+                selectionCard.Id = ++selectionCardId;
+                context.SelectionCards.AddOrUpdate(selectionCard);
+
+                selectionCard = new SelectionCard("testImage", "Gesprekken op school", 6, 7);
+                selectionCard.Id = ++selectionCardId;
+                context.SelectionCards.AddOrUpdate(selectionCard);
+
 
             context.SaveChanges();
             #endregion
 
             #region SesssionCardSeed
-            SessionCard sessionCard = new SessionCard("testImage", 1, 10, "Muziek");
+            //Cards SESSION 1
+            SessionCard sessionCard = new SessionCard("testImage", 1, 10, "Flexibele uren");
             sessionCard.Id = ++sessionCardId;
-            //context.SessionCards.AddOrUpdate(sessionCard);
+            context.SessionCards.AddOrUpdate(sessionCard);
 
-            sessionCard = new SessionCard("testImage2", 1, 10, "Horeca");
+            sessionCard = new SessionCard("testImage", 1, 10, "Toffe collega's ");
             sessionCard.Id = ++sessionCardId;
-            //context.SessionCards.AddOrUpdate(sessionCard);
+            context.SessionCards.AddOrUpdate(sessionCard);
+
+            sessionCard = new SessionCard("testImage", 1, 10, "Uren/week");
+            sessionCard.Id = ++sessionCardId;
+            context.SessionCards.AddOrUpdate(sessionCard);
+
+            sessionCard = new SessionCard("testImage", 1, 10, "Zomerjob");
+            sessionCard.Id = ++sessionCardId;
+            context.SessionCards.AddOrUpdate(sessionCard);
+
+            sessionCard = new SessionCard("testImage", 1, 10, "Horeca");
+            sessionCard.Id = ++sessionCardId;
+            context.SessionCards.AddOrUpdate(sessionCard);
+
+            //Cards SESSION 2
+            sessionCard = new SessionCard("testImage", 2, 10, "Opvang");
+            sessionCard.Id = ++sessionCardId;
+            context.SessionCards.AddOrUpdate(sessionCard);
+
+            sessionCard = new SessionCard("testImage", 2, 10, "Vrijwilligerswerk");
+            sessionCard.Id = ++sessionCardId;
+            context.SessionCards.AddOrUpdate(sessionCard);
+
+            sessionCard = new SessionCard("testImage", 2, 10, "Kinderen < 12");
+            sessionCard.Id = ++sessionCardId;
+            context.SessionCards.AddOrUpdate(sessionCard);
+
+            sessionCard = new SessionCard("testImage", 2, 10, "Kinderen > 12");
+            sessionCard.Id = ++sessionCardId;
+            context.SessionCards.AddOrUpdate(sessionCard);
+
+            sessionCard = new SessionCard("testImage", 2, 10, "Locatie");
+            sessionCard.Id = ++sessionCardId;
+            context.SessionCards.AddOrUpdate(sessionCard);
+
+            //Cards SESSION 3
+            sessionCard = new SessionCard("testImage", 3, 10, "Opvang");
+            sessionCard.Id = ++sessionCardId;
+            context.SessionCards.AddOrUpdate(sessionCard);
+
+            sessionCard = new SessionCard("testImage", 3, 10, "Kinderen < 12");
+            sessionCard.Id = ++sessionCardId;
+            context.SessionCards.AddOrUpdate(sessionCard);
+
+            sessionCard = new SessionCard("testImage", 3, 10, "Kinderen > 12");
+            sessionCard.Id = ++sessionCardId;
+            context.SessionCards.AddOrUpdate(sessionCard);
+
+
+            //Cards SESSION 4
+            sessionCard = new SessionCard("testImage", 4, 10, "Vestiare");
+            sessionCard.Id = ++sessionCardId;
+            context.SessionCards.AddOrUpdate(sessionCard);
+
+            sessionCard = new SessionCard("testImage", 4, 10, "Cocktailbar");
+            sessionCard.Id = ++sessionCardId;
+            context.SessionCards.AddOrUpdate(sessionCard);
+
+            sessionCard = new SessionCard("testImage", 4, 10, "Goede muziekinstallatie");
+            sessionCard.Id = ++sessionCardId;
+            context.SessionCards.AddOrUpdate(sessionCard);
+
+            sessionCard = new SessionCard("testImage", 4, 10, "Lichten");
+            sessionCard.Id = ++sessionCardId;
+            context.SessionCards.AddOrUpdate(sessionCard);
+
+            //Cards SESSION 5
+            sessionCard = new SessionCard("testImage", 5, 10, "Voedselbank");
+            sessionCard.Id = ++sessionCardId;
+            context.SessionCards.AddOrUpdate(sessionCard);
+
+            sessionCard = new SessionCard("testImage", 5, 10, "Opvangcentra");
+            sessionCard.Id = ++sessionCardId;
+            context.SessionCards.AddOrUpdate(sessionCard);
+
+            sessionCard = new SessionCard("testImage", 5, 10, "Kledingverzamelactie");
+            sessionCard.Id = ++sessionCardId;
+            context.SessionCards.AddOrUpdate(sessionCard);
+
+            //Cards SESSION 6
+            sessionCard = new SessionCard("testImage", 6, 10, "Campagnes");
+            sessionCard.Id = ++sessionCardId;
+            context.SessionCards.AddOrUpdate(sessionCard);
+
+            sessionCard = new SessionCard("testImage", 6, 10, "Anonieme helpchat");
+            sessionCard.Id = ++sessionCardId;
+            context.SessionCards.AddOrUpdate(sessionCard);
+
+            sessionCard = new SessionCard("testImage", 6, 10, "Anti-pesten helpnummer");
+            sessionCard.Id = ++sessionCardId;
+            context.SessionCards.AddOrUpdate(sessionCard);
+
+            sessionCard = new SessionCard("testImage", 6, 10, "Website");
+            sessionCard.Id = ++sessionCardId;
+            context.SessionCards.AddOrUpdate(sessionCard);
+            
+            //Cards SESSION 7
+            sessionCard = new SessionCard("testImage", 7, 10, "Gesprekken op school");
+            sessionCard.Id = ++sessionCardId;
+            context.SessionCards.AddOrUpdate(sessionCard);
+
+            sessionCard = new SessionCard("testImage", 7, 10, "Anti-pesten helpnummer");
+            sessionCard.Id = ++sessionCardId;
+            context.SessionCards.AddOrUpdate(sessionCard);
+
+            sessionCard = new SessionCard("testImage", 7, 10, "Campagnes");
+            sessionCard.Id = ++sessionCardId;
+            context.SessionCards.AddOrUpdate(sessionCard);
+
+            sessionCard = new SessionCard("testImage", 7, 10, "Website");
+            sessionCard.Id = ++sessionCardId;
+            context.SessionCards.AddOrUpdate(sessionCard);
+
+            sessionCard = new SessionCard("testImage", 7, 10, "Anonieme helpchat");
+            sessionCard.Id = ++sessionCardId;
+            context.SessionCards.AddOrUpdate(sessionCard);
+
+
+
+
+
 
             context.SaveChanges();
             #endregion
