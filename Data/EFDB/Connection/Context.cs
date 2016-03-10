@@ -123,7 +123,7 @@ namespace Kandoe.Data.EFDB.Connection {
                 .HasForeignKey(t => t.OrganisationId);
         }
         private void SetManyToMany(DbModelBuilder modelBuilder) {
-            // Accounts 1..n - 0..n Sessions (Managed)
+            // Accounts 1..n - 0..n Sessions (Organising)
             modelBuilder.Entity<Account>()
                 .HasMany(a => a.OrganisedSessions)
                 .WithMany(ms => ms.Organisers)

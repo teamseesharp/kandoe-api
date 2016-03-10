@@ -40,6 +40,7 @@ namespace Kandoe.Web.Controllers.Api {
         }
 
         [Route("")]
+        // also update the organiser! will receive it in dto.Organisers.first()
         public IHttpActionResult Post([FromBody]SessionDto dto) {
             Session entity = ModelMapper.Map<Session>(dto);
             this.sessionService.Add(entity);
@@ -142,11 +143,43 @@ namespace Kandoe.Web.Controllers.Api {
             return Ok();
         }
 
+        [Route("{sessionId}/level-up-card/{cardId}")]
+        [HttpPatch]
+        // auth: checken of de call van een participant komt
+        public IHttpActionResult PatchSessionCardLevel(int sessionId, int cardId) {
+            Session session = this.sessionService.Get(sessionId, collections: true);
+            SessionCard sessionCard = this.sessionCardService.Get(cardId);
+
+            int index = session.CurrentPlayerIndex;
+            int participantsAmount = session.Participants.Count;
+
+            --sessionCard.SessionLevel;
+            session.CurrentPlayerIndex = ((index + 1) % participantsAmount == 0) ? 0 : index + 1;
+
+            this.sessionService.Change(session);
+            this.sessionCardService.Change(sessionCard);
+
+            return Ok();
+        }
+
 
         [Route("~/api/verbose/sessions")]
         public IHttpActionResult GetVerbose() {
             IEnumerable<Session> entities = this.sessionService.Get(collections: true);
             IEnumerable<SessionDto> dtos = ModelMapper.Map<IEnumerable<Session>, IEnumerable<SessionDto>>(entities);
+
+            foreach (SessionDto dto in dtos) {
+                foreach (AccountDto participant in dto.Participants) {
+                    participant.OrganisedSessions = null;
+                    participant.ParticipatingSessions = null;
+                }
+
+                foreach (AccountDto organiser in dto.Organisers) {
+                    organiser.OrganisedSessions = null;
+                    organiser.ParticipatingSessions = null;
+                }
+            }
+
             return Ok(dtos);
         }
 
@@ -154,6 +187,17 @@ namespace Kandoe.Web.Controllers.Api {
         public IHttpActionResult GetVerbose(int id) {
             Session entity = this.sessionService.Get(id, collections: true);
             SessionDto dto = ModelMapper.Map<SessionDto>(entity);
+
+            foreach (AccountDto participant in dto.Participants) {
+                participant.OrganisedSessions = null;
+                participant.ParticipatingSessions = null;
+            }
+
+            foreach (AccountDto organiser in dto.Organisers) {
+                organiser.OrganisedSessions = null;
+                organiser.ParticipatingSessions = null;
+            }
+
             return Ok(dto); 
         }
     }

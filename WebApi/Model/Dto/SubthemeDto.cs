@@ -8,7 +8,7 @@ namespace Kandoe.Web.Model.Dto {
         public int OrganiserId { get; set; }
         public int ThemeId { get; set; }
 
+        public ICollection<CardDto> SelectionCards { get; set; }
         public ICollection<SessionDto> Sessions { get; set; }
-        public ICollection<CardDto> Cards { get; set; }
     }
 }
