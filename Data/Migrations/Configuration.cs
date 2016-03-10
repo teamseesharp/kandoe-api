@@ -139,31 +139,31 @@ namespace Kandoe.Data.Migrations {
             #endregion
 
             #region SessionSeed
-            Session session = new Session(false, false, 1, false, 3, 8, Modus.Sync, 1, 0, 1, DateTime.Now, DateTime.Now.AddDays(15));
+            Session session = new Session(false, false, 1, false, 3, 8, Modus.Sync, 1, 0, 1, DateTime.Now, DateTime.Today);
             session.Id = ++sessionId;
             context.Sessions.AddOrUpdate(session);
 
-            session = new Session(false, false, 1, false, 3, 8, Modus.Sync, 1, 0, 2, DateTime.Now, DateTime.Now.AddDays(5));
+            session = new Session(false, false, 1, false, 3, 8, Modus.Sync, 1, 0, 2, DateTime.Now, DateTime.Today);
             session.Id = ++sessionId;
             context.Sessions.AddOrUpdate(session);
 
-            session = new Session(false, false, 1, false, 3, 8, Modus.Sync, 1, 0, 2, DateTime.Now.AddDays(2), DateTime.Now.AddDays(10));
+            session = new Session(false, false, 1, false, 3, 8, Modus.Sync, 1, 0, 2, DateTime.Now.AddDays(2), DateTime.Today);
             session.Id = ++sessionId;
             context.Sessions.AddOrUpdate(session);
 
-            session = new Session(false, false, 2, false, 3, 8, Modus.Async, 1, 0, 3, DateTime.Now, DateTime.Now.AddDays(20));
+            session = new Session(false, false, 2, false, 3, 8, Modus.Async, 1, 0, 3, DateTime.Now, DateTime.Today);
             session.Id = ++sessionId;
             context.Sessions.AddOrUpdate(session);
 
-            session = new Session(false, false, 3, false, 3, 8, Modus.Async, 2, 0, 4, DateTime.Now.AddDays(10), DateTime.Now.AddDays(20));
+            session = new Session(false, false, 3, false, 3, 8, Modus.Async, 2, 0, 4, DateTime.Now.AddDays(10), DateTime.Today);
             session.Id = ++sessionId;
             context.Sessions.AddOrUpdate(session);
 
-            session = new Session(false, false, 3, false, 3, 8, Modus.Async, 3, 0, 7, DateTime.Now.AddDays(8), DateTime.Now.AddDays(20));
+            session = new Session(false, false, 3, false, 3, 8, Modus.Async, 3, 0, 7, DateTime.Now.AddDays(8), DateTime.Today);
             session.Id = ++sessionId;
             context.Sessions.AddOrUpdate(session);
 
-            session = new Session(false, false, 3, false, 3, 8, Modus.Async, 3, 0, 7, DateTime.Now, DateTime.Now.AddDays(20));
+            session = new Session(false, false, 3, false, 3, 8, Modus.Async, 3, 0, 7, DateTime.Now, DateTime.Today);
             session.Id = ++sessionId;
             context.Sessions.AddOrUpdate(session);
 
@@ -363,6 +363,7 @@ namespace Kandoe.Data.Migrations {
             context.SaveChanges();
             #endregion
 
+            /*
             #region SesssionCardSeed
             //Cards SESSION 1
             SessionCard sessionCard = new SessionCard("testImage", 1, 10, "Flexibele uren");
@@ -488,13 +489,9 @@ namespace Kandoe.Data.Migrations {
             sessionCard.Id = ++sessionCardId;
             context.SessionCards.AddOrUpdate(sessionCard);
 
-
-
-
-
-
             context.SaveChanges();
             #endregion
+            */
 
             // seed
             base.Seed(context);

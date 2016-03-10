@@ -12,9 +12,9 @@ namespace Kandoe.Business.Domain {
         }
 
         public int Id { get; set; }
-        public String Image { get; protected set; }
-        public String Text { get; protected set; }
-        public int ThemeId { get; protected set; }
+        public String Image { get;  set; }
+        public String Text { get; set; }
+        public int ThemeId { get; set; }
 
         public int? SubthemeId { get; protected set; }
     }

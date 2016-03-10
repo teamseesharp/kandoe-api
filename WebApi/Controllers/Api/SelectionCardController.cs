@@ -12,7 +12,7 @@ using Kandoe.Web.Model.Mapping;
 using Kandoe.Web.Results;
 
 namespace Kandoe.Web.Controllers.Api {
-    [Authorize]
+    //[Authorize]
     [RoutePrefix("api/selection-cards")]
     public class SelectionCardController : ApiController {
         private readonly IService<SelectionCard> service;

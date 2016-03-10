@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Kandoe.Business.Domain {
     public class SessionCard {
         protected SessionCard() { }
-        public SessionCard(String image, int sessionId, int sessionLevel, String text) {
+        public SessionCard(String image, int sessionId, String text, int sessionLevel = 10) {
             this.Image = image;
             this.SessionId = sessionId;
             this.SessionLevel = sessionLevel;

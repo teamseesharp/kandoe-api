@@ -209,13 +209,16 @@ namespace Kandoe.Data.EFDB.Connection {
                 .Property(s => s.CurrentPlayerIndex)
                 .IsRequired();
             modelBuilder.Entity<Session>()
+                .Property(s => s.End)
+                .IsRequired();
+            modelBuilder.Entity<Session>()
                 .Property(s => s.IsFinished)
                 .IsRequired();
             modelBuilder.Entity<Session>()
                 .Property(s => s.MaxCardsToChoose)
                 .IsRequired();
             modelBuilder.Entity<Session>()
-                .Property(s => s.CardCreationAllowed)
+                .Property(s => s.Start)
                 .IsRequired();
 
             // SessionCard
