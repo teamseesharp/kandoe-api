@@ -7,7 +7,7 @@ using Kandoe.Data.EFDB.Connection;
 
 namespace Kandoe.Data.EFDB.Repositories {
     public class SelectionCardRepository : Repository<SelectionCard> {
-        public SelectionCardRepository() : base(new Context()) { }
+        public SelectionCardRepository() : base(ContextFactory.GetContext()) { }
 
         public override SelectionCard Create(SelectionCard entity) {
             this.context.SelectionCards.Add(entity);

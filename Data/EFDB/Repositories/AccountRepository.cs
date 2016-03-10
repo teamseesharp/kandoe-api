@@ -7,7 +7,7 @@ using Kandoe.Data.EFDB.Connection;
 
 namespace Kandoe.Data.EFDB.Repositories {
     public class AccountRepository : Repository<Account> {
-        public AccountRepository() : base(new Context()) { }
+        public AccountRepository() : base(ContextFactory.GetContext()) { }
 
         public override Account Create(Account entity) {
             this.context.Accounts.Add(entity);

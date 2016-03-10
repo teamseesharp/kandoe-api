@@ -7,7 +7,6 @@ using Kandoe.Data.Migrations;
 namespace Kandoe.Data.EFDB.Connection {
     [DbConfigurationType(typeof(Configuration))]
     public class Context : DbContext {
-
         /*
         public Context() : base("DB_9F4E1D_kandoedb4") {
             Database.SetInitializer();

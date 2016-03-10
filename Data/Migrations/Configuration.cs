@@ -179,20 +179,20 @@ namespace Kandoe.Data.Migrations {
                  //SUBTHEMA 1
                  selectionCard = new SelectionCard("testImage", "Flexibele uren", 1, 1);
                  selectionCard.Id = ++selectionCardId;
-
                  context.SelectionCards.AddOrUpdate(selectionCard);
+
                  selectionCard = new SelectionCard("testImage", "Toffe collega's ", 1, 1);
                  selectionCard.Id = ++selectionCardId;
-
                  context.SelectionCards.AddOrUpdate(selectionCard);
+
                  selectionCard = new SelectionCard("testImage", "Minumumloon", 1, 1);
                  selectionCard.Id = ++selectionCardId;
-
                  context.SelectionCards.AddOrUpdate(selectionCard);
+
                  selectionCard = new SelectionCard("testImage", "Uren/week", 1, 1);
                  selectionCard.Id = ++selectionCardId;
-
                  context.SelectionCards.AddOrUpdate(selectionCard);
+
                  selectionCard = new SelectionCard("testImage", "Zomerjob", 1, 1);
                  selectionCard.Id = ++selectionCardId;
                  context.SelectionCards.AddOrUpdate(selectionCard);
@@ -305,8 +305,6 @@ namespace Kandoe.Data.Migrations {
                   selectionCard = new SelectionCard("testImage", "Koning", 5, 5);
                   selectionCard.Id = ++selectionCardId;
                   context.SelectionCards.AddOrUpdate(selectionCard);
-
-
 
                   //SUBTHEMA 6
                   selectionCard = new SelectionCard("testImage", "Groen", 5, 6);

@@ -55,5 +55,14 @@ namespace Kandoe.Web.Controllers.Api {
             this.service.Remove(id);
             return Ok();
         }
+
+        [Route("by-subtheme-ID/{id}")]
+        [HttpGet]
+        public IHttpActionResult GetBySubtheme(int id)
+        {
+            IEnumerable<SelectionCard> entities = this.service.Get(selectionCard => selectionCard.SubthemeId == id);
+            IEnumerable<CardDto> dtos = ModelMapper.Map<IEnumerable<SelectionCard>, IEnumerable<CardDto>>(entities);
+            return Ok(dtos);
+        }
     }
 }

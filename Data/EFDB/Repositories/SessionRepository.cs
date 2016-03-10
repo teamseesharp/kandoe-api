@@ -7,7 +7,7 @@ using Kandoe.Data.EFDB.Connection;
 
 namespace Kandoe.Data.EFDB.Repositories {
     public class SessionRepository : Repository<Session> {
-        public SessionRepository() : base(new  Context()) { }
+        public SessionRepository() : base(ContextFactory.GetContext()) { }
 
         public override Session Create(Session entity) {
             this.context.Sessions.Add(entity);

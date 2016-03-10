@@ -7,7 +7,7 @@ using Kandoe.Data.EFDB.Connection;
 
 namespace Kandoe.Data.EFDB.Repositories {
     public class ThemeRepository : Repository<Theme> {
-        public ThemeRepository() : base(new Context()) { }
+        public ThemeRepository() : base(ContextFactory.GetContext()) { }
 
         public override Theme Create(Theme entity) {
             this.context.Themes.Add(entity);
