@@ -264,7 +264,6 @@
     <Compile Include="Controllers\Api\SelectionCardController.cs" />
     <Compile Include="Controllers\Api\ChatMessageController.cs" />
     <Compile Include="Controllers\Api\OrganisationController.cs" />
-    <Compile Include="Controllers\Api\SessionCardController.cs" />
     <Compile Include="Controllers\Api\SessionController.cs" />
     <Compile Include="Controllers\Api\SubthemeController.cs" />
     <Compile Include="Controllers\Api\ThemeController.cs" />

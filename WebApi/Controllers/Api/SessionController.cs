@@ -164,6 +164,7 @@ namespace Kandoe.Web.Controllers.Api {
 
 
         [Route("~/api/verbose/sessions")]
+        [HttpGet]
         public IHttpActionResult GetVerbose() {
             IEnumerable<Session> entities = this.sessionService.Get(collections: true);
             IEnumerable<SessionDto> dtos = ModelMapper.Map<IEnumerable<Session>, IEnumerable<SessionDto>>(entities);
@@ -184,6 +185,7 @@ namespace Kandoe.Web.Controllers.Api {
         }
 
         [Route("~/api/verbose/sessions/{id}")]
+        [HttpGet]
         public IHttpActionResult GetVerbose(int id) {
             Session entity = this.sessionService.Get(id, collections: true);
             SessionDto dto = ModelMapper.Map<SessionDto>(entity);

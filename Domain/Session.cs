@@ -3,10 +3,9 @@ using System.Collections.Generic;
 
 namespace Kandoe.Business.Domain {
     public class Session {
-        private Session() { }
-        public Session(bool cardCreationAllowed, bool cardReviewsAllowed,int currentPlayerIndex, bool isFinished, int maxCardsToChoose, int maxParticipants, Modus modus, int organisationId, int round, int subthemeId, DateTime start, DateTime end) {
+        protected Session() { }
+        public Session(bool cardCreationAllowed,int currentPlayerIndex, bool isFinished, int maxCardsToChoose, int maxParticipants, Modus modus, int organisationId, int round, int subthemeId, DateTime start, DateTime end) {
             this.CardCreationAllowed = cardCreationAllowed;
-            this.CardReviewsAllowed = cardReviewsAllowed;
             this.CurrentPlayerIndex = currentPlayerIndex;
             this.IsFinished = isFinished;
             this.End = end;
@@ -21,7 +20,6 @@ namespace Kandoe.Business.Domain {
 
         public int Id { get; set; }
         public bool CardCreationAllowed { get; set; }
-        public bool CardReviewsAllowed { get; set; }
         public int CurrentPlayerIndex { get; set; }
         public DateTime End { get; set; }
         public bool IsFinished { get; set; }

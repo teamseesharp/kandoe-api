@@ -139,31 +139,31 @@ namespace Kandoe.Data.Migrations {
             #endregion
 
             #region SessionSeed
-            Session session = new Session(false, false, 1, false, 3, 8, Modus.Sync, 1, 0, 1, DateTime.Now, DateTime.Today);
+            Session session = new Session(false, 1, false, 3, 8, Modus.Sync, 1, 0, 1, DateTime.Now, DateTime.Today);
             session.Id = ++sessionId;
             context.Sessions.AddOrUpdate(session);
 
-            session = new Session(false, false, 1, false, 3, 8, Modus.Sync, 1, 0, 2, DateTime.Now, DateTime.Today);
+            session = new Session(false, 1, false, 3, 8, Modus.Sync, 1, 0, 2, DateTime.Now, DateTime.Today);
             session.Id = ++sessionId;
             context.Sessions.AddOrUpdate(session);
 
-            session = new Session(false, false, 1, false, 3, 8, Modus.Sync, 1, 0, 2, DateTime.Now.AddDays(2), DateTime.Today);
+            session = new Session(false, 1, false, 3, 8, Modus.Sync, 1, 0, 2, DateTime.Now.AddDays(2), DateTime.Today);
             session.Id = ++sessionId;
             context.Sessions.AddOrUpdate(session);
 
-            session = new Session(false, false, 2, false, 3, 8, Modus.Async, 1, 0, 3, DateTime.Now, DateTime.Today);
+            session = new Session(false, 2, false, 3, 8, Modus.Async, 1, 0, 3, DateTime.Now, DateTime.Today);
             session.Id = ++sessionId;
             context.Sessions.AddOrUpdate(session);
 
-            session = new Session(false, false, 3, false, 3, 8, Modus.Async, 2, 0, 4, DateTime.Now.AddDays(10), DateTime.Today);
+            session = new Session(false, 3, false, 3, 8, Modus.Async, 2, 0, 4, DateTime.Now.AddDays(10), DateTime.Today);
             session.Id = ++sessionId;
             context.Sessions.AddOrUpdate(session);
 
-            session = new Session(false, false, 3, false, 3, 8, Modus.Async, 3, 0, 7, DateTime.Now.AddDays(8), DateTime.Today);
+            session = new Session(false, 3, false, 3, 8, Modus.Async, 3, 0, 7, DateTime.Now.AddDays(8), DateTime.Today);
             session.Id = ++sessionId;
             context.Sessions.AddOrUpdate(session);
 
-            session = new Session(false, false, 3, false, 3, 8, Modus.Async, 3, 0, 7, DateTime.Now, DateTime.Today);
+            session = new Session(false, 3, false, 3, 8, Modus.Async, 3, 0, 7, DateTime.Now, DateTime.Today);
             session.Id = ++sessionId;
             context.Sessions.AddOrUpdate(session);
 

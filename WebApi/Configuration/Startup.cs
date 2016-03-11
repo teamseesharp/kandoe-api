@@ -5,6 +5,8 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 
+using Kandoe.Web.Filters;
+
 [assembly: OwinStartup(typeof(Kandoe.Web.Configuration.Startup))]
 
 namespace Kandoe.Web.Configuration {
