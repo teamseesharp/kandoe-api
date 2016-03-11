@@ -57,6 +57,7 @@ namespace Kandoe.Web.Controllers.Api {
         }
 
         [Route("by-auth0-user-id/{id}")]
+        [HttpGet]
         public IHttpActionResult GetByAuth0UserId(string id) {
             IEnumerable<Account> entities = this.service.Get(a => a.Secret == id);
             AccountDto dto = ModelMapper.Map<AccountDto>(entities.First());

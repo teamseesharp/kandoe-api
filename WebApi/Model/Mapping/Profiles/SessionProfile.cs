@@ -12,7 +12,6 @@ namespace Kandoe.Web.Model.Mapping {
                 .ConstructUsing(
                     dto => new Session(
                         dto.CardCreationAllowed,
-                        dto.CardReviewsAllowed,
                         dto.CurrentPlayerId,
                         dto.IsFinished,
                         dto.MaxCardsToChoose,

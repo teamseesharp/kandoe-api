@@ -203,9 +203,6 @@ namespace Kandoe.Data.EFDB.Connection {
                 .Property(s => s.CardCreationAllowed)
                 .IsRequired();
             modelBuilder.Entity<Session>()
-                .Property(s => s.CardReviewsAllowed)
-                .IsRequired();
-            modelBuilder.Entity<Session>()
                 .Property(s => s.CurrentPlayerIndex)
                 .IsRequired();
             modelBuilder.Entity<Session>()

@@ -57,6 +57,7 @@ namespace Kandoe.Web.Controllers.Api {
         }
 
         [Route("by-theme/{id}")]
+        [HttpGet]
         public IHttpActionResult GetByTheme(int id) {
             IEnumerable<Subtheme> entities = this.service.Get(subtheme => subtheme.ThemeId == id);
             IEnumerable<SubthemeDto> dtos = ModelMapper.Map<IEnumerable<Subtheme>, IEnumerable<SubthemeDto>>(entities);

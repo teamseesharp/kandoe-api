@@ -57,6 +57,7 @@ namespace Kandoe.Web.Controllers.Api {
         }
 
         [Route("by-organisation/{id}")]
+        [HttpGet]
         public IHttpActionResult GetByOrganisation(int id) {
             IEnumerable<Theme> entities = this.service.Get(theme => theme.OrganisationId == id);
             IEnumerable<ThemeDto> dtos = ModelMapper.Map<IEnumerable<Theme>, IEnumerable<ThemeDto>>(entities);
@@ -64,6 +65,7 @@ namespace Kandoe.Web.Controllers.Api {
         }
 
         [Route("by-tag/{tag}")]
+        [HttpGet]
         public IHttpActionResult GetByTag(string tag) {
             IEnumerable<Theme> entities = this.service.Get(theme => theme.Tags.Contains(tag));
             IEnumerable<ThemeDto> dtos = ModelMapper.Map<IEnumerable<Theme>, IEnumerable<ThemeDto>>(entities);

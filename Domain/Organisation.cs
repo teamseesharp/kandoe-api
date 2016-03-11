@@ -12,8 +12,7 @@ namespace Kandoe.Business.Domain {
         public int Id { get; set; }
         public String Name { get; protected set; }
         public int OrganiserId { get; protected set; }
-
-        public ICollection<SelectionCard> Cards { get; set; }
+        
         public ICollection<Session> Sessions { get; set; }
         public ICollection<Theme> Themes { get; set; }
     }

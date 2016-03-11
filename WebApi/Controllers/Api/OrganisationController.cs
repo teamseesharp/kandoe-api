@@ -57,6 +57,7 @@ namespace Kandoe.Web.Controllers.Api {
         }
 
         [Route("by-organiser/{id}")]
+        [HttpGet]
         public IHttpActionResult GetByOrganiser(int id) {
             IEnumerable<Organisation> entities = this.service.Get(o => o.OrganiserId == id);
             IEnumerable<OrganisationDto> dtos = ModelMapper.Map<IEnumerable<Organisation>, IEnumerable<OrganisationDto>>(entities);
@@ -64,6 +65,7 @@ namespace Kandoe.Web.Controllers.Api {
         }
 
         [Route("~/api/verbose/organisations")]
+        [HttpGet]
         public IHttpActionResult GetVerbose() {
             IEnumerable<Organisation> entities = this.service.Get(collections: true);
             IEnumerable<OrganisationDto> dtos = ModelMapper.Map<IEnumerable<Organisation>, IEnumerable<OrganisationDto>>(entities);
@@ -71,6 +73,7 @@ namespace Kandoe.Web.Controllers.Api {
         }
 
         [Route("~/api/verbose/organisations/{id}")]
+        [HttpGet]
         public IHttpActionResult GetVerbose(int id) {
             Organisation entity = this.service.Get(id, collections: true);
             OrganisationDto dto = ModelMapper.Map<OrganisationDto>(entity);
