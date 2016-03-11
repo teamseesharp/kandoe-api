@@ -13,11 +13,11 @@ namespace Kandoe.Business.Domain {
         }
 
         public int Id { get; set; }
-        public String Name { get; protected set; }
-        public String Description { get; protected set; }
-        public int OrganisationId { get; protected set; }
-        public int OrganiserId { get; protected set; }
-        public String Tags { get; protected set; }
+        public String Name { get; set; }
+        public String Description { get; set; }
+        public int OrganisationId { get; set; }
+        public int OrganiserId { get; set; }
+        public String Tags { get; set; }
 
         public ICollection<SelectionCard> SelectionCards { get; set; }
         public ICollection<Subtheme> Subthemes { get; set; }

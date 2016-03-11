@@ -18,7 +18,7 @@ namespace Kandoe.Web.Model.Dto {
         public int SubthemeId { get; set; }
         public DateTime Start { get; set; }
 
-        public ICollection<CardDto> Cards { get; set; }
+        public ICollection<CardDto> SessionCards { get; set; }
         public ICollection<ChatMessageDto> ChatMessages { get; set; }
         public ICollection<AccountDto> Organisers { get; set; }
         public ICollection<AccountDto> Participants { get; set; }

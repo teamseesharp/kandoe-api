@@ -24,8 +24,8 @@ namespace Kandoe.Web.Model.Mapping {
                     dto => new SessionCard(
                         dto.Image,
                         dto.SessionId,
-                        dto.SessionLevel,
-                        dto.Text
+                        dto.Text,
+                        dto.SessionLevel
                     ));
         }
     }

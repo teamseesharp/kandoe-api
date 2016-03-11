@@ -12,7 +12,7 @@ using Kandoe.Web.Model.Mapping;
 using Kandoe.Web.Results;
 
 namespace Kandoe.Web.Controllers.Api {
-    [Authorize]
+    //[Authorize]
     [RoutePrefix("api/selection-cards")]
     public class SelectionCardController : ApiController {
         private readonly IService<SelectionCard> service;
@@ -56,10 +56,9 @@ namespace Kandoe.Web.Controllers.Api {
             return Ok();
         }
 
-        [Route("by-subtheme-ID/{id}")]
+        [Route("by-subtheme/{id}")]
         [HttpGet]
-        public IHttpActionResult GetBySubtheme(int id)
-        {
+        public IHttpActionResult GetBySubtheme(int id) {
             IEnumerable<SelectionCard> entities = this.service.Get(selectionCard => selectionCard.SubthemeId == id);
             IEnumerable<CardDto> dtos = ModelMapper.Map<IEnumerable<SelectionCard>, IEnumerable<CardDto>>(entities);
             return Ok(dtos);

@@ -13,11 +13,11 @@ namespace Kandoe.Business.Domain {
         }
 
         public int Id { get; set; }
-        public String Email { get; protected set; }
-        public String Name { get; protected set; }
-        public String Surname { get; protected set; }
-        public String Picture { get; protected set; }
-        public String Secret { get; protected set; }
+        public String Email { get; set; }
+        public String Name { get; set; }
+        public String Surname { get; set; }
+        public String Picture { get; set; }
+        public String Secret { get; set; }
         
         public ICollection<ChatMessage> ChatMessages { get; set; }
         public ICollection<Organisation> Organisations { get; set; }

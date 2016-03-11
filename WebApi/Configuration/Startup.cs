@@ -5,8 +5,6 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 
-using Kandoe.Data.EFDB.Connection;
-
 [assembly: OwinStartup(typeof(Kandoe.Web.Configuration.Startup))]
 
 namespace Kandoe.Web.Configuration {

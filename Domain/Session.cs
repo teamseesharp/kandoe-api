@@ -3,10 +3,11 @@ using System.Collections.Generic;
 
 namespace Kandoe.Business.Domain {
     public class Session {
-        protected Session() { }
-        public Session(bool cardCreationAllowed,int currentPlayerId, bool isFinished, int maxCardsToChoose, int maxParticipants, Modus modus, int organisationId, int round, int subthemeId, DateTime start, DateTime end) {
+        private Session() { }
+        public Session(bool cardCreationAllowed, bool cardReviewsAllowed,int currentPlayerIndex, bool isFinished, int maxCardsToChoose, int maxParticipants, Modus modus, int organisationId, int round, int subthemeId, DateTime start, DateTime end) {
             this.CardCreationAllowed = cardCreationAllowed;
-            this.CurrentPlayerIndex = currentPlayerId;
+            this.CardReviewsAllowed = cardReviewsAllowed;
+            this.CurrentPlayerIndex = currentPlayerIndex;
             this.IsFinished = isFinished;
             this.End = end;
             this.MaxCardsToChoose = maxCardsToChoose;
@@ -19,17 +20,18 @@ namespace Kandoe.Business.Domain {
         }
 
         public int Id { get; set; }
-        public bool CardCreationAllowed { get; protected set; }
-        public int CurrentPlayerIndex { get; protected set; }
-        public DateTime End { get; protected set; }
-        public bool IsFinished { get; protected set; }
-        public int MaxCardsToChoose { get; protected set; }
-        public int MaxParticipants { get; protected set; }
-        public Modus Modus { get; protected set; }
-        public int OrganisationId { get; protected set; }
-        public int Round { get; protected set; }
-        public int SubthemeId { get; protected set; }
-        public DateTime Start { get; protected set; }
+        public bool CardCreationAllowed { get; set; }
+        public bool CardReviewsAllowed { get; set; }
+        public int CurrentPlayerIndex { get; set; }
+        public DateTime End { get; set; }
+        public bool IsFinished { get; set; }
+        public int MaxCardsToChoose { get; set; }
+        public int MaxParticipants { get; set; }
+        public Modus Modus { get; set; }
+        public int OrganisationId { get; set; }
+        public int Round { get; set; }
+        public int SubthemeId { get; set; }
+        public DateTime Start { get; set; }
 
         public ICollection<SessionCard> SessionCards { get; set; }
         public ICollection<ChatMessage> ChatMessages { get; set; }

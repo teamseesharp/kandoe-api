@@ -23,6 +23,7 @@ namespace Kandoe.Web.Model.Mapping {
                         dto.Start,
                         dto.End
                     ));
+
         }
     }
 }
