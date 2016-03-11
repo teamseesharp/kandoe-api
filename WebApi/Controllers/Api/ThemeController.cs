@@ -52,8 +52,7 @@ namespace Kandoe.Web.Controllers.Api {
 
         [Route("{id}")]
         public IHttpActionResult Delete(int id) {
-            this.service.Remove(id);
-            return Ok();
+            throw new NotSupportedException();
         }
 
         [Route("by-organisation/{id}")]

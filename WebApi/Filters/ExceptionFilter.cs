@@ -11,9 +11,9 @@ namespace Kandoe.Web.Filters {
 
         public override void OnException(HttpActionExecutedContext context) {
             switch (context.Exception.GetType().Name) {
-                case nameof(NotImplementedException):
-                    this.status = HttpStatusCode.NotImplemented;
-                    this.message = "This functionality has not been implemented.";
+                case nameof(NotSupportedException):
+                    this.status = HttpStatusCode.MethodNotAllowed;
+                    this.message = "Our platform does not support this functionality.";
                     break;
                 case nameof(SqlException):
                     this.status = HttpStatusCode.Conflict;
