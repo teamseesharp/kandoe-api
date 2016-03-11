@@ -363,7 +363,6 @@ namespace Kandoe.Data.Migrations {
             context.SaveChanges();
             #endregion
 
-            /*
             #region SesssionCardSeed
             //Cards SESSION 1
             SessionCard sessionCard = new SessionCard("testImage", 1, 10, "Flexibele uren");
@@ -491,7 +490,6 @@ namespace Kandoe.Data.Migrations {
 
             context.SaveChanges();
             #endregion
-            */
 
             // seed
             base.Seed(context);

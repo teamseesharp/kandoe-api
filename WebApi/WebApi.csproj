@@ -223,6 +223,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Filters\AuthenticationFilter.cs" />
     <Compile Include="Results\ApiActionResult.cs" />
     <Content Include="TODO.txt" />
     <Compile Include="Auth0\JsonWebToken.cs" />
