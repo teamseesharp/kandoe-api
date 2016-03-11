@@ -365,126 +365,126 @@ namespace Kandoe.Data.Migrations {
 
             #region SesssionCardSeed
             //Cards SESSION 1
-            SessionCard sessionCard = new SessionCard("testImage", 1, 10, "Flexibele uren");
+            SessionCard sessionCard = new SessionCard("testImage", 1, "Flexibele uren");
             sessionCard.Id = ++sessionCardId;
             context.SessionCards.AddOrUpdate(sessionCard);
 
-            sessionCard = new SessionCard("testImage", 1, 10, "Toffe collega's ");
+            sessionCard = new SessionCard("testImage", 1, "Toffe collega's ");
             sessionCard.Id = ++sessionCardId;
             context.SessionCards.AddOrUpdate(sessionCard);
 
-            sessionCard = new SessionCard("testImage", 1, 10, "Uren/week");
+            sessionCard = new SessionCard("testImage", 1, "Uren/week");
             sessionCard.Id = ++sessionCardId;
             context.SessionCards.AddOrUpdate(sessionCard);
 
-            sessionCard = new SessionCard("testImage", 1, 10, "Zomerjob");
+            sessionCard = new SessionCard("testImage", 1, "Zomerjob");
             sessionCard.Id = ++sessionCardId;
             context.SessionCards.AddOrUpdate(sessionCard);
 
-            sessionCard = new SessionCard("testImage", 1, 10, "Horeca");
+            sessionCard = new SessionCard("testImage", 1, "Horeca");
             sessionCard.Id = ++sessionCardId;
             context.SessionCards.AddOrUpdate(sessionCard);
 
             //Cards SESSION 2
-            sessionCard = new SessionCard("testImage", 2, 10, "Opvang");
+            sessionCard = new SessionCard("testImage", 2, "Opvang");
             sessionCard.Id = ++sessionCardId;
             context.SessionCards.AddOrUpdate(sessionCard);
 
-            sessionCard = new SessionCard("testImage", 2, 10, "Vrijwilligerswerk");
+            sessionCard = new SessionCard("testImage", 2, "Vrijwilligerswerk");
             sessionCard.Id = ++sessionCardId;
             context.SessionCards.AddOrUpdate(sessionCard);
 
-            sessionCard = new SessionCard("testImage", 2, 10, "Kinderen < 12");
+            sessionCard = new SessionCard("testImage", 2, "Kinderen < 12");
             sessionCard.Id = ++sessionCardId;
             context.SessionCards.AddOrUpdate(sessionCard);
 
-            sessionCard = new SessionCard("testImage", 2, 10, "Kinderen > 12");
+            sessionCard = new SessionCard("testImage", 2, "Kinderen > 12");
             sessionCard.Id = ++sessionCardId;
             context.SessionCards.AddOrUpdate(sessionCard);
 
-            sessionCard = new SessionCard("testImage", 2, 10, "Locatie");
+            sessionCard = new SessionCard("testImage", 2, "Locatie");
             sessionCard.Id = ++sessionCardId;
             context.SessionCards.AddOrUpdate(sessionCard);
 
             //Cards SESSION 3
-            sessionCard = new SessionCard("testImage", 3, 10, "Opvang");
+            sessionCard = new SessionCard("testImage", 3, "Opvang");
             sessionCard.Id = ++sessionCardId;
             context.SessionCards.AddOrUpdate(sessionCard);
 
-            sessionCard = new SessionCard("testImage", 3, 10, "Kinderen < 12");
+            sessionCard = new SessionCard("testImage", 3, "Kinderen < 12");
             sessionCard.Id = ++sessionCardId;
             context.SessionCards.AddOrUpdate(sessionCard);
 
-            sessionCard = new SessionCard("testImage", 3, 10, "Kinderen > 12");
+            sessionCard = new SessionCard("testImage", 3, "Kinderen > 12");
             sessionCard.Id = ++sessionCardId;
             context.SessionCards.AddOrUpdate(sessionCard);
 
 
             //Cards SESSION 4
-            sessionCard = new SessionCard("testImage", 4, 10, "Vestiare");
+            sessionCard = new SessionCard("testImage", 4, "Vestiare");
             sessionCard.Id = ++sessionCardId;
             context.SessionCards.AddOrUpdate(sessionCard);
 
-            sessionCard = new SessionCard("testImage", 4, 10, "Cocktailbar");
+            sessionCard = new SessionCard("testImage", 4, "Cocktailbar");
             sessionCard.Id = ++sessionCardId;
             context.SessionCards.AddOrUpdate(sessionCard);
 
-            sessionCard = new SessionCard("testImage", 4, 10, "Goede muziekinstallatie");
+            sessionCard = new SessionCard("testImage", 4, "Goede muziekinstallatie");
             sessionCard.Id = ++sessionCardId;
             context.SessionCards.AddOrUpdate(sessionCard);
 
-            sessionCard = new SessionCard("testImage", 4, 10, "Lichten");
+            sessionCard = new SessionCard("testImage", 4, "Lichten");
             sessionCard.Id = ++sessionCardId;
             context.SessionCards.AddOrUpdate(sessionCard);
 
             //Cards SESSION 5
-            sessionCard = new SessionCard("testImage", 5, 10, "Voedselbank");
+            sessionCard = new SessionCard("testImage", 5, "Voedselbank");
             sessionCard.Id = ++sessionCardId;
             context.SessionCards.AddOrUpdate(sessionCard);
 
-            sessionCard = new SessionCard("testImage", 5, 10, "Opvangcentra");
+            sessionCard = new SessionCard("testImage", 5, "Opvangcentra");
             sessionCard.Id = ++sessionCardId;
             context.SessionCards.AddOrUpdate(sessionCard);
 
-            sessionCard = new SessionCard("testImage", 5, 10, "Kledingverzamelactie");
+            sessionCard = new SessionCard("testImage", 5, "Kledingverzamelactie");
             sessionCard.Id = ++sessionCardId;
             context.SessionCards.AddOrUpdate(sessionCard);
 
             //Cards SESSION 6
-            sessionCard = new SessionCard("testImage", 6, 10, "Campagnes");
+            sessionCard = new SessionCard("testImage", 6, "Campagnes");
             sessionCard.Id = ++sessionCardId;
             context.SessionCards.AddOrUpdate(sessionCard);
 
-            sessionCard = new SessionCard("testImage", 6, 10, "Anonieme helpchat");
+            sessionCard = new SessionCard("testImage", 6, "Anonieme helpchat");
             sessionCard.Id = ++sessionCardId;
             context.SessionCards.AddOrUpdate(sessionCard);
 
-            sessionCard = new SessionCard("testImage", 6, 10, "Anti-pesten helpnummer");
+            sessionCard = new SessionCard("testImage", 6, "Anti-pesten helpnummer");
             sessionCard.Id = ++sessionCardId;
             context.SessionCards.AddOrUpdate(sessionCard);
 
-            sessionCard = new SessionCard("testImage", 6, 10, "Website");
+            sessionCard = new SessionCard("testImage", 6, "Website");
             sessionCard.Id = ++sessionCardId;
             context.SessionCards.AddOrUpdate(sessionCard);
             
             //Cards SESSION 7
-            sessionCard = new SessionCard("testImage", 7, 10, "Gesprekken op school");
+            sessionCard = new SessionCard("testImage", 7,  "Gesprekken op school");
             sessionCard.Id = ++sessionCardId;
             context.SessionCards.AddOrUpdate(sessionCard);
 
-            sessionCard = new SessionCard("testImage", 7, 10, "Anti-pesten helpnummer");
+            sessionCard = new SessionCard("testImage", 7, "Anti-pesten helpnummer");
             sessionCard.Id = ++sessionCardId;
             context.SessionCards.AddOrUpdate(sessionCard);
 
-            sessionCard = new SessionCard("testImage", 7, 10, "Campagnes");
+            sessionCard = new SessionCard("testImage", 7, "Campagnes");
             sessionCard.Id = ++sessionCardId;
             context.SessionCards.AddOrUpdate(sessionCard);
 
-            sessionCard = new SessionCard("testImage", 7, 10, "Website");
+            sessionCard = new SessionCard("testImage", 7, "Website");
             sessionCard.Id = ++sessionCardId;
             context.SessionCards.AddOrUpdate(sessionCard);
 
-            sessionCard = new SessionCard("testImage", 7, 10, "Anonieme helpchat");
+            sessionCard = new SessionCard("testImage", 7, "Anonieme helpchat");
             sessionCard.Id = ++sessionCardId;
             context.SessionCards.AddOrUpdate(sessionCard);
 

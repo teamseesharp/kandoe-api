@@ -22,6 +22,7 @@ namespace Kandoe.Web.Filters {
                 default:
                     this.status = HttpStatusCode.InternalServerError;
                     this.message = "Something went wrong with the server.";
+                    this.message = String.Format("%s\n%", this.message, context.Exception.StackTrace);
                     break;
             }
 
