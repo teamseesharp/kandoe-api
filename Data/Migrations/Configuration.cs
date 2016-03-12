@@ -139,15 +139,15 @@ namespace Kandoe.Data.Migrations {
             #endregion
 
             #region SessionSeed
-            Session session = new Session(false, 1, false, 3, 8, Modus.Sync, 1, 0, 1, DateTime.Now, DateTime.Today);
+            Session session = new Session(true, 1, false, 3, 8, Modus.Sync, 1, 0, 1, DateTime.Now, DateTime.Today);
             session.Id = ++sessionId;
             context.Sessions.AddOrUpdate(session);
 
-            session = new Session(false, 1, false, 3, 8, Modus.Sync, 1, 0, 2, DateTime.Now, DateTime.Today);
+            session = new Session(true, 1, false, 3, 8, Modus.Sync, 1, 0, 2, DateTime.Now, DateTime.Today);
             session.Id = ++sessionId;
             context.Sessions.AddOrUpdate(session);
 
-            session = new Session(false, 1, false, 3, 8, Modus.Sync, 1, 0, 2, DateTime.Now.AddDays(2), DateTime.Today);
+            session = new Session(true, 1, false, 3, 8, Modus.Sync, 1, 0, 2, DateTime.Now.AddDays(2), DateTime.Today);
             session.Id = ++sessionId;
             context.Sessions.AddOrUpdate(session);
 
