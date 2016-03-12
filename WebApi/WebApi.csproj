@@ -223,6 +223,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Filters\Authorization\SessionAuthorizeAttribute.cs" />
+    <Compile Include="Filters\Authorization\SubthemeAuthorizeAttribute.cs" />
     <Compile Include="Filters\Authorization\ThemeAuthorizeAttribute.cs" />
     <Compile Include="Results\ApiActionResult.cs" />
     <Content Include="TODO.txt" />
