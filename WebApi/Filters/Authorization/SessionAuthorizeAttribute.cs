@@ -33,6 +33,8 @@ namespace Kandoe.Web.Filters.Authorization
 
             Account organisers = ModelMapper.Map<Account>(dto.Organisers);
 
+
+            ///BLEEEHHHH
             // in case the session organiserId does not correspond with organiser id
            // if (!dto.Organisers.Contains(organisers.Id))
            // {
