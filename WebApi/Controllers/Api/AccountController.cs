@@ -13,6 +13,7 @@ using Kandoe.Web.Results;
 
 namespace Kandoe.Web.Controllers.Api {
     //[Authorize]
+    [EnableCors(origins: "http://localhost:9000", headers: "*", methods: "*")]
     [RoutePrefix("api/accounts")]
     public class AccountController : ApiController {
         private readonly IService<Account> service;
