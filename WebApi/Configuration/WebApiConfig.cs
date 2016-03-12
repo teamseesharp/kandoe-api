@@ -2,6 +2,7 @@
 using System.Web.Http;
 
 using Kandoe.Web.Auth0;
+using System.Web.Http.Cors;
 
 namespace Kandoe.Web.Configuration {
     public static class WebApiConfig {
