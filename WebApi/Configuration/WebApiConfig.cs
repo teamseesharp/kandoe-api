@@ -12,7 +12,8 @@ namespace Kandoe.Web.Configuration {
             //config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
 
             // Web API configuration and services
-            config.EnableCors();
+            var cors = new EnableCorsAttribute("http://localhost:9000", "*", "*");
+            config.EnableCors(cors);
 
             var clientID = WebConfigurationManager.AppSettings["auth0:ClientId"];
             var clientSecret = WebConfigurationManager.AppSettings["auth0:ClientSecret"];
