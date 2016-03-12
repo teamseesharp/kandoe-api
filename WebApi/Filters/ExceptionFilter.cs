@@ -11,6 +11,10 @@ namespace Kandoe.Web.Filters {
 
         public override void OnException(HttpActionExecutedContext context) {
             switch (context.Exception.GetType().Name) {
+                case nameof(ArgumentException):
+                    this.status = HttpStatusCode.BadRequest;
+                    this.message = "Provided arguments are not valid for this request.";
+                    break;
                 case nameof(NotSupportedException):
                     this.status = HttpStatusCode.MethodNotAllowed;
                     this.message = "Our platform does not support this functionality.";
@@ -18,6 +22,10 @@ namespace Kandoe.Web.Filters {
                 case nameof(SqlException):
                     this.status = HttpStatusCode.Conflict;
                     this.message = "Unable to retrieve data from the database.";
+                    break;
+                case nameof(UnauthorizedAccessException):
+                    this.status = HttpStatusCode.Unauthorized;
+                    this.message = "Authorization has been denied for this request.";
                     break;
                 default:
                     this.status = HttpStatusCode.InternalServerError;

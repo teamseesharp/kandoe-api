@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
+
+using Authenticate = System.Web.Http.AuthorizeAttribute;
 
 using Kandoe.Business;
 using Kandoe.Business.Domain;
+using Kandoe.Web.Filters.Authorization;
 using Kandoe.Web.Model.Dto;
 using Kandoe.Web.Model.Mapping;
-using Kandoe.Web.Results;
 
 namespace Kandoe.Web.Controllers.Api {
-    [Authorize]
+    [Authenticate]
     [RoutePrefix("api/themes")]
     public class ThemeController : ApiController {
         private readonly IService<Theme> service;
@@ -35,6 +34,7 @@ namespace Kandoe.Web.Controllers.Api {
             return Ok(dto);
         }
 
+        [ThemeAuthorize]
         [Route("")]
         public IHttpActionResult Post([FromBody]ThemeDto dto) {
             Theme entity = ModelMapper.Map<Theme>(dto);
@@ -43,6 +43,7 @@ namespace Kandoe.Web.Controllers.Api {
             return Ok(dto);
         }
 
+        [ThemeAuthorize]
         [Route("")]
         public IHttpActionResult Put([FromBody]ThemeDto dto) {
             Theme entity = ModelMapper.Map<Theme>(dto);

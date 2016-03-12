@@ -14,7 +14,7 @@ namespace Kandoe.Web.Model.Mapping {
                         dto.Description,
                         dto.Name,
                         dto.OrganisationId,
-                        dto.Organiser,
+                        dto.OrganiserId,
                         dto.Tags
                     ));
         }

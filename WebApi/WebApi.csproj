@@ -223,11 +223,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Filters\AuthenticationFilter.cs" />
+    <Compile Include="Filters\Authorization\ThemeAuthorizeAttribute.cs" />
     <Compile Include="Results\ApiActionResult.cs" />
     <Content Include="TODO.txt" />
-    <Compile Include="Auth0\JsonWebToken.cs" />
-    <Compile Include="Auth0\JsonWebTokenValidationHandler.cs" />
+    <Compile Include="Handlers\Auth0\JsonWebToken.cs" />
+    <Compile Include="Handlers\AuthenticationHandler.cs" />
     <Compile Include="Configuration\BundleConfig.cs" />
     <Compile Include="Configuration\FilterConfig.cs" />
     <Compile Include="Configuration\MapperConfig.cs" />
@@ -268,7 +268,7 @@
     <Compile Include="Controllers\Api\SessionController.cs" />
     <Compile Include="Controllers\Api\SubthemeController.cs" />
     <Compile Include="Controllers\Api\ThemeController.cs" />
-    <Compile Include="Filters\Authorization\OrganisationAuthorizationFilter.cs" />
+    <Compile Include="Filters\Authorization\OrganisationAuthorizeAttribute.cs" />
     <Compile Include="Filters\ExceptionFilter.cs" />
     <Compile Include="Model\Dto\AccountDto.cs" />
     <Compile Include="Model\Dto\CardDto.cs" />

@@ -1,8 +1,8 @@
 ﻿using System.Web.Configuration;
 using System.Web.Http;
-
-using Kandoe.Web.Auth0;
 using System.Web.Http.Cors;
+
+using Kandoe.Web.Handlers;
 
 namespace Kandoe.Web.Configuration {
     public static class WebApiConfig {
@@ -13,15 +13,15 @@ namespace Kandoe.Web.Configuration {
             //config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
 
             // Web API configuration and services
-            var cors = new EnableCorsAttribute("http://localhost:9000", "*", "*");
+            EnableCorsAttribute cors = new EnableCorsAttribute("http://localhost:9000", "*", "*");
             config.EnableCors(cors);
 
             var clientID = WebConfigurationManager.AppSettings["auth0:ClientId"];
             var clientSecret = WebConfigurationManager.AppSettings["auth0:ClientSecret"];
 
-            config.MessageHandlers.Add(new JsonWebTokenValidationHandler() {
-                Audience = clientID,  // client id
-                SymmetricKey = clientSecret   // client secret
+            config.MessageHandlers.Add(new AuthenticationHandler() {
+                Audience = clientID,            // client id
+                SymmetricKey = clientSecret     // client secret
             });
 
             // Web API routes

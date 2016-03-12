@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
+
+using Authenticate = System.Web.Http.AuthorizeAttribute;
 
 using Kandoe.Business;
 using Kandoe.Business.Domain;
+using Kandoe.Web.Filters.Authorization;
 using Kandoe.Web.Model.Dto;
 using Kandoe.Web.Model.Mapping;
-using Kandoe.Web.Results;
 
 namespace Kandoe.Web.Controllers.Api {
-    //[Authorize]
+    [Authenticate]
     [RoutePrefix("api/accounts")]
     public class AccountController : ApiController {
         private readonly IService<Account> service;
@@ -35,6 +35,7 @@ namespace Kandoe.Web.Controllers.Api {
             return Ok(dto);
         }
 
+        [AllowAnonymous]
         [Route("")]
         public IHttpActionResult Post([FromBody]AccountDto dto) {
             Account entity = ModelMapper.Map<Account>(dto);

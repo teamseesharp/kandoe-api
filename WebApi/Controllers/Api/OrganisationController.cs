@@ -1,36 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
+
+using Authenticate = System.Web.Http.AuthorizeAttribute;
 
 using Kandoe.Business;
 using Kandoe.Business.Domain;
+using Kandoe.Web.Filters.Authorization;
 using Kandoe.Web.Model.Dto;
 using Kandoe.Web.Model.Mapping;
-using Kandoe.Web.Results;
 
 namespace Kandoe.Web.Controllers.Api {
-    //[Authorize]
+    [Authenticate]
     [RoutePrefix("api/organisations")]
     public class OrganisationController : ApiController {
-        private readonly IService<Organisation> service;
+        private readonly IService<Account> accounts;
+        private readonly IService<Organisation> organisations;
 
         public OrganisationController() {
-            this.service = new OrganisationService();
+            this.accounts = new AccountService();
+            this.organisations = new OrganisationService();
         }
 
         [Route("")]
         public IHttpActionResult Get() {
-            IEnumerable<Organisation> entities = this.service.Get(collections: false);
+            IEnumerable<Organisation> entities = this.organisations.Get(collections: false);
             IEnumerable<OrganisationDto> dtos = ModelMapper.Map<IEnumerable<Organisation>, IEnumerable<OrganisationDto>>(entities);
             return Ok(dtos);
         }
 
         [Route("{id}")]
         public IHttpActionResult Get(int id) {
-            Organisation entity = this.service.Get(id, collections: false);
+            Organisation entity = this.organisations.Get(id, collections: false);
             OrganisationDto dto = ModelMapper.Map<OrganisationDto>(entity);
             return Ok(dto);
         }
@@ -38,15 +39,16 @@ namespace Kandoe.Web.Controllers.Api {
         [Route("")]
         public IHttpActionResult Post([FromBody]OrganisationDto dto) {
             Organisation entity = ModelMapper.Map<Organisation>(dto);
-            this.service.Add(entity);
+            this.organisations.Add(entity);
             dto = ModelMapper.Map<OrganisationDto>(entity);
             return Ok(dto);
         }
 
+        [OrganisationAuthorize]
         [Route("")]
         public IHttpActionResult Put([FromBody]OrganisationDto dto) {
             Organisation entity = ModelMapper.Map<Organisation>(dto);
-            this.service.Change(entity);
+            this.organisations.Change(entity);
             return Ok();
         }
 
@@ -58,7 +60,7 @@ namespace Kandoe.Web.Controllers.Api {
         [Route("by-organiser/{id}")]
         [HttpGet]
         public IHttpActionResult GetByOrganiser(int id) {
-            IEnumerable<Organisation> entities = this.service.Get(o => o.OrganiserId == id);
+            IEnumerable<Organisation> entities = this.organisations.Get(o => o.OrganiserId == id);
             IEnumerable<OrganisationDto> dtos = ModelMapper.Map<IEnumerable<Organisation>, IEnumerable<OrganisationDto>>(entities);
             return Ok(dtos);
         }
@@ -66,7 +68,7 @@ namespace Kandoe.Web.Controllers.Api {
         [Route("~/api/verbose/organisations")]
         [HttpGet]
         public IHttpActionResult GetVerbose() {
-            IEnumerable<Organisation> entities = this.service.Get(collections: true);
+            IEnumerable<Organisation> entities = this.organisations.Get(collections: true);
             IEnumerable<OrganisationDto> dtos = ModelMapper.Map<IEnumerable<Organisation>, IEnumerable<OrganisationDto>>(entities);
             return Ok(dtos);
         }
@@ -74,7 +76,7 @@ namespace Kandoe.Web.Controllers.Api {
         [Route("~/api/verbose/organisations/{id}")]
         [HttpGet]
         public IHttpActionResult GetVerbose(int id) {
-            Organisation entity = this.service.Get(id, collections: true);
+            Organisation entity = this.organisations.Get(id, collections: true);
             OrganisationDto dto = ModelMapper.Map<OrganisationDto>(entity);
             return Ok(dto);
         }
