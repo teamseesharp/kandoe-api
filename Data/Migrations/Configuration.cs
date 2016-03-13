@@ -167,7 +167,7 @@ namespace Kandoe.Data.Migrations {
             session.Id = ++sessionId;
             context.Sessions.AddOrUpdate(session);
 
-            session = new Session(false, 1, false, 3, 8, Modus.Async, 3, 0, 7, DateTime.Now, DateTime.Today);
+            session = new Session(true, 1, false, 3, 8, Modus.Async, 3, 0, 7, DateTime.Now, DateTime.Today);
             session.Id = ++sessionId;
             context.Sessions.AddOrUpdate(session);
 
