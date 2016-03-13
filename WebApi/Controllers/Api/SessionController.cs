@@ -122,8 +122,10 @@ namespace Kandoe.Web.Controllers.Api {
 
         [Route("{id}/join")]
         [HttpPatch]
-        public IHttpActionResult PatchJoin(int id, [FromBody] AccountDto dto) {
-            Account account = this.accounts.Get(dto.Id, collections: true);
+        // see if already joined?..
+        public IHttpActionResult PatchJoin(int id) {
+            string secret = Thread.CurrentPrincipal.Identity.Name;
+            Account account = this.accounts.Get(a => a.Secret == secret, collections: true).First();
             Session session = this.sessions.Get(id, collections: true);
 
             if (session.Participants.Count >= session.MaxParticipants) {

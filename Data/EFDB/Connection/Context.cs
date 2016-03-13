@@ -26,6 +26,8 @@ namespace Kandoe.Data.EFDB.Connection {
         */
 
         public Context() : base("KandoeDB_EFCodeFirst_Combell") {
+            this.Configuration.LazyLoadingEnabled = false;
+            this.Configuration.ProxyCreationEnabled = false;
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<Context, Migrations.Configuration>("KandoeDB_EFCodeFirst_Combell"));
         }
 
