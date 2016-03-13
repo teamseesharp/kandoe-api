@@ -10,8 +10,5 @@ namespace Kandoe.Web.Model.Dto {
         public int SubthemeId { get; set; }
         public String Text { get; set; }
         public int ThemeId { get; set; }
-
-        public ICollection<SubthemeDto> Subthemes { get; set; }
-        public ICollection<SessionDto> Sessions { get; set; }
     }
 }
