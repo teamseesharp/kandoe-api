@@ -23,6 +23,7 @@ namespace Kandoe.Web.Configuration {
                 Audience = clientID,            // client id
                 SymmetricKey = clientSecret     // client secret
             });
+            config.MessageHandlers.Add(new ContextHandler());
 
             // Web API routes
             config.MapHttpAttributeRoutes();

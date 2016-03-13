@@ -9,5 +9,7 @@ namespace Kandoe.Data.EFDB.Connection {
         private static Context context;
 
         public static Context GetContext() { return context ?? (context = new Context()); }
+
+        public static void Refresh() { context = new Context(); }
     }
 }

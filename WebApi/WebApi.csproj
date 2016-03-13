@@ -226,6 +226,7 @@
     <Compile Include="Filters\Authorization\SessionAuthorizeAttribute.cs" />
     <Compile Include="Filters\Authorization\SubthemeAuthorizeAttribute.cs" />
     <Compile Include="Filters\Authorization\ThemeAuthorizeAttribute.cs" />
+    <Compile Include="Handlers\ContextHandler.cs" />
     <Compile Include="Model\Mapping\Actions\FilterSessionCircularReferences.cs" />
     <Compile Include="Model\Mapping\MapperExtensions.cs" />
     <Compile Include="Results\ApiActionResult.cs" />
