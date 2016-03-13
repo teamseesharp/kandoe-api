@@ -47,6 +47,11 @@ namespace Kandoe.Data.Migrations {
             account.Id = ++accountId;
             context.Accounts.AddOrUpdate(account);
 
+            account = new Account("test@test.be", "test", "hihi", "picture", "auth0|56d32ffb17aca91f1aff4493");
+            account.Id = ++accountId;
+            context.Accounts.AddOrUpdate(account);
+
+
             context.SaveChanges();
             #endregion
 
