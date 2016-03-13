@@ -117,7 +117,7 @@ namespace Kandoe.Web.Controllers.Api {
             }
 
             session.Participants.Add(account);
-            //account.ParticipatingSessions.Add(session);
+            account.ParticipatingSessions.Add(session);
 
             this.sessionService.Change(session);
             this.accountService.Change(account);
