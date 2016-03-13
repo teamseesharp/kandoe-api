@@ -1,57 +1,71 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web.Http;
+
+using Authenticate = System.Web.Http.AuthorizeAttribute;
 
 using Kandoe.Business;
 using Kandoe.Business.Domain;
+using Kandoe.Web.Filters.Authorization;
 using Kandoe.Web.Model.Dto;
 using Kandoe.Web.Model.Mapping;
-using Kandoe.Web.Results;
 
 namespace Kandoe.Web.Controllers.Api {
-    //[Authorize]
+    [Authenticate]
     [RoutePrefix("api/sessions")]
     public class SessionController : ApiController {
-        private readonly IService<Account> accountService;
-        private readonly SelectionCardService selectionCardService;
-        private readonly IService<Session> sessionService;
-        private readonly IService<SessionCard> sessionCardService;
+        private readonly IService<Account> accounts;
+        private readonly SelectionCardService selectionCards;
+        private readonly IService<Session> sessions;
+        private readonly IService<SessionCard> sessionCards;
 
         public SessionController() {
-            this.accountService = new AccountService();
-            this.selectionCardService = new SelectionCardService();
-            this.sessionService = new SessionService();
-            this.sessionCardService = new SessionCardService();
+            this.accounts = new AccountService();
+            this.selectionCards = new SelectionCardService();
+            this.sessions = new SessionService();
+            this.sessionCards = new SessionCardService();
         }
 
         [Route("")]
         public IHttpActionResult Get() {
-            IEnumerable<Session> entities = this.sessionService.Get();
+            IEnumerable<Session> entities = this.sessions.Get();
             IEnumerable<SessionDto> dtos = ModelMapper.Map<IEnumerable<Session>, IEnumerable<SessionDto>>(entities);
             return Ok(dtos);
         }
 
         [Route("{id}")]
         public IHttpActionResult Get(int id) {
-            Session entity = this.sessionService.Get(id);
+            Session entity = this.sessions.Get(id);
             SessionDto dto = ModelMapper.Map<SessionDto>(entity);
             return Ok(dto);
         }
 
+        [SessionAuthorize]
         [Route("")]
-        // also update the organiser! will receive it in dto.Organisers.first()
         public IHttpActionResult Post([FromBody]SessionDto dto) {
             Session entity = ModelMapper.Map<Session>(dto);
-            this.sessionService.Add(entity);
+
+            string secret = Thread.CurrentPrincipal.Identity.Name;
+            Account organiser = this.accounts.Get(a => a.Secret == secret, collections: true).First();
+
+            organiser.OrganisedSessions.Add(entity);
+            entity.Organisers.Add(organiser);
+
+            this.accounts.Change(organiser);
+            this.sessions.Add(entity);
+
             dto = ModelMapper.Map<SessionDto>(entity);
+
             return Ok(dto);
         }
 
+        [SessionAuthorize]
         [Route("")]
         public IHttpActionResult Put([FromBody]SessionDto dto) {
             Session entity = ModelMapper.Map<Session>(dto);
-            this.sessionService.Change(entity);
+            this.sessions.Change(entity);
             return Ok();
         }
 
@@ -63,7 +77,7 @@ namespace Kandoe.Web.Controllers.Api {
         [Route("by-organisation/{id}")]
         [HttpGet]
         public IHttpActionResult GetByOrganisation(int id) {
-            IEnumerable<Session> entities = this.sessionService.Get(session => session.OrganisationId == id);
+            IEnumerable<Session> entities = this.sessions.Get(session => session.OrganisationId == id);
             IEnumerable<SessionDto> dtos = ModelMapper.Map<IEnumerable<Session>, IEnumerable<SessionDto>>(entities);
             return Ok(dtos);
         }
@@ -71,7 +85,7 @@ namespace Kandoe.Web.Controllers.Api {
         [Route("by-subtheme/{id}")]
         [HttpGet]
         public IHttpActionResult GetBySubtheme(int id) {
-            IEnumerable<Session> entities = this.sessionService.Get(session => session.SubthemeId == id);
+            IEnumerable<Session> entities = this.sessions.Get(session => session.SubthemeId == id);
             IEnumerable<SessionDto> dtos = ModelMapper.Map<IEnumerable<Session>, IEnumerable<SessionDto>>(entities);
             return Ok(dtos);
         }
@@ -79,7 +93,7 @@ namespace Kandoe.Web.Controllers.Api {
         [Route("by-start-date/{date}")]
         [HttpGet]
         public IHttpActionResult GetByStartDate(DateTime date) {
-            IEnumerable<Session> entities = this.sessionService.Get(session => session.Start.Date == date.Date);
+            IEnumerable<Session> entities = this.sessions.Get(session => session.Start.Date == date.Date);
             IEnumerable<SessionDto> dtos = ModelMapper.Map<IEnumerable<Session>, IEnumerable<SessionDto>>(entities);
             return Ok(dtos);
         }
@@ -87,7 +101,7 @@ namespace Kandoe.Web.Controllers.Api {
         [Route("by-end-date/{date}")]
         [HttpGet]
         public IHttpActionResult GetByEndDate(DateTime date) {
-            IEnumerable<Session> entities = this.sessionService.Get(session => session.End.Date == date.Date);
+            IEnumerable<Session> entities = this.sessions.Get(session => session.End.Date == date.Date);
             IEnumerable<SessionDto> dtos = ModelMapper.Map<IEnumerable<Session>, IEnumerable<SessionDto>>(entities);
             return Ok(dtos);
         }
@@ -96,12 +110,12 @@ namespace Kandoe.Web.Controllers.Api {
         [HttpPatch]
         // auth organiser
         public IHttpActionResult PatchEnd(int id) {
-            Session entity = this.sessionService.Get(id);
+            Session entity = this.sessions.Get(id);
 
             entity.End = DateTime.Now;
             entity.IsFinished = true;
 
-            this.sessionService.Change(entity);
+            this.sessions.Change(entity);
 
             return Ok();
         }
@@ -109,18 +123,18 @@ namespace Kandoe.Web.Controllers.Api {
         [Route("{id}/join")]
         [HttpPatch]
         public IHttpActionResult PatchJoin(int id, [FromBody] AccountDto dto) {
-            Account account = this.accountService.Get(dto.Id, collections: true);
-            Session session = this.sessionService.Get(id, collections: true);
+            Account account = this.accounts.Get(dto.Id, collections: true);
+            Session session = this.sessions.Get(id, collections: true);
 
             if (session.Participants.Count >= session.MaxParticipants) {
                 return BadRequest();
             }
 
             session.Participants.Add(account);
-            //account.ParticipatingSessions.Add(session);
+            account.ParticipatingSessions.Add(session);
 
-            this.sessionService.Change(session);
-            this.accountService.Change(account);
+            this.sessions.Change(session);
+            this.accounts.Change(account);
 
             return Ok();
         }
@@ -128,14 +142,14 @@ namespace Kandoe.Web.Controllers.Api {
         [Route("{id}/select-cards")]
         [HttpPatch]
         public IHttpActionResult PatchSelectCards(int id, [FromBody]ICollection<CardDto> dtos) {
-            IEnumerable<SessionCard> sessionCards = this.sessionCardService.Get(sc => sc.SessionId == id);
+            IEnumerable<SessionCard> sessionCards = this.sessionCards.Get(sc => sc.SessionId == id);
 
             foreach (CardDto dto in dtos) {
-                SelectionCard slc = this.selectionCardService.Get(dto.Id);
+                SelectionCard slc = this.selectionCards.Get(dto.Id);
 
                 if (!sessionCards.Any(sc => sc.Text == slc.Text)) {
                     SessionCard sc = new SessionCard(slc.Image, id, slc.Text);
-                    this.sessionCardService.Add(sc);
+                    this.sessionCards.Add(sc);
                 }
             }
 
@@ -144,10 +158,10 @@ namespace Kandoe.Web.Controllers.Api {
 
         [Route("{sessionId}/level-up-card/{cardId}")]
         [HttpPatch]
-        // auth: checken of de call van een participant komt
+        // auth: checken of de call van een participant komt en dat het de huidige speler is
         public IHttpActionResult PatchSessionCardLevel(int sessionId, int cardId) {
-            Session session = this.sessionService.Get(sessionId, collections: true);
-            SessionCard sessionCard = this.sessionCardService.Get(cardId);
+            Session session = this.sessions.Get(sessionId, collections: true);
+            SessionCard sessionCard = this.sessionCards.Get(cardId);
 
             int index = session.CurrentPlayerIndex;
             int participantsAmount = session.Participants.Count;
@@ -155,51 +169,17 @@ namespace Kandoe.Web.Controllers.Api {
             --sessionCard.SessionLevel;
             session.CurrentPlayerIndex = ((index + 1) % participantsAmount == 0) ? 0 : index + 1;
 
-            this.sessionService.Change(session);
-            this.sessionCardService.Change(sessionCard);
+            this.sessions.Change(session);
+            this.sessionCards.Change(sessionCard);
 
             return Ok();
         }
 
-
-        /*(route("~/api/verbose/sessions")]
-        [HttpGet]
-        public IHttpActionResult GetVerbose() {
-            IEnumerable<Session> entities = this.sessionService.Get(collections: true);
-            IEnumerable<SessionDto> dtos = ModelMapper.Map<IEnumerable<Session>, IEnumerable<SessionDto>>(entities);
-
-            foreach (SessionDto dto in dtos) {
-                foreach (AccountDto participant in dto.Participants) {
-                    participant.OrganisedSessions = null;
-                    participant.ParticipatingSessions = null;
-                }
-
-                foreach (AccountDto organiser in dto.Organisers) {
-                    organiser.OrganisedSessions = null;
-                    organiser.ParticipatingSessions = null;
-                }
-            }
-
-            return Ok(dtos);
-        }//
-        */
-
         [Route("~/api/verbose/sessions/{id}")]
         [HttpGet]
         public IHttpActionResult GetVerbose(int id) {
-            Session entity = this.sessionService.Get(id, collections: true);
+            Session entity = this.sessions.Get(id, collections: true);
             SessionDto dto = ModelMapper.Map<SessionDto>(entity);
-
-            foreach (AccountDto participant in dto.Participants) {
-                participant.OrganisedSessions = null;
-                participant.ParticipatingSessions = null;
-            }
-
-            foreach (AccountDto organiser in dto.Organisers) {
-                organiser.OrganisedSessions = null;
-                organiser.ParticipatingSessions = null;
-            }
-
             return Ok(dto); 
         }
     }

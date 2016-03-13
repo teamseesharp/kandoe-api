@@ -1,12 +1,15 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 
 using Kandoe.Business.Domain;
 using Kandoe.Web.Model.Dto;
+using Kandoe.Web.Model.Mapping.Actions;
 
-namespace Kandoe.Web.Model.Mapping {
+namespace Kandoe.Web.Model.Mapping.Profiles {
     public class SessionProfile : Profile {
         protected override void Configure() {
-            this.CreateMap<Session, SessionDto>();
+            this.CreateMap<Session, SessionDto>()
+                .AfterMap<FilterSessionCircularReferences>();
 
             this.CreateMap<SessionDto, Session>()
                 .ConstructUsing(
@@ -23,7 +26,6 @@ namespace Kandoe.Web.Model.Mapping {
                         dto.Start,
                         dto.End
                     ));
-
         }
     }
 }

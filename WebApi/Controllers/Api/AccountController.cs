@@ -52,6 +52,7 @@ namespace Kandoe.Web.Controllers.Api {
         }
 
         [Route("")]
+        // meh
         public IHttpActionResult Patch([FromBody]AccountDto dto) {
             Account entity = this.service.Get(dto.Id);
             entity.Name = dto.Name;

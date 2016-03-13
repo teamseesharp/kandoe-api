@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 
 using Kandoe.Web.Model.Mapping;
+using Kandoe.Web.Model.Mapping.Profiles;
 
 namespace Kandoe.Web.Configuration {
     public static class MapperConfig {

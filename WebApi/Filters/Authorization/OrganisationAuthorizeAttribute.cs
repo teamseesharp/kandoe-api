@@ -18,10 +18,13 @@ namespace Kandoe.Web.Filters.Authorization {
         public override void OnActionExecuting(HttpActionContext actionContext) {
             OrganisationDto dto = (OrganisationDto) actionContext.ActionArguments["dto"];
 
+            // issuer secret
             string secret = Thread.CurrentPrincipal.Identity.Name;
-            Account issuer = this.accounts.Get(dto.OrganiserId);
+            // organiser secret
+            Account organiser = this.accounts.Get(dto.OrganiserId);
 
-            if (issuer.Secret != secret) {
+            // unauthorized action if issuer != organiser
+            if (organiser.Secret != secret) {
                 throw new UnauthorizedAccessException();
             }
 
