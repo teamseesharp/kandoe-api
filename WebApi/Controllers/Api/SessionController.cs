@@ -162,7 +162,7 @@ namespace Kandoe.Web.Controllers.Api {
         }
 
 
-        [Route("~/api/verbose/sessions")]
+        /*(route("~/api/verbose/sessions")]
         [HttpGet]
         public IHttpActionResult GetVerbose() {
             IEnumerable<Session> entities = this.sessionService.Get(collections: true);
@@ -182,6 +182,7 @@ namespace Kandoe.Web.Controllers.Api {
 
             return Ok(dtos);
         }
+        */
 
         [Route("~/api/verbose/sessions/{id}")]
         [HttpGet]
