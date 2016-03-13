@@ -57,6 +57,7 @@ namespace Kandoe.Web.Controllers.Api {
             entity.Name = dto.Name;
             entity.Surname = dto.Surname;
             entity.Email = dto.Email;
+            entity.Picture = dto.Picture;
             this.service.Change(entity);
             return Ok();
         }
