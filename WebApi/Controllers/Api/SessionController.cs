@@ -181,7 +181,7 @@ namespace Kandoe.Web.Controllers.Api {
             }
 
             return Ok(dtos);
-        }
+        }//
         */
 
         [Route("~/api/verbose/sessions/{id}")]
