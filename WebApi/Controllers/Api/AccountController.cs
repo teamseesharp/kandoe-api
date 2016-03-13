@@ -51,6 +51,17 @@ namespace Kandoe.Web.Controllers.Api {
             return Ok();
         }
 
+        [Route("")]
+        public IHttpActionResult Patch([FromBody]AccountDto dto) {
+            Account entity = this.service.Get(dto.Id);
+            entity.Name = dto.Name;
+            entity.Surname = dto.Surname;
+            entity.Email = dto.Email;
+            entity.Picture = dto.Picture;
+            this.service.Change(entity);
+            return Ok();
+        }
+
         [Route("{id}")]
         public IHttpActionResult Delete(int id) {
             throw new NotSupportedException();
