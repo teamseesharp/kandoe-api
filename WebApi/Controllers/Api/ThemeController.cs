@@ -80,5 +80,14 @@ namespace Kandoe.Web.Controllers.Api {
             IEnumerable<ThemeDto> dtos = ModelMapper.Map<IEnumerable<Theme>, IEnumerable<ThemeDto>>(entities);
             return Ok(dtos);
         }
+
+        [Route("~/api/verbose/themes/by-organisation/{id}")]
+        [HttpGet]
+        public IHttpActionResult GetVerboseByOrganisation(int id)
+        {
+            IEnumerable<Theme> entities = this.themes.Get(theme => theme.OrganisationId == id, collections:true);
+            IEnumerable<ThemeDto> dtos = ModelMapper.Map<IEnumerable<Theme>, IEnumerable<ThemeDto>>(entities);
+            return Ok(dtos);
+        }
     }
 }
