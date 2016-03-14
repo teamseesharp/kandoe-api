@@ -8,34 +8,11 @@ using NUnit.Framework;
 namespace WebApi.Tests
 {
     [TestFixture]
-    public class AccountControllerTest
-    {
-        
+    public class AccountControllerTest {
+
         [SetUp]
-        public void Setup(){
-            
-        }
-
-        [Test]
-        public void ControllerShouldPostNewAccount()
-        {
-            var account = new Account()
-            {
-                Email = "TestEmail@email.be",
-                Name = "Testje123",
-                Picture = "blabla",
-
-            };
-
-            var _accountController = new AccountController(_articleService)
-            {
-                Configuration = new HttpConfiguration(),
-                Request = new HttpRequestMessage
-                {
-                    Method = HttpMethod.Post,
-                    RequestUri = new Uri("http://localhost/api/articles")
-                }
-            };
+        public void Setup() {
 
         }
+    }
 }
