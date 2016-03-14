@@ -18,22 +18,22 @@ namespace Kandoe.Web.Controllers.Api {
     //[Authenticate]
     [RoutePrefix("api/subthemes")]
     public class SubthemeController : ApiController {
-        private readonly IService<Subtheme> service;
+        private readonly IService<Subtheme> subthemes;
 
         public SubthemeController() {
-            this.service = new SubthemeService();
+            this.subthemes = new SubthemeService();
         }
 
         [Route("")]
         public IHttpActionResult Get() {
-            IEnumerable<Subtheme> entities = this.service.Get();
+            IEnumerable<Subtheme> entities = this.subthemes.Get();
             IEnumerable<SubthemeDto> dtos = ModelMapper.Map<IEnumerable<Subtheme>, IEnumerable<SubthemeDto>>(entities);
             return Ok(dtos);
         }
 
         [Route("{id}")]
         public IHttpActionResult Get(int id) {
-            Subtheme entity = this.service.Get(id);
+            Subtheme entity = this.subthemes.Get(id);
             SubthemeDto dto = ModelMapper.Map<SubthemeDto>(entity);
             return Ok(dto);
         }
@@ -42,7 +42,7 @@ namespace Kandoe.Web.Controllers.Api {
         [SubthemeAuthorize]
         public IHttpActionResult Post([FromBody]SubthemeDto dto) {
             Subtheme entity = ModelMapper.Map<Subtheme>(dto);
-            this.service.Add(entity);
+            this.subthemes.Add(entity);
             dto = ModelMapper.Map<SubthemeDto>(entity);
             return Ok(dto);
         }
@@ -51,7 +51,7 @@ namespace Kandoe.Web.Controllers.Api {
         [SubthemeAuthorize]
         public IHttpActionResult Put([FromBody]SubthemeDto dto) {
             Subtheme entity = ModelMapper.Map<Subtheme>(dto);
-            this.service.Change(entity);
+            this.subthemes.Change(entity);
             return Ok();
         }
 
@@ -63,7 +63,15 @@ namespace Kandoe.Web.Controllers.Api {
         [Route("by-theme/{id}")]
         [HttpGet]
         public IHttpActionResult GetByTheme(int id) {
-            IEnumerable<Subtheme> entities = this.service.Get(subtheme => subtheme.ThemeId == id);
+            IEnumerable<Subtheme> entities = this.subthemes.Get(subtheme => subtheme.ThemeId == id);
+            IEnumerable<SubthemeDto> dtos = ModelMapper.Map<IEnumerable<Subtheme>, IEnumerable<SubthemeDto>>(entities);
+            return Ok(dtos);
+        }
+
+        [Route("by-organiser/{id}")]
+        [HttpGet]
+        public IHttpActionResult GetByOrganiser(int id) {
+            IEnumerable<Subtheme> entities = this.subthemes.Get(subtheme => subtheme.OrganiserId == id);
             IEnumerable<SubthemeDto> dtos = ModelMapper.Map<IEnumerable<Subtheme>, IEnumerable<SubthemeDto>>(entities);
             return Ok(dtos);
         }
