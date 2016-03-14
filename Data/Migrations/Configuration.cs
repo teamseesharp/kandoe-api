@@ -22,7 +22,7 @@ namespace Kandoe.Data.Migrations {
             int organisationId = 0;
 
             #region AccountSeed
-            Account account = new Account("thomastvd@gmail.com", "Thomas", "Van Deun", "picture", "auth0|56d4591317aca91f1aff5dfb");
+            Account account = new Account("thomastvd@gmail.com", "Thomas", "Van Deun", "http://i.imgur.com/SNoEbli.png", "auth0|56d4591317aca91f1aff5dfb");
             account.Id = ++accountId;
             context.Accounts.AddOrUpdate(account);
 
@@ -32,22 +32,22 @@ namespace Kandoe.Data.Migrations {
             //acc = new Account("olivier@gmail.com", "Olivier", "Van Aken", "picture", "", "oli12345");
             //context.Accounts.AddOrUpdate(acc);
 
-            account = new Account("helsen.bennie@gmail.com", "Bennie", "Bax", "picture", "google-oauth2|104916923787165182658");
+            account = new Account("helsen.bennie@gmail.com", "Bennie", "Bax", "http://i.imgur.com/SNoEbli.png", "google-oauth2|104916923787165182658");
             account.Id = ++accountId;
             context.Accounts.AddOrUpdate(account);
 
             //acc = new Account("joachim@gmail.com", "Joachim", "De Schryver", "picture", "", "joa2345");
             //context.Accounts.AddOrUpdate(acc);
 
-            account = new Account("cas.decelle@gmail.com", "Cas", "Decelle", "picture", "auth0|56d49e6d6568e621399e379c");
+            account = new Account("cas.decelle@gmail.com", "Cas", "Decelle", "http://i.imgur.com/SNoEbli.png", "auth0|56d49e6d6568e621399e379c");
             account.Id = ++accountId;
             context.Accounts.AddOrUpdate(account);
 
-            account = new Account("cas.decelle@gmail.com", "Cas", "Decelle", "picture", "google-oauth2|112196091859139010399");
+            account = new Account("cas.decelle@gmail.com", "Cas", "Decelle", "http://i.imgur.com/SNoEbli.png", "google-oauth2|112196091859139010399");
             account.Id = ++accountId;
             context.Accounts.AddOrUpdate(account);
 
-            account = new Account("test@test.be", "test", "hihi", "picture", "auth0|56d32ffb17aca91f1aff4493");
+            account = new Account("test@test.be", "test", "hihi", "http://i.imgur.com/SNoEbli.png", "auth0|56d32ffb17aca91f1aff4493");
             account.Id = ++accountId;
             context.Accounts.AddOrUpdate(account);
 
