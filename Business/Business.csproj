@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{948E8298-228D-4102-9747-F58E4DF9B0A8}</ProjectGuid>
+    <ProjectGuid>{64366E24-753C-4F19-AF3E-5A96F28A33F8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Kandoe.Business</RootNamespace>
     <AssemblyName>Business</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -55,11 +54,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Data\Data.csproj">
-      <Project>{352e0d82-346d-417d-a1f9-a6d0ae7fae9a}</Project>
+      <Project>{2dd8cd5f-50b3-4829-80ff-564a2272052b}</Project>
       <Name>Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\Domain\Domain.csproj">
-      <Project>{0d1d539a-5187-40d9-90a3-9bef2cf38b70}</Project>
+      <Project>{3a754afb-649f-477a-baf0-78869cf7f2fb}</Project>
       <Name>Domain</Name>
     </ProjectReference>
   </ItemGroup>

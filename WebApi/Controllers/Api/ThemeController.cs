@@ -15,7 +15,6 @@ namespace Kandoe.Web.Controllers.Api {
     [RoutePrefix("api/themes")]
     public class ThemeController : ApiController {
         private readonly IService<Theme> themes;
-        private readonly IService<Account> accounts;
 
         public ThemeController() {
             this.themes = new ThemeService();

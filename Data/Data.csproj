@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{352E0D82-346D-417D-A1F9-A6D0AE7FAE9A}</ProjectGuid>
+    <ProjectGuid>{2DD8CD5F-50B3-4829-80FF-564A2272052B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Kandoe.Data</RootNamespace>
     <AssemblyName>Data</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -43,6 +42,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
@@ -50,10 +50,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EFDB\Connection\Configuration.cs" />
+    <Compile Include="EFDB\Connection\Context.cs" />
     <Compile Include="EFDB\Connection\ContextFactory.cs" />
     <Compile Include="EFDB\Connection\Initialiser.cs" />
     <Compile Include="EFDB\Repositories\AccountRepository.cs" />
-    <Compile Include="EFDB\Connection\Context.cs" />
     <Compile Include="EFDB\Repositories\ChatMessageRepository.cs" />
     <Compile Include="EFDB\Repositories\OrganisationRepository.cs" />
     <Compile Include="EFDB\Repositories\Repository.cs" />
@@ -72,17 +72,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\Domain.csproj">
+      <Project>{3a754afb-649f-477a-baf0-78869cf7f2fb}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201603040207433_Initial.resx">
       <DependentUpon>201603040207433_Initial.cs</DependentUpon>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Domain\Domain.csproj">
-      <Project>{0d1d539a-5187-40d9-90a3-9bef2cf38b70}</Project>
-      <Name>Domain</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -9,11 +9,11 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{122FD658-A818-442F-BDD4-CFF78D2B5147}</ProjectGuid>
+    <ProjectGuid>{963A4163-4E0A-4F6D-876D-81C99CD99E05}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Kandoe.Web</RootNamespace>
+    <RootNamespace>WebApi</RootNamespace>
     <AssemblyName>WebApi</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
@@ -56,8 +56,8 @@
       <HintPath>..\packages\Auth0-ASPNET.1.4.0\lib\net45\Auth0.AspNet.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="AutoMapper, Version=4.2.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoMapper.4.2.0\lib\net45\AutoMapper.dll</HintPath>
+    <Reference Include="AutoMapper, Version=4.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.4.2.1\lib\net45\AutoMapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="JWT, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -69,16 +69,8 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.Data.Edm, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Data.Edm.5.7.0\lib\net40\Microsoft.Data.Edm.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.Data.OData, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Data.OData.5.7.0\lib\net40\Microsoft.Data.OData.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="RestSharp, Version=104.1.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -90,10 +82,6 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.IdentityModel" />
     <Reference Include="System.IdentityModel.Services" />
-    <Reference Include="System.Spatial, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Spatial.5.7.0\lib\net40\System.Spatial.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Web.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.3\lib\net45\System.Web.Cors.dll</HintPath>
       <Private>True</Private>
@@ -106,10 +94,6 @@
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Http.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.2.3\lib\net45\System.Web.Http.Cors.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Web.Http.OData, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.OData.5.7.0\lib\net45\System.Web.Http.OData.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Xml.Linq" />
@@ -223,21 +207,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Filters\Authorization\SessionAuthorizeAttribute.cs" />
-    <Compile Include="Filters\Authorization\SubthemeAuthorizeAttribute.cs" />
-    <Compile Include="Filters\Authorization\ThemeAuthorizeAttribute.cs" />
-    <Compile Include="Handlers\ContextHandler.cs" />
-    <Compile Include="Model\Mapping\Actions\FilterSessionCircularReferences.cs" />
-    <Compile Include="Model\Mapping\MapperExtensions.cs" />
-    <Compile Include="Results\ApiActionResult.cs" />
-    <Content Include="TODO.txt" />
-    <Compile Include="Handlers\Auth0\JsonWebToken.cs" />
-    <Compile Include="Handlers\AuthenticationHandler.cs" />
-    <Compile Include="Configuration\BundleConfig.cs" />
-    <Compile Include="Configuration\FilterConfig.cs" />
-    <Compile Include="Configuration\MapperConfig.cs" />
-    <Compile Include="Configuration\RouteConfig.cs" />
-    <Compile Include="Configuration\WebApiConfig.cs" />
     <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
     <Compile Include="Areas\HelpPage\App_Start\HelpPageConfig.cs" />
     <Compile Include="Areas\HelpPage\Controllers\HelpController.cs" />
@@ -266,15 +235,28 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Configuration\BundleConfig.cs" />
+    <Compile Include="Configuration\FilterConfig.cs" />
+    <Compile Include="Configuration\MapperConfig.cs" />
+    <Compile Include="Configuration\RouteConfig.cs" />
+    <Compile Include="Configuration\Startup.cs" />
+    <Compile Include="Configuration\WebApiConfig.cs" />
     <Compile Include="Controllers\Api\AccountController.cs" />
-    <Compile Include="Controllers\Api\SelectionCardController.cs" />
     <Compile Include="Controllers\Api\ChatMessageController.cs" />
     <Compile Include="Controllers\Api\OrganisationController.cs" />
+    <Compile Include="Controllers\Api\SelectionCardController.cs" />
     <Compile Include="Controllers\Api\SessionController.cs" />
     <Compile Include="Controllers\Api\SubthemeController.cs" />
     <Compile Include="Controllers\Api\ThemeController.cs" />
+    <Compile Include="Controllers\DocumentationController.cs" />
     <Compile Include="Filters\Authorization\OrganisationAuthorizeAttribute.cs" />
+    <Compile Include="Filters\Authorization\SessionAuthorizeAttribute.cs" />
+    <Compile Include="Filters\Authorization\SubthemeAuthorizeAttribute.cs" />
+    <Compile Include="Filters\Authorization\ThemeAuthorizeAttribute.cs" />
     <Compile Include="Filters\ExceptionFilter.cs" />
+    <Compile Include="Handlers\Auth0\JsonWebToken.cs" />
+    <Compile Include="Handlers\AuthenticationHandler.cs" />
+    <Compile Include="Handlers\ContextHandler.cs" />
     <Compile Include="Model\Dto\AccountDto.cs" />
     <Compile Include="Model\Dto\CardDto.cs" />
     <Compile Include="Model\Dto\ChatMessageDto.cs" />
@@ -282,17 +264,18 @@
     <Compile Include="Model\Dto\SessionDto.cs" />
     <Compile Include="Model\Dto\SubthemeDto.cs" />
     <Compile Include="Model\Dto\ThemeDto.cs" />
+    <Compile Include="Model\Mapping\Actions\FilterSessionCircularReferences.cs" />
+    <Compile Include="Model\Mapping\MapperExtensions.cs" />
     <Compile Include="Model\Mapping\ModelMapper.cs" />
-    <Compile Include="Model\Mapping\Profiles\ThemeProfile.cs" />
-    <Compile Include="Model\Mapping\Profiles\SubthemeProfile.cs" />
-    <Compile Include="Model\Mapping\Profiles\SessionProfile.cs" />
-    <Compile Include="Model\Mapping\Profiles\OrganisationProfile.cs" />
-    <Compile Include="Model\Mapping\Profiles\ChatMessageProfile.cs" />
-    <Compile Include="Model\Mapping\Profiles\CardProfile.cs" />
     <Compile Include="Model\Mapping\Profiles\AccountProfile.cs" />
-    <Compile Include="Controllers\DocumentationController.cs" />
+    <Compile Include="Model\Mapping\Profiles\CardProfile.cs" />
+    <Compile Include="Model\Mapping\Profiles\ChatMessageProfile.cs" />
+    <Compile Include="Model\Mapping\Profiles\OrganisationProfile.cs" />
+    <Compile Include="Model\Mapping\Profiles\SessionProfile.cs" />
+    <Compile Include="Model\Mapping\Profiles\SubthemeProfile.cs" />
+    <Compile Include="Model\Mapping\Profiles\ThemeProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Configuration\Startup.cs" />
+    <Compile Include="Results\ApiActionResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
@@ -300,41 +283,16 @@
     <Content Include="Content\css\bootstrap-theme.min.css" />
     <Content Include="Content\css\bootstrap.css" />
     <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\Site.css" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\images\logo.ico" />
     <Content Include="Content\images\logo.png" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Areas\HelpPage\Views\Web.config" />
-    <Content Include="Areas\HelpPage\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Help\ResourceModel.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Help\Index.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\TextSample.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\SimpleTypeModelDescription.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\Samples.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\Parameters.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ModelDescriptionLink.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\KeyValuePairModelDescription.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\InvalidSample.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ImageSample.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\HelpPageApiModel.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\EnumTypeModelDescription.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\DictionaryModelDescription.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ComplexTypeModelDescription.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\css\bootstrap.min.css.map" />
-    <Content Include="Content\css\bootstrap.css.map" />
-    <Content Include="Content\css\bootstrap-theme.min.css.map" />
-    <Content Include="Content\css\bootstrap-theme.css.map" />
-    <None Include="Content\scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="Content\images\logotext.ico" />
     <Content Include="Content\images\logotext.png" />
+    <Content Include="Content\Project_Readme.html" />
     <Content Include="Content\scripts\bootstrap.js" />
     <Content Include="Content\scripts\bootstrap.min.js" />
+    <None Include="Content\scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="Content\scripts\jquery-2.2.0.js" />
     <Content Include="Content\scripts\jquery-2.2.0.min.js" />
     <None Include="Content\scripts\jquery.validate-vsdoc.js" />
@@ -347,43 +305,70 @@
     <Content Include="Content\scripts\respond.matchmedia.addListener.js" />
     <Content Include="Content\scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Content\scripts\respond.min.js" />
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
+    <None Include="Content\scripts\_references.js" />
+    <Content Include="TODO.txt" />
+    <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
-    <Content Include="Content\css\Site.css" />
-    <Content Include="Content\scripts\_references.js" />
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Documentation\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Documentation\Index.cshtml" />
+    <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Filters\Validation\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <None Include="Content\Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ComplexTypeModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\DictionaryModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\EnumTypeModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\HelpPageApiModel.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ImageSample.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\InvalidSample.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\KeyValuePairModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ModelDescriptionLink.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\Parameters.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\Samples.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\SimpleTypeModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\TextSample.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\Index.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\ResourceModel.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Web.config" />
+    <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\css\bootstrap-theme.css.map" />
+    <Content Include="Content\css\bootstrap-theme.min.css.map" />
+    <Content Include="Content\css\bootstrap.css.map" />
+    <Content Include="Content\css\bootstrap.min.css.map" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Content\scripts\jquery-2.2.0.min.map" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Business\Business.csproj">
-      <Project>{948e8298-228d-4102-9747-f58e4df9b0a8}</Project>
+      <Project>{64366e24-753c-4f19-af3e-5a96f28a33f8}</Project>
       <Name>Business</Name>
     </ProjectReference>
     <ProjectReference Include="..\Data\Data.csproj">
-      <Project>{352e0d82-346d-417d-a1f9-a6d0ae7fae9a}</Project>
+      <Project>{2dd8cd5f-50b3-4829-80ff-564a2272052b}</Project>
       <Name>Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\Domain\Domain.csproj">
-      <Project>{0d1d539a-5187-40d9-90a3-9bef2cf38b70}</Project>
+      <Project>{3a754afb-649f-477a-baf0-78869cf7f2fb}</Project>
       <Name>Domain</Name>
     </ProjectReference>
   </ItemGroup>
@@ -403,7 +388,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>59808</DevelopmentServerPort>
+          <DevelopmentServerPort>58156</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:51787/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
