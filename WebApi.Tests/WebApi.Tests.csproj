@@ -134,7 +134,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="filters\ExceptionFilterTest.cs" />
+    <Compile Include="Filters\ExceptionFilterTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="samples\Controllers\HomeControllerTest.cs" />
     <Compile Include="samples\Controllers\ValuesControllerTest.cs" />

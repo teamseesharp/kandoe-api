@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Data.SqlClient;
 using System.Net;
 using System.Net.Http;
-using System.Web;
 using System.Web.Http.Filters;
 
-using Moq;
 using NUnit.Framework;
 
 using Kandoe.Web.Filters;
-using System.Web.Http.Controllers;
 
-namespace WebApi.Tests.filters {
+namespace WebApi.Tests.Filters {
     [TestFixture]
     public class ExceptionFilterTest {
         private HttpActionExecutedContext httpActionExecutedContext;
@@ -27,7 +23,8 @@ namespace WebApi.Tests.filters {
         [SetUp]
         public void SetUp() {
             // Not able to mock HttpActionExecutedContext, non-virtual members
-            this.httpActionExecutedContext = Utilities.GetActionExecutedContext(new HttpRequestMessage(), new HttpResponseMessage());
+            // Built up from the bottom with an utility method
+            this.httpActionExecutedContext = Utilities.GetActionExecutedContext();
         }
 
         [Test, TestCaseSource("ExceptionCases")]

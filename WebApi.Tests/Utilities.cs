@@ -20,7 +20,13 @@ namespace WebApi.Tests {
             };
         }
 
-        public static HttpActionExecutedContext GetActionExecutedContext(HttpRequestMessage request = null, HttpResponseMessage response = null) {
+        public static HttpActionExecutedContext GetActionExecutedContext() {
+            HttpRequestMessage request = new HttpRequestMessage();
+            HttpResponseMessage response = new HttpResponseMessage();
+            return GetActionExecutedContext(request, response);
+        }
+
+        public static HttpActionExecutedContext GetActionExecutedContext(HttpRequestMessage request, HttpResponseMessage response) {
             HttpActionContext actionContext = CreateActionContext();
             actionContext.ControllerContext.Request = request;
             HttpActionExecutedContext actionExecutedContext = new HttpActionExecutedContext(actionContext, null) { Response = response };
