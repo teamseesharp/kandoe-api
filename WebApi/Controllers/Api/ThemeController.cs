@@ -60,8 +60,7 @@ namespace Kandoe.Web.Controllers.Api {
         [Route("by-user/{id}")]
         [HttpGet]
         public IHttpActionResult GetByUser(int id) {
-            Account acc = this.accounts.Get(id);
-            IEnumerable<Theme> entities = this.themes.Get(theme => theme.OrganiserId == acc.Id);
+            IEnumerable<Theme> entities = this.themes.Get(theme => theme.OrganiserId == id);
             IEnumerable<ThemeDto> dtos = ModelMapper.Map<IEnumerable<Theme>, IEnumerable<ThemeDto>>(entities);
             return Ok(dtos);
         }
