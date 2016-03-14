@@ -14,22 +14,23 @@ namespace Kandoe.Web.Controllers.Api {
     //[Authenticate]
     [RoutePrefix("api/themes")]
     public class ThemeController : ApiController {
-        private readonly IService<Theme> service;
+        private readonly IService<Theme> themes;
+        private readonly IService<Account> accounts;
 
         public ThemeController() {
-            this.service = new ThemeService();
+            this.themes = new ThemeService();
         }
 
         [Route("")]
         public IHttpActionResult Get() {
-            IEnumerable<Theme> entities = this.service.Get();
+            IEnumerable<Theme> entities = this.themes.Get();
             IEnumerable<ThemeDto> dtos = ModelMapper.Map<IEnumerable<Theme>, IEnumerable<ThemeDto>>(entities);
             return Ok(dtos);
         }
 
         [Route("{id}")]
         public IHttpActionResult Get(int id) {
-            Theme entity = this.service.Get(id);
+            Theme entity = this.themes.Get(id);
             ThemeDto dto = ModelMapper.Map<ThemeDto>(entity);
             return Ok(dto);
         }
@@ -38,7 +39,7 @@ namespace Kandoe.Web.Controllers.Api {
         [Route("")]
         public IHttpActionResult Post([FromBody]ThemeDto dto) {
             Theme entity = ModelMapper.Map<Theme>(dto);
-            this.service.Add(entity);
+            this.themes.Add(entity);
             dto = ModelMapper.Map<ThemeDto>(entity);
             return Ok(dto);
         }
@@ -47,7 +48,7 @@ namespace Kandoe.Web.Controllers.Api {
         [Route("")]
         public IHttpActionResult Put([FromBody]ThemeDto dto) {
             Theme entity = ModelMapper.Map<Theme>(dto);
-            this.service.Change(entity);
+            this.themes.Change(entity);
             return Ok();
         }
 
@@ -56,10 +57,19 @@ namespace Kandoe.Web.Controllers.Api {
             throw new NotSupportedException();
         }
 
+        [Route("by-user/{id}")]
+        [HttpGet]
+        public IHttpActionResult GetByUser(int id) {
+            Account acc = this.accounts.Get(id);
+            IEnumerable<Theme> entities = this.themes.Get(theme => theme.OrganiserId == acc.Id);
+            IEnumerable<ThemeDto> dtos = ModelMapper.Map<IEnumerable<Theme>, IEnumerable<ThemeDto>>(entities);
+            return Ok(dtos);
+        }
+
         [Route("by-organisation/{id}")]
         [HttpGet]
         public IHttpActionResult GetByOrganisation(int id) {
-            IEnumerable<Theme> entities = this.service.Get(theme => theme.OrganisationId == id);
+            IEnumerable<Theme> entities = this.themes.Get(theme => theme.OrganisationId == id);
             IEnumerable<ThemeDto> dtos = ModelMapper.Map<IEnumerable<Theme>, IEnumerable<ThemeDto>>(entities);
             return Ok(dtos);
         }
@@ -67,7 +77,7 @@ namespace Kandoe.Web.Controllers.Api {
         [Route("by-tag/{tag}")]
         [HttpGet]
         public IHttpActionResult GetByTag(string tag) {
-            IEnumerable<Theme> entities = this.service.Get(theme => theme.Tags.Contains(tag));
+            IEnumerable<Theme> entities = this.themes.Get(theme => theme.Tags.Contains(tag));
             IEnumerable<ThemeDto> dtos = ModelMapper.Map<IEnumerable<Theme>, IEnumerable<ThemeDto>>(entities);
             return Ok(dtos);
         }
