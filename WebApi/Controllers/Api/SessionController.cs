@@ -78,7 +78,7 @@ namespace Kandoe.Web.Controllers.Api {
         [HttpGet]
         public IHttpActionResult GetByUser(int id) {
             Account acc = this.accounts.Get(id);
-            IEnumerable<Session> entities = this.sessions.Get(session => session.Participants == acc);
+            IEnumerable<Session> entities = this.sessions.Get(session => session.Participants.Contains(acc));
             IEnumerable<SessionDto> dtos = ModelMapper.Map<IEnumerable<Session>, IEnumerable<SessionDto>>(entities);
             return Ok(dtos);
         }
