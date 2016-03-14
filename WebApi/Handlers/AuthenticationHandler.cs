@@ -34,11 +34,17 @@ namespace Kandoe.Web.Handlers {
                         HttpContext.Current.User = Thread.CurrentPrincipal;
                     }
                 } catch (JWT.SignatureVerificationException e) {
-                    response = request.CreateErrorResponse(HttpStatusCode.Unauthorized, e.Message);
+                    response = new HttpResponseMessage(HttpStatusCode.Unauthorized) {
+                        Content = new StringContent(e.Message)
+                    };
                 } catch (JsonWebToken.TokenValidationException e) {
-                    response = request.CreateErrorResponse(HttpStatusCode.Unauthorized, e.Message);
+                    response = new HttpResponseMessage(HttpStatusCode.Unauthorized) {
+                        Content = new StringContent(e.Message)
+                    };
                 } catch (Exception e) {
-                    response = request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message);
+                    response = new HttpResponseMessage(HttpStatusCode.InternalServerError) {
+                        Content = new StringContent(e.Message)
+                    };
                 }
             }
 

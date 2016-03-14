@@ -11,7 +11,7 @@ using Kandoe.Web.Model.Dto;
 using Kandoe.Web.Model.Mapping;
 
 namespace Kandoe.Web.Controllers.Api {
-    //[Authenticate]
+    [Authenticate]
     [RoutePrefix("api/themes")]
     public class ThemeController : ApiController {
         private readonly IService<Theme> themes;

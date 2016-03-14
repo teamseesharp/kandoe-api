@@ -15,7 +15,7 @@ using Kandoe.Web.Model.Mapping;
 using Kandoe.Web.Results;
 
 namespace Kandoe.Web.Controllers.Api {
-    //[Authenticate]
+    [Authenticate]
     [RoutePrefix("api/subthemes")]
     public class SubthemeController : ApiController {
         private readonly IService<Subtheme> subthemes;

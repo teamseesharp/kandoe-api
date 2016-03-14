@@ -5,13 +5,15 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
+using Authenticate = System.Web.Http.AuthorizeAttribute;
+
 using Kandoe.Business;
 using Kandoe.Business.Domain;
 using Kandoe.Web.Model.Dto;
 using Kandoe.Web.Model.Mapping;
 
 namespace Kandoe.Web.Controllers.Api {
-    [Authorize]
+    [Authenticate]
     [RoutePrefix("api/chat-messages")]
     public class ChatMessageController : ApiController {
         private readonly IService<ChatMessage> service;

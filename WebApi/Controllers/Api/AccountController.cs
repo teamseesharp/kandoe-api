@@ -12,7 +12,7 @@ using Kandoe.Web.Model.Dto;
 using Kandoe.Web.Model.Mapping;
 
 namespace Kandoe.Web.Controllers.Api {
-    //[Authenticate]
+    [Authenticate]
     [RoutePrefix("api/accounts")]
     public class AccountController : ApiController {
         private readonly IService<Account> service;
