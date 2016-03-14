@@ -74,15 +74,6 @@ namespace Kandoe.Web.Controllers.Api {
             throw new NotSupportedException();
         }
 
-        [Route("by-user/{id}")]
-        [HttpGet]
-        public IHttpActionResult GetByUser(int id) {
-            Account acc = this.accounts.Get(id);
-            IEnumerable<Session> entities = this.sessions.Get(session => session.Participants.Contains(acc));
-            IEnumerable<SessionDto> dtos = ModelMapper.Map<IEnumerable<Session>, IEnumerable<SessionDto>>(entities);
-            return Ok(dtos);
-        }
-
         [Route("by-organisation/{id}")]
         [HttpGet]
         public IHttpActionResult GetByOrganisation(int id) {
@@ -95,6 +86,15 @@ namespace Kandoe.Web.Controllers.Api {
         [HttpGet]
         public IHttpActionResult GetBySubtheme(int id) {
             IEnumerable<Session> entities = this.sessions.Get(session => session.SubthemeId == id);
+            IEnumerable<SessionDto> dtos = ModelMapper.Map<IEnumerable<Session>, IEnumerable<SessionDto>>(entities);
+            return Ok(dtos);
+        }
+
+        [Route("by-user/{id}")]
+        [HttpGet]
+        public IHttpActionResult GetByUser(int id) {
+            Account account = this.accounts.Get(id);
+            IEnumerable<Session> entities = this.sessions.Get(session => session.Participants.Contains(account));
             IEnumerable<SessionDto> dtos = ModelMapper.Map<IEnumerable<Session>, IEnumerable<SessionDto>>(entities);
             return Ok(dtos);
         }
