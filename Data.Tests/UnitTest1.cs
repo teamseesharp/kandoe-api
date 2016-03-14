@@ -1,9 +1,9 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Data.Tests
 {
-    [TestClass]
+    [TestFixture]
     public class UnitTest1
     {
         
