@@ -19,6 +19,9 @@ namespace Kandoe.Web.Model.Mapping.Actions {
             foreach (AccountDto account in accounts) {
                 account.OrganisedSessions = null;
                 account.ParticipatingSessions = null;
+                account.Organisations = null;
+                account.Subthemes = null;
+                account.Themes = null;
             }
         }
     }
