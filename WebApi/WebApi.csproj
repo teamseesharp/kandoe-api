@@ -266,6 +266,7 @@
     <Compile Include="Model\Dto\CardDto.cs" />
     <Compile Include="Model\Dto\ChatMessageDto.cs" />
     <Compile Include="Model\Dto\OrganisationDto.cs" />
+    <Compile Include="Model\Dto\OrganisedDto.cs" />
     <Compile Include="Model\Dto\SessionDto.cs" />
     <Compile Include="Model\Dto\SubthemeDto.cs" />
     <Compile Include="Model\Dto\ThemeDto.cs" />
