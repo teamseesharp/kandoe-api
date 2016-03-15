@@ -49,13 +49,13 @@ namespace WebApi.Tests {
             return context;
         }
 
-        private static HttpActionContext CreateActionContext(HttpControllerContext controllerContext = null, HttpActionDescriptor actionDescriptor = null) {
+        public static HttpActionContext CreateActionContext(HttpControllerContext controllerContext = null, HttpActionDescriptor actionDescriptor = null) {
             HttpControllerContext context = controllerContext ?? CreateControllerContext();
             HttpActionDescriptor descriptor = actionDescriptor ?? new Mock<HttpActionDescriptor>() { CallBase = true }.Object;
             return new HttpActionContext(context, descriptor);
         }
 
-        private static HttpActionContext GetHttpActionContext(HttpRequestMessage request) {
+        public static HttpActionContext GetHttpActionContext(HttpRequestMessage request) {
             HttpActionContext actionContext = CreateActionContext();
             actionContext.ControllerContext.Request = request;
             return actionContext;

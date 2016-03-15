@@ -6,7 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 
-using Kandoe.Web.Handlers.Auth0;
+using Kandoe.Web.Auth0;
 
 namespace Kandoe.Web.Handlers {
     public class AuthenticationHandler : DelegatingHandler {

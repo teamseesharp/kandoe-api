@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 
+using Kandoe.Web.Auth0;
 using Kandoe.Web.Filters;
 
 [assembly: OwinStartup(typeof(Kandoe.Web.Configuration.Startup))]
@@ -30,6 +31,10 @@ namespace Kandoe.Web.Configuration {
 
             // Configure the mapper
             MapperConfig.Configure();
+
+            // Configure auth0 token factory
+            TokenFactory.Configure();
+            string token = TokenFactory.GetToken();
         }
     }
 }

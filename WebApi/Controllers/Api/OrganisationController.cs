@@ -44,7 +44,7 @@ namespace Kandoe.Web.Controllers.Api {
             return Ok(dto);
         }
 
-        [OrganisationAuthorize]
+        [AuthorizeOrganiser]
         [Route("")]
         public IHttpActionResult Put([FromBody]OrganisationDto dto) {
             Organisation entity = ModelMapper.Map<Organisation>(dto);

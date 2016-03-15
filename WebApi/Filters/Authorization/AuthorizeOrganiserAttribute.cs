@@ -8,10 +8,10 @@ using Kandoe.Business.Domain;
 using Kandoe.Web.Model.Dto;
 
 namespace Kandoe.Web.Filters.Authorization {
-    public class OrganisationAuthorizeAttribute :  ActionFilterAttribute {
+    public class AuthorizeOrganiserAttribute :  ActionFilterAttribute {
         private readonly IService<Account> accounts;
 
-        public OrganisationAuthorizeAttribute() {
+        public AuthorizeOrganiserAttribute() {
             this.accounts = new AccountService();
         }
 

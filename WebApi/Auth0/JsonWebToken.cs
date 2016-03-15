@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 
-namespace Kandoe.Web.Handlers.Auth0 {
+namespace Kandoe.Web.Auth0 {
     public static class JsonWebToken {
         private const string NameClaimType = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name";
         private const string RoleClaimType = "http://schemas.microsoft.com/ws/2008/06/identity/claims/role";

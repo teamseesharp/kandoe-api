@@ -13,7 +13,7 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WebApi</RootNamespace>
+    <RootNamespace>Kandoe.Web</RootNamespace>
     <AssemblyName>WebApi</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
@@ -58,6 +58,10 @@
     </Reference>
     <Reference Include="AutoMapper, Version=4.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.4.2.1\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="jose-jwt, Version=1.9.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\jose-jwt.1.9.1\lib\4.0\jose-jwt.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="JWT, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -235,6 +239,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Auth0\TokenFactory.cs" />
     <Compile Include="Configuration\BundleConfig.cs" />
     <Compile Include="Configuration\FilterConfig.cs" />
     <Compile Include="Configuration\MapperConfig.cs" />
@@ -249,12 +254,12 @@
     <Compile Include="Controllers\Api\SubthemeController.cs" />
     <Compile Include="Controllers\Api\ThemeController.cs" />
     <Compile Include="Controllers\DocumentationController.cs" />
-    <Compile Include="Filters\Authorization\OrganisationAuthorizeAttribute.cs" />
+    <Compile Include="Filters\Authorization\AuthorizeOrganiserAttribute.cs" />
     <Compile Include="Filters\Authorization\SessionAuthorizeAttribute.cs" />
     <Compile Include="Filters\Authorization\SubthemeAuthorizeAttribute.cs" />
     <Compile Include="Filters\Authorization\ThemeAuthorizeAttribute.cs" />
     <Compile Include="Filters\ExceptionFilter.cs" />
-    <Compile Include="Handlers\Auth0\JsonWebToken.cs" />
+    <Compile Include="Auth0\JsonWebToken.cs" />
     <Compile Include="Handlers\AuthenticationHandler.cs" />
     <Compile Include="Handlers\ContextHandler.cs" />
     <Compile Include="Model\Dto\AccountDto.cs" />

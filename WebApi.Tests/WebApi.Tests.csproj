@@ -45,6 +45,10 @@
       <HintPath>..\packages\AutoMapper.4.2.1\lib\net45\AutoMapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="jose-jwt, Version=1.9.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\jose-jwt.1.9.1\lib\4.0\jose-jwt.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="JWT, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\JWT.1.3.2\lib\3.5\JWT.dll</HintPath>
       <Private>True</Private>
@@ -134,7 +138,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Filters\Authorization\OrganisationAuthorizeAttributeTest.cs" />
+    <Compile Include="Filters\Authorization\AuthorizeOrganiserAttributeTest.cs" />
     <Compile Include="Filters\Authorization\SessionAuthorizeAttributeTest.cs" />
     <Compile Include="Filters\Authorization\SubthemeAuthorizeAttributeTest.cs" />
     <Compile Include="Filters\Authorization\ThemeAuthorizeAttributeTest.cs" />
