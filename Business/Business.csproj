@@ -49,6 +49,7 @@
     <Compile Include="Service.cs" />
     <Compile Include="SessionCardService.cs" />
     <Compile Include="SessionService.cs" />
+    <Compile Include="SnapshotService.cs" />
     <Compile Include="SubthemeService.cs" />
     <Compile Include="ThemeService.cs" />
   </ItemGroup>
