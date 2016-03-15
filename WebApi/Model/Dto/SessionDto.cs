@@ -8,6 +8,7 @@ namespace Kandoe.Web.Model.Dto {
         public int Id { get; set; }
         public bool CardCreationAllowed { get; set; }
         public int CurrentPlayerIndex { get; set; }
+        public string Description { get; set; }
         public DateTime End { get; set; }
         public bool IsFinished { get; set; }
         public int MaxCardsToChoose { get; set; }
