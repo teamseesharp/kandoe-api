@@ -35,13 +35,21 @@ namespace Kandoe.Web.Controllers.Api {
             AccountDto dto = ModelMapper.Map<AccountDto>(entity);
             return Ok(dto);
         }
-
-        [AllowAnonymous]
+        
         [Route("")]
+        // validation of DTO very needed - geen bestaande id toelaten?
         public IHttpActionResult Post([FromBody]AccountDto dto) {
+            IEnumerable<Account> accounts = this.accounts.Get(a => a.Secret == dto.Secret);
+            bool exists = (accounts.Count() >= 1);
+
+            if (exists) {
+                return Ok(accounts.First());
+            }
+
             Account entity = ModelMapper.Map<Account>(dto);
             this.accounts.Add(entity);
             dto = ModelMapper.Map<AccountDto>(entity);
+
             return Ok(dto);
         }
 
@@ -51,6 +59,7 @@ namespace Kandoe.Web.Controllers.Api {
         }
 
         [Route("")]
+        // almost no validation needed? we only use non-harmful info of account
         public IHttpActionResult Patch([FromBody]AccountDto dto) {
             string secret = Thread.CurrentPrincipal.Identity.Name;
             Account entity = this.accounts.Get(a => a.Secret == secret).First();

@@ -12,7 +12,7 @@ namespace Kandoe.Web.Model.Dto{
         public ICollection<int> Participants { get; set; }
         public ICollection<int> Organisers { get; set; }
 
-        public ICollection<SessionCard> SessionCards { get; set; }
-        public ICollection<ChatMessage> ChatMessages { get; set; }
+        public ICollection<CardDto> SessionCards { get; set; }
+        public ICollection<ChatMessageDto> ChatMessages { get; set; }
     }
 }
