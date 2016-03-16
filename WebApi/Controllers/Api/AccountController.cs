@@ -47,6 +47,10 @@ namespace Kandoe.Web.Controllers.Api {
             }
 
             Account entity = ModelMapper.Map<Account>(dto);
+
+            entity.Picture = entity.Picture ?? "http://i.imgur.com/SNoEbli.png";
+            entity.Surname = entity.Surname ?? "";
+
             this.accounts.Add(entity);
             dto = ModelMapper.Map<AccountDto>(entity);
 
@@ -79,10 +83,10 @@ namespace Kandoe.Web.Controllers.Api {
             throw new NotSupportedException();
         }
 
-        [Route("by-auth0-user-id/{id}")]
+        [Route("by-auth0-user-id/{secret}")]
         [HttpGet]
-        public IHttpActionResult GetByAuth0UserId(string id) {
-            IEnumerable<Account> entities = this.accounts.Get(a => a.Secret == id);
+        public IHttpActionResult GetByAuth0UserId(string secret) {
+            IEnumerable<Account> entities = this.accounts.Get(a => a.Secret == secret);
 
             // if no accounts were found
             if (entities.Count() < 1) { return Ok(new AccountDto()); }
