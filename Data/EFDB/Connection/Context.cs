@@ -35,6 +35,7 @@ namespace Kandoe.Data.EFDB.Connection {
         public DbSet<SelectionCard> SelectionCards { get; set; }
         public DbSet<SessionCard> SessionCards { get; set; }
         public DbSet<Session> Sessions { get; set; }
+        public DbSet<Snapshot> Snapshots { get; set; }
         public DbSet<Subtheme> Subthemes { get; set; }
         public DbSet<Theme> Themes { get; set; }
 
@@ -62,6 +63,7 @@ namespace Kandoe.Data.EFDB.Connection {
             modelBuilder.Entity<SelectionCard>().HasKey(slc => slc.Id);
             modelBuilder.Entity<Session>().HasKey(s => s.Id);
             modelBuilder.Entity<SessionCard>().HasKey(sc => sc.Id);
+            modelBuilder.Entity<Snapshot>().HasKey(ss => ss.Id);
             modelBuilder.Entity<Subtheme>().HasKey(st => st.Id);
             modelBuilder.Entity<Theme>().HasKey(t => t.Id);
         }
@@ -79,6 +81,9 @@ namespace Kandoe.Data.EFDB.Connection {
             modelBuilder.Entity<Session>().HasMany(s => s.ChatMessages)
                 .WithRequired()
                 .HasForeignKey(cm => cm.SessionId);
+            modelBuilder.Entity<Snapshot>().HasMany(ss => ss.ChatMessages)
+               .WithOptional()
+               .HasForeignKey(sc => sc.SnapshotId);
 
             // Organisation
             modelBuilder.Entity<Account>().HasMany(a => a.Organisations)
@@ -105,6 +110,15 @@ namespace Kandoe.Data.EFDB.Connection {
             modelBuilder.Entity<Session>().HasMany(s => s.SessionCards)
                 .WithRequired()
                 .HasForeignKey(sc => sc.SessionId);
+            modelBuilder.Entity<Snapshot>().HasMany(ss => ss.SessionCards)
+                .WithOptional()
+                .HasForeignKey(sc => sc.SnapshotId);
+
+            //Snapshot
+            modelBuilder.Entity<Session>().HasMany(s => s.Snapshots)
+               .WithRequired()
+               .HasForeignKey(ss => ss.SessionId);
+
 
             // Subtheme
             modelBuilder.Entity<Account>().HasMany(a => a.Subthemes)
@@ -146,6 +160,11 @@ namespace Kandoe.Data.EFDB.Connection {
                 .Property(a => a.Picture)
                 .IsOptional();
 
+            //ChatMessage
+            modelBuilder.Entity<ChatMessage>()
+               .Property(a => a.SnapshotId)
+               .IsOptional();
+
             // SelectionCard
             modelBuilder.Entity<SelectionCard>()
                 .Property(slc => slc.Image)
@@ -158,6 +177,9 @@ namespace Kandoe.Data.EFDB.Connection {
             modelBuilder.Entity<SessionCard>()
                 .Property(slc => slc.Image)
                 .IsOptional();
+            modelBuilder.Entity<SessionCard>()
+               .Property(slc => slc.SnapshotId)
+               .IsOptional();
 
             // Theme
             modelBuilder.Entity<Theme>()
@@ -228,6 +250,11 @@ namespace Kandoe.Data.EFDB.Connection {
             modelBuilder.Entity<SessionCard>()
                 .Property(slc => slc.Text)
                 .IsRequired();
+
+            //Snapshot
+            modelBuilder.Entity<Snapshot>()
+               .Property(ss=> ss.SessionId)
+               .IsRequired();
 
             // Subtheme
             modelBuilder.Entity<Subtheme>()

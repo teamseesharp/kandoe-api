@@ -251,13 +251,15 @@
     <Compile Include="Controllers\Api\OrganisationController.cs" />
     <Compile Include="Controllers\Api\SelectionCardController.cs" />
     <Compile Include="Controllers\Api\SessionController.cs" />
+    <Compile Include="Controllers\Api\SnapshotController.cs" />
     <Compile Include="Controllers\Api\SubthemeController.cs" />
     <Compile Include="Controllers\Api\ThemeController.cs" />
     <Compile Include="Controllers\DocumentationController.cs" />
     <Compile Include="Filters\Authorization\AuthorizeOrganiserAttribute.cs" />
-    <Compile Include="Filters\Authorization\AuthorizeSessionOrganiserAttribute.cs" />
-    <Compile Include="Filters\Authorization\AuthorizeSubthemeOrganiserAttribute.cs" />
-    <Compile Include="Filters\Authorization\AuthorizeThemeOrganiserAttribute.cs" />
+    <Compile Include="Filters\Authorization\SessionAuthorizeAttribute.cs" />
+    <Compile Include="Filters\Authorization\SnapshotAuthorizeAttribute.cs" />
+    <Compile Include="Filters\Authorization\SubthemeAuthorizeAttribute.cs" />
+    <Compile Include="Filters\Authorization\ThemeAuthorizeAttribute.cs" />
     <Compile Include="Filters\ExceptionFilter.cs" />
     <Compile Include="Auth0\JsonWebToken.cs" />
     <Compile Include="Handlers\AuthenticationHandler.cs" />
@@ -268,6 +270,7 @@
     <Compile Include="Model\Dto\OrganisationDto.cs" />
     <Compile Include="Model\Dto\OrganisedDto.cs" />
     <Compile Include="Model\Dto\SessionDto.cs" />
+    <Compile Include="Model\Dto\SnapshotDto.cs" />
     <Compile Include="Model\Dto\SubthemeDto.cs" />
     <Compile Include="Model\Dto\ThemeDto.cs" />
     <Compile Include="Model\Mapping\Actions\FilterSessionCircularReferences.cs" />
@@ -278,6 +281,7 @@
     <Compile Include="Model\Mapping\Profiles\ChatMessageProfile.cs" />
     <Compile Include="Model\Mapping\Profiles\OrganisationProfile.cs" />
     <Compile Include="Model\Mapping\Profiles\SessionProfile.cs" />
+    <Compile Include="Model\Mapping\Profiles\SnapshotProfile.cs" />
     <Compile Include="Model\Mapping\Profiles\SubthemeProfile.cs" />
     <Compile Include="Model\Mapping\Profiles\ThemeProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -327,6 +331,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Snapshot\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

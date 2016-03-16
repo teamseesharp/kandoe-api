@@ -35,6 +35,7 @@ namespace Kandoe.Business.Domain {
 
         public ICollection<SessionCard> SessionCards { get; set; }
         public ICollection<ChatMessage> ChatMessages { get; set; }
+        public ICollection<Snapshot> Snapshots { get; set; }
         public ICollection<Account> Organisers { get; set; }
         public ICollection<Account> Participants { get; set; }
     }
