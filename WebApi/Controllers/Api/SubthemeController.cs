@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 
 using Authenticate = System.Web.Http.AuthorizeAttribute;
@@ -12,7 +9,6 @@ using Kandoe.Business.Domain;
 using Kandoe.Web.Filters.Authorization;
 using Kandoe.Web.Model.Dto;
 using Kandoe.Web.Model.Mapping;
-using Kandoe.Web.Results;
 
 namespace Kandoe.Web.Controllers.Api {
     [Authenticate]
