@@ -228,6 +228,9 @@ namespace Kandoe.Data.EFDB.Connection {
                 .Property(s => s.CurrentPlayerIndex)
                 .IsRequired();
             modelBuilder.Entity<Session>()
+                .Property(s => s.Description)
+                .IsRequired();
+            modelBuilder.Entity<Session>()
                 .Property(s => s.End)
                 .IsRequired();
             modelBuilder.Entity<Session>()

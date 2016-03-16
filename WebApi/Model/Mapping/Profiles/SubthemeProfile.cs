@@ -15,6 +15,8 @@ namespace Kandoe.Web.Model.Mapping.Profiles {
                         dto.OrganiserId,
                         dto.ThemeId
                     ));
+
+            this.CreateMap<SubthemeDto, OrganisedDto>();
         }
     }
 }

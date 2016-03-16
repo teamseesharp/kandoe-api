@@ -16,6 +16,7 @@ namespace Kandoe.Web.Model.Mapping.Profiles {
                     dto => new Session(
                         dto.CardCreationAllowed,
                         dto.CurrentPlayerIndex,
+                        dto.Description,
                         dto.IsFinished,
                         dto.MaxCardsToChoose,
                         dto.MaxParticipants,

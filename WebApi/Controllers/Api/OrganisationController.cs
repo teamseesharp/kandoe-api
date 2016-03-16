@@ -21,7 +21,7 @@ namespace Kandoe.Web.Controllers.Api {
             this.accounts = new AccountService();
             this.organisations = new OrganisationService();
         }
-
+        
         [Route("")]
         public IHttpActionResult Get() {
             IEnumerable<Organisation> entities = this.organisations.Get(collections: false);
