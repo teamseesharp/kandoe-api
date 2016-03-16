@@ -7,6 +7,7 @@ namespace Kandoe.Web.Model.Dto {
         public String Image { get; set; }
         public int SessionId { get; set; }
         public int SessionLevel { get; set; }
+        public int SnapshotId { get; set; }
         public int SubthemeId { get; set; }
         public String Text { get; set; }
         public int ThemeId { get; set; }

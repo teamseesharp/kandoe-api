@@ -23,5 +23,6 @@ namespace Kandoe.Web.Model.Dto {
         public ICollection<ChatMessageDto> ChatMessages { get; set; }
         public ICollection<AccountDto> Organisers { get; set; }
         public ICollection<AccountDto> Participants { get; set; }
+        public ICollection<Snapshot> Snapshots { get; set; }
     }
 }
