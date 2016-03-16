@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WebApi.Tests.Filters.Authorization {
-    public class SubthemeAuthorizeAttributeTest {
+namespace WebApi.Tests.Handlers {
+    class ContextHandlerTests {
     }
 }

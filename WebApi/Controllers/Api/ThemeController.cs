@@ -34,7 +34,7 @@ namespace Kandoe.Web.Controllers.Api {
             return Ok(dto);
         }
 
-        [ThemeAuthorize]
+        [AuthorizeThemeOrganiser]
         [Route("")]
         public IHttpActionResult Post([FromBody]ThemeDto dto) {
             Theme entity = ModelMapper.Map<Theme>(dto);
@@ -43,7 +43,7 @@ namespace Kandoe.Web.Controllers.Api {
             return Ok(dto);
         }
 
-        [ThemeAuthorize]
+        [AuthorizeThemeOrganiser]
         [Route("")]
         public IHttpActionResult Put([FromBody]ThemeDto dto) {
             Theme entity = ModelMapper.Map<Theme>(dto);

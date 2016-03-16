@@ -72,6 +72,10 @@ namespace Kandoe.Web.Controllers.Api {
         [HttpGet]
         public IHttpActionResult GetByAuth0UserId(string id) {
             IEnumerable<Account> entities = this.service.Get(a => a.Secret == id);
+
+            // if no accounts were found
+            if (entities.Count() < 1) { return Ok(new AccountDto()); }
+
             AccountDto dto = ModelMapper.Map<AccountDto>(entities.First());
             return Ok(dto);
         }

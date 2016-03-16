@@ -63,8 +63,8 @@
       <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="nunit.framework, Version=3.2.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
-      <HintPath>..\packages\NUnit.3.2.0\lib\net45\nunit.framework.dll</HintPath>
+    <Reference Include="nunit.framework, Version=3.0.5674.19278, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnitTDNet.3.0.0-beta-3\lib\net45\nunit.framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="RestSharp, Version=104.1.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -138,11 +138,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Filters\Authorization\AuthorizeOrganiserAttributeTest.cs" />
-    <Compile Include="Filters\Authorization\SessionAuthorizeAttributeTest.cs" />
-    <Compile Include="Filters\Authorization\SubthemeAuthorizeAttributeTest.cs" />
-    <Compile Include="Filters\Authorization\ThemeAuthorizeAttributeTest.cs" />
-    <Compile Include="Filters\ExceptionFilterTest.cs" />
+    <Compile Include="Filters\AuthorizeOrganiserAttributeTests.cs" />
+    <Compile Include="Filters\ExceptionFilterTests.cs" />
+    <Compile Include="Handlers\AuthenticationHandlerTests.cs" />
+    <Compile Include="Handlers\ContextHandlerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Samples\Controllers\HomeControllerTest.cs" />
     <Compile Include="Samples\Controllers\ValuesControllerTest.cs" />

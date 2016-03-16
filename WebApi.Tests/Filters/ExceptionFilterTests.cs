@@ -9,7 +9,7 @@ using Kandoe.Web.Filters;
 
 namespace WebApi.Tests.Filters {
     [TestFixture]
-    public class ExceptionFilterTest {
+    public class ExceptionFilterTests {
         private HttpActionExecutedContext httpActionExecutedContext;
 
         static object[] ExceptionCases = {
