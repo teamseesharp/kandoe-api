@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web.Http;
 
 using Authenticate = System.Web.Http.AuthorizeAttribute;
@@ -15,22 +16,22 @@ namespace Kandoe.Web.Controllers.Api {
     [Authenticate]
     [RoutePrefix("api/accounts")]
     public class AccountController : ApiController {
-        private readonly IService<Account> service;
+        private readonly IService<Account> accounts;
 
         public AccountController() {
-            this.service = new AccountService();
+            this.accounts = new AccountService();
         }
 
         [Route("")]
         public IHttpActionResult Get() {
-            IEnumerable<Account> entities = this.service.Get();
+            IEnumerable<Account> entities = this.accounts.Get();
             IEnumerable<AccountDto> dtos = ModelMapper.Map<IEnumerable<Account>, IEnumerable<AccountDto>>(entities);
             return Ok(dtos);
         }
 
         [Route("{id}")]
         public IHttpActionResult Get(int id) {
-            Account entity = this.service.Get(id);
+            Account entity = this.accounts.Get(id);
             AccountDto dto = ModelMapper.Map<AccountDto>(entity);
             return Ok(dto);
         }
@@ -39,27 +40,28 @@ namespace Kandoe.Web.Controllers.Api {
         [Route("")]
         public IHttpActionResult Post([FromBody]AccountDto dto) {
             Account entity = ModelMapper.Map<Account>(dto);
-            this.service.Add(entity);
+            this.accounts.Add(entity);
             dto = ModelMapper.Map<AccountDto>(entity);
             return Ok(dto);
         }
 
         [Route("")]
         public IHttpActionResult Put([FromBody]AccountDto dto) {
-            Account entity = ModelMapper.Map<Account>(dto);
-            this.service.Change(entity);
-            return Ok();
+            throw new NotSupportedException();
         }
 
         [Route("")]
-        // meh
         public IHttpActionResult Patch([FromBody]AccountDto dto) {
-            Account entity = this.service.Get(dto.Id);
-            entity.Name = dto.Name;
-            entity.Surname = dto.Surname;
-            entity.Email = dto.Email;
-            entity.Picture = dto.Picture;
-            this.service.Change(entity);
+            string secret = Thread.CurrentPrincipal.Identity.Name;
+            Account entity = this.accounts.Get(a => a.Secret == secret).First();
+
+            entity.Email = dto.Email ?? entity.Email;
+            entity.Name = dto.Name ?? entity.Name;
+            entity.Picture = dto.Picture ?? entity.Picture;
+            entity.Surname = dto.Surname ?? entity.Surname;
+
+            this.accounts.Change(entity);
+
             return Ok();
         }
 
@@ -71,7 +73,7 @@ namespace Kandoe.Web.Controllers.Api {
         [Route("by-auth0-user-id/{id}")]
         [HttpGet]
         public IHttpActionResult GetByAuth0UserId(string id) {
-            IEnumerable<Account> entities = this.service.Get(a => a.Secret == id);
+            IEnumerable<Account> entities = this.accounts.Get(a => a.Secret == id);
 
             // if no accounts were found
             if (entities.Count() < 1) { return Ok(new AccountDto()); }
