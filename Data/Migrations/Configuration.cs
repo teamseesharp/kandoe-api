@@ -176,6 +176,10 @@ namespace Kandoe.Data.Migrations {
             session.Id = ++sessionId;
             context.Sessions.AddOrUpdate(session);
 
+            //bool cardCreationAllowed,int currentPlayerIndex, bool isFinished, int maxCardsToChoose, int maxParticipants, Modus modus, int organisationId, int round, int subthemeId, DateTime start, DateTime end
+            session = new Session(true, 3, false, 3, 6, Modus.Sync, 3, 0, 7, DateTime.Now.AddDays(-4), DateTime.Today.AddDays(-1));
+            session.Id = ++sessionId;
+            context.Sessions.AddOrUpdate(session);
 
             context.SaveChanges();
             #endregion
