@@ -106,11 +106,11 @@ namespace Kandoe.Data.Migrations {
             context.SaveChanges();
 
             //SESSION 5
-            chatmessage = new ChatMessage(1, 2, "Testje", DateTime.Now, 1);
+            chatmessage = new ChatMessage(1, 5, "Testje", DateTime.Now, 1);
             chatmessage.Id = ++chatmessageId;
             context.ChatMessages.AddOrUpdate(chatmessage);
 
-            chatmessage = new ChatMessage(5, 2, "lalalallaa", DateTime.Now, 1);
+            chatmessage = new ChatMessage(5, 5, "lalalallaa", DateTime.Now, 1);
             chatmessage.Id = ++chatmessageId;
             context.ChatMessages.AddOrUpdate(chatmessage);
 
