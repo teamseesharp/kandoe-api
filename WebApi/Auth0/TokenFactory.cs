@@ -10,23 +10,20 @@ namespace Kandoe.Web.Auth0 {
         public static string ClientSecret { get; private set; }
         public static string Domain { get; private set; }
 
-        public static string Connection { get; private set; }
         public static string UserId { get; private set; }
 
         public static void Configure() {
             // thomasvd, acc #1
-            string connection = "Username-Password-Authentication";
             string userId = "auth0|56d4591317aca91f1aff5dfb";
 
-            Configure(connection, userId);
+            Configure(userId);
         }
 
-        public static void Configure(string connection, string userId) {
+        public static void Configure(string userId) {
             ClientId = WebConfigurationManager.AppSettings["auth0:ClientId"];
             ClientSecret = WebConfigurationManager.AppSettings["auth0:ClientSecret"];
             Domain = WebConfigurationManager.AppSettings["auth0:Domain"];
 
-            Connection = connection;
             UserId = userId;
         }
 
@@ -38,7 +35,6 @@ namespace Kandoe.Web.Auth0 {
             var payload = new Dictionary<string, object>() {
                 {"iss", String.Format("{0}{1}{2}", "https://", Domain, "/")},
                 {"aud", ClientId},
-                //{"sub", String.Format("{0}|{1}", Connection, UserId)},
                 {"sub", UserId},
                 {"iat", ToUnixTime(issued).ToString()},
                 {"exp", ToUnixTime(expire).ToString()}

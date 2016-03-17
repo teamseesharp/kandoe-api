@@ -42,7 +42,7 @@ namespace Kandoe.Web.Controllers.Api {
             return Ok(dto);
         }
 
-        [AuthorizeSessionOrganiser]
+        [AuthorizeOrganiser]
         [Route("")]
         public IHttpActionResult Post([FromBody]SessionDto dto) {
             Session entity = ModelMapper.Map<Session>(dto);
@@ -62,7 +62,7 @@ namespace Kandoe.Web.Controllers.Api {
             return Ok(dto);
         }
 
-        [AuthorizeSessionOrganiser]
+        [AuthorizeOrganiser]
         [Route("")]
         public IHttpActionResult Put([FromBody]SessionDto dto) {
             Session entity = ModelMapper.Map<Session>(dto);

@@ -27,14 +27,14 @@ namespace Kandoe.Web.Controllers.Api {
             return Ok(dtos);
         }
 
-        [System.Web.Mvc.Route("{id}")]
+        [Route("{id}")]
         public IHttpActionResult Get(int id) {
             Snapshot entity = this.snapshots.Get(id);
             SnapshotDto dto = ModelMapper.Map<SnapshotDto>(entity);
             return Ok(dto);
         }
 
-        [SnapshotAuthorize]
+        [AuthorizeOrganiser]
         [Route("")]
         public IHttpActionResult Post([FromBody]SnapshotDto dto) {
             Snapshot entity = ModelMapper.Map<Snapshot>(dto);
@@ -43,12 +43,9 @@ namespace Kandoe.Web.Controllers.Api {
             return Ok(dto);
         }
 
-        [SnapshotAuthorize]
         [Route("")]
         public IHttpActionResult Put([FromBody]SnapshotDto dto) {
-            Snapshot entity = ModelMapper.Map<Snapshot>(dto);
-            this.snapshots.Change(entity);
-            return Ok();
+            throw new NotSupportedException();
         }
 
         [Route("{id}")]
