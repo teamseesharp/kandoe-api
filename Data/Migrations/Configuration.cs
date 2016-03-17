@@ -14,6 +14,7 @@ namespace Kandoe.Data.Migrations {
 
         protected override void Seed(Context context) {
             int accountId = 0;
+            int chatmessageId = 0;
             int sessionId = 0;
             int themeId = 0;
             int subthemeId = 0;
@@ -54,6 +55,64 @@ namespace Kandoe.Data.Migrations {
 
             context.SaveChanges();
             #endregion
+
+            #region ChatmsgSeed
+            //SESSION 1
+            ChatMessage chatmessage = new ChatMessage(1,1,"hoi",DateTime.Today.AddDays(-2));
+            chatmessage.Id = ++chatmessageId;
+            context.ChatMessages.AddOrUpdate(chatmessage);
+
+            chatmessage = new ChatMessage(2, 1, "hey", DateTime.Today.AddDays(-1));
+            chatmessage.Id = ++chatmessageId;
+            context.ChatMessages.AddOrUpdate(chatmessage);
+
+            chatmessage = new ChatMessage(1, 1, "hihi", DateTime.Today.AddDays(-1));
+            chatmessage.Id = ++chatmessageId;
+            context.ChatMessages.AddOrUpdate(chatmessage);
+
+            //SESSION 2
+            chatmessage = new ChatMessage(1, 2, "Dit", DateTime.Now);
+            chatmessage.Id = ++chatmessageId;
+            context.ChatMessages.AddOrUpdate(chatmessage);
+
+            chatmessage = new ChatMessage(2, 2, "is", DateTime.Now);
+            chatmessage.Id = ++chatmessageId;
+            context.ChatMessages.AddOrUpdate(chatmessage);
+
+            chatmessage = new ChatMessage(4, 2, "een", DateTime.Now);
+            chatmessage.Id = ++chatmessageId;
+            context.ChatMessages.AddOrUpdate(chatmessage);
+
+            chatmessage = new ChatMessage(5, 2, "chatmessage", DateTime.Now);
+            chatmessage.Id = ++chatmessageId;
+            context.ChatMessages.AddOrUpdate(chatmessage);
+
+            //SESSION 4
+            chatmessage = new ChatMessage(1, 4, "Kandoe is top !", DateTime.Now);
+            chatmessage.Id = ++chatmessageId;
+            context.ChatMessages.AddOrUpdate(chatmessage);
+
+            chatmessage = new ChatMessage(2, 4, "joepiee", DateTime.Now);
+            chatmessage.Id = ++chatmessageId;
+            context.ChatMessages.AddOrUpdate(chatmessage);
+           
+            chatmessage = new ChatMessage(3, 4, "hoi allemaal", DateTime.Now);
+            chatmessage.Id = ++chatmessageId;
+            context.ChatMessages.AddOrUpdate(chatmessage);
+
+            //SESSION 5
+            chatmessage = new ChatMessage(1, 5, "Testje", DateTime.Now);
+            chatmessage.Id = ++chatmessageId;
+            context.ChatMessages.AddOrUpdate(chatmessage);
+
+            chatmessage = new ChatMessage(5, 5, "lalalallaa", DateTime.Now);
+            chatmessage.Id = ++chatmessageId;
+            context.ChatMessages.AddOrUpdate(chatmessage);
+
+            context.SaveChanges();
+
+            #endregion
+
 
             #region Organisations
             Organisation organisation = new Organisation("Jeugd", 1);
@@ -176,6 +235,10 @@ namespace Kandoe.Data.Migrations {
             session.Id = ++sessionId;
             context.Sessions.AddOrUpdate(session);
 
+            //bool cardCreationAllowed,int currentPlayerIndex, bool isFinished, int maxCardsToChoose, int maxParticipants, Modus modus, int organisationId, int round, int subthemeId, DateTime start, DateTime end
+            session = new Session(true, 3, "session9",false, 3, 6, Modus.Sync, 3, 0, 7, DateTime.Now.AddDays(-4), DateTime.Today.AddDays(-1));
+            session.Id = ++sessionId;
+            context.Sessions.AddOrUpdate(session);
 
             context.SaveChanges();
             #endregion
