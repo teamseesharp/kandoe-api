@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Kandoe.Business.Domain;
+﻿using System.Collections.Generic;
 
 namespace Kandoe.Web.Model.Dto{
     public class SnapshotDto {
