@@ -15,9 +15,12 @@ namespace Kandoe.Web.Model.Mapping.Converters {
             ICollection<int> organisers = snapshot.Organisers.Split(';').Select(Int32.Parse).ToList();
             ICollection<int> participants = snapshot.Participants.Split(';').Select(Int32.Parse).ToList();
 
+            // sort chatmessages by timestamp
+            ICollection<ChatMessageDto> chatmessageDtos = ModelMapper.Map<ICollection<ChatMessage>, ICollection<ChatMessageDto>>(snapshot.ChatMessages).OrderBy(cm => cm.Timestamp).ToList();
+
             return new SnapshotDto {
                 Id = snapshot.Id,
-                ChatMessages = ModelMapper.Map<ICollection<ChatMessage>, ICollection<ChatMessageDto>>(snapshot.ChatMessages),
+                ChatMessages = chatmessageDtos,
                 Organisers = organisers,
                 Participants = participants,
                 SessionCards = ModelMapper.Map<ICollection<SessionCard>, ICollection<CardDto>>(snapshot.SessionCards),

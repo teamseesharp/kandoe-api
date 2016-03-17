@@ -13,7 +13,7 @@ namespace Kandoe.Web.Configuration {
                     cfg.AddProfile<ChatMessageProfile>();
                     cfg.AddProfile<OrganisationProfile>();
                     cfg.AddProfile<SessionProfile>();
-                    cfg.AddProfile<SessionProfile>();
+                    cfg.AddProfile<SnapshotProfile>();
                     cfg.AddProfile<SubthemeProfile>();
                     cfg.AddProfile<ThemeProfile>();
                 }

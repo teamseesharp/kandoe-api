@@ -2,6 +2,7 @@
 using Kandoe.Business.Domain;
 using Kandoe.Web.Model.Dto;
 
+using Kandoe.Web.Model.Mapping.Actions;
 using Kandoe.Web.Model.Mapping.Converters;
 
 namespace Kandoe.Web.Model.Mapping.Profiles {
