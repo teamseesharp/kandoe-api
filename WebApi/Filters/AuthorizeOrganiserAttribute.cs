@@ -9,7 +9,7 @@ using Kandoe.Business;
 using Kandoe.Business.Domain;
 using Kandoe.Web.Model.Dto;
 
-namespace Kandoe.Web.Filters.Authorization {
+namespace Kandoe.Web.Filters {
     public class AuthorizeOrganiserAttribute :  ActionFilterAttribute {
         private readonly IService<Account> accounts;
         private readonly IService<Organisation> organisations;

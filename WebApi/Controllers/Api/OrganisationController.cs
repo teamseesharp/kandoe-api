@@ -6,7 +6,7 @@ using Authenticate = System.Web.Http.AuthorizeAttribute;
 
 using Kandoe.Business;
 using Kandoe.Business.Domain;
-using Kandoe.Web.Filters.Authorization;
+using Kandoe.Web.Filters;
 using Kandoe.Web.Model.Dto;
 using Kandoe.Web.Model.Mapping;
 

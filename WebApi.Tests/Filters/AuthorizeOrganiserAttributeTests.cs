@@ -6,7 +6,7 @@ using System.Web.Http.Controllers;
 using Moq;
 using NUnit.Framework;
 
-using Kandoe.Web.Filters.Authorization;
+using Kandoe.Web.Filters;
 using Kandoe.Web.Model.Dto;
 
 namespace WebApi.Tests.Filters.Authorization {

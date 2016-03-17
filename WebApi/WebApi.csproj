@@ -255,7 +255,7 @@
     <Compile Include="Controllers\Api\SubthemeController.cs" />
     <Compile Include="Controllers\Api\ThemeController.cs" />
     <Compile Include="Controllers\DocumentationController.cs" />
-    <Compile Include="Filters\Authorization\AuthorizeOrganiserAttribute.cs" />
+    <Compile Include="Filters\AuthorizeOrganiserAttribute.cs" />
     <Compile Include="Filters\ExceptionFilter.cs" />
     <Compile Include="Auth0\JsonWebToken.cs" />
     <Compile Include="Handlers\AuthenticationHandler.cs" />
