@@ -78,17 +78,14 @@ namespace Kandoe.Data.Migrations {
             chatmessage = new ChatMessage(2, 2, "is", DateTime.Now);
             chatmessage.Id = ++chatmessageId;
             context.ChatMessages.AddOrUpdate(chatmessage);
-            context.SaveChanges();
 
             chatmessage = new ChatMessage(4, 2, "een", DateTime.Now);
             chatmessage.Id = ++chatmessageId;
             context.ChatMessages.AddOrUpdate(chatmessage);
-            context.SaveChanges();
 
             chatmessage = new ChatMessage(5, 2, "chatmessage", DateTime.Now);
             chatmessage.Id = ++chatmessageId;
             context.ChatMessages.AddOrUpdate(chatmessage);
-            context.SaveChanges();
 
             //SESSION 4
             chatmessage = new ChatMessage(1, 4, "Kandoe is top !", DateTime.Now, 1);
@@ -98,12 +95,10 @@ namespace Kandoe.Data.Migrations {
             chatmessage = new ChatMessage(2, 4, "joepiee", DateTime.Now, 1);
             chatmessage.Id = ++chatmessageId;
             context.ChatMessages.AddOrUpdate(chatmessage);
-            context.SaveChanges();
-
+           
             chatmessage = new ChatMessage(3, 4, "hoi allemaal", DateTime.Now, 1);
             chatmessage.Id = ++chatmessageId;
             context.ChatMessages.AddOrUpdate(chatmessage);
-            context.SaveChanges();
 
             //SESSION 5
             chatmessage = new ChatMessage(1, 5, "Testje", DateTime.Now, 1);
