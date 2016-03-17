@@ -42,7 +42,7 @@ namespace Kandoe.Web.Controllers.Api {
             return Ok(dto);
         }
 
-        [SessionAuthorize]
+        [AuthorizeSessionOrganiser]
         [Route("")]
         public IHttpActionResult Post([FromBody]SessionDto dto) {
             Session entity = ModelMapper.Map<Session>(dto);
@@ -51,6 +51,7 @@ namespace Kandoe.Web.Controllers.Api {
             Account organiser = this.accounts.Get(a => a.Secret == secret, collections: true).First();
 
             organiser.OrganisedSessions.Add(entity);
+            entity.Organisers = new List<Account>();
             entity.Organisers.Add(organiser);
 
             this.accounts.Change(organiser);
@@ -61,7 +62,7 @@ namespace Kandoe.Web.Controllers.Api {
             return Ok(dto);
         }
 
-        [SessionAuthorize]
+        [AuthorizeSessionOrganiser]
         [Route("")]
         public IHttpActionResult Put([FromBody]SessionDto dto) {
             Session entity = ModelMapper.Map<Session>(dto);

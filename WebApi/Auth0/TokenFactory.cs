@@ -49,6 +49,27 @@ namespace Kandoe.Web.Auth0 {
             return token;
         }
 
+        public static string GetInvalidToken() {
+            byte[] secretKey = Base64UrlDecode(ClientSecret);
+            DateTime issued = DateTime.Now;
+            DateTime expire = DateTime.Now.AddHours(10);
+
+            ClientId = ClientId.Substring(0, ClientId.Length - 2);
+
+            var payload = new Dictionary<string, object>() {
+                {"iss", String.Format("{0}{1}{2}", "https://", Domain, "/")},
+                {"aud", ClientId},
+                //{"sub", String.Format("{0}|{1}", Connection, UserId)},
+                {"sub", UserId},
+                {"iat", ToUnixTime(issued).ToString()},
+                {"exp", ToUnixTime(expire).ToString()}
+            };
+
+            string token = Jose.JWT.Encode(payload, secretKey, JwsAlgorithm.HS256);
+
+            return token;
+        }
+
         /// <remarks>
         /// Take from http://stackoverflow.com/a/33113820
         /// </remarks>

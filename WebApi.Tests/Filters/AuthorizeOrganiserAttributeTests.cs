@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Principal;
-using System.Text;
 using System.Threading;
 using System.Web.Http.Controllers;
 
 using Moq;
 using NUnit.Framework;
 
-using Kandoe.Web.Auth0;
 using Kandoe.Web.Filters.Authorization;
 using Kandoe.Web.Model.Dto;
 

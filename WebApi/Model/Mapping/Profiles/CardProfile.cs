@@ -25,6 +25,7 @@ namespace Kandoe.Web.Model.Mapping.Profiles {
                         dto.Image,
                         dto.SessionId,
                         dto.Text,
+                        dto.SnapshotId,
                         dto.SessionLevel
                     ));
         }

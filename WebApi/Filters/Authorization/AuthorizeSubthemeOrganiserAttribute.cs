@@ -8,35 +8,35 @@ using Kandoe.Business.Domain;
 using Kandoe.Web.Model.Dto;
 
 namespace Kandoe.Web.Filters.Authorization {
-    public class ThemeAuthorizeAttribute :  ActionFilterAttribute {
+    public class AuthorizeSubthemeOrganiserAttribute : ActionFilterAttribute {
         private readonly IService<Account> accounts;
-        private readonly IService<Organisation> organisations;
+        private readonly IService<Theme> theme;
 
-        public ThemeAuthorizeAttribute() {
+        public AuthorizeSubthemeOrganiserAttribute() {
             this.accounts = new AccountService();
-            this.organisations = new OrganisationService();
+            this.theme = new ThemeService();
         }
 
         public override void OnActionExecuting(HttpActionContext actionContext) {
-            ThemeDto dto = (ThemeDto) actionContext.ActionArguments["dto"];
+            SubthemeDto dto = (SubthemeDto) actionContext.ActionArguments["dto"];
 
-            Organisation organisation = this.organisations.Get(dto.OrganisationId);
+            Theme theme = this.theme.Get(dto.ThemeId);
 
             string secret = Thread.CurrentPrincipal.Identity.Name;
-            Account organiser = this.accounts.Get(organisation.OrganiserId);
+            //current
+            Account organiser = this.accounts.Get(theme.OrganiserId);
 
-            // in case the theme organiserId does not correspond with issuer id
+            // in case the subtheme organiserId does not correspond with organiser id
             if (dto.OrganiserId != organiser.Id) {
                 throw new ArgumentException();
             }
 
-            // in case the issuer is not the organiser of the theme's
+            // in case the issuer is not the organiser of the subtheme
             if (organiser.Secret != secret) {
                 throw new UnauthorizedAccessException();
             }
 
             base.OnActionExecuting(actionContext);
         }
-
     }
 }

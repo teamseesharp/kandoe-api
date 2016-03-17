@@ -16,11 +16,11 @@ namespace Kandoe.Web.Configuration {
             EnableCorsAttribute cors = new EnableCorsAttribute("http://localhost:9000", "*", "*");
             config.EnableCors(cors);
 
-            var clientID = WebConfigurationManager.AppSettings["auth0:ClientId"];
+            var clientId = WebConfigurationManager.AppSettings["auth0:ClientId"];
             var clientSecret = WebConfigurationManager.AppSettings["auth0:ClientSecret"];
 
             config.MessageHandlers.Add(new AuthenticationHandler() {
-                Audience = clientID,            // client id
+                Audience = clientId,            // client id
                 SymmetricKey = clientSecret     // client secret
             });
             config.MessageHandlers.Add(new ContextHandler());

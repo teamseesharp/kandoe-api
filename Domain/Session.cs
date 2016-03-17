@@ -4,9 +4,10 @@ using System.Collections.Generic;
 namespace Kandoe.Business.Domain {
     public class Session {
         protected Session() { }
-        public Session(bool cardCreationAllowed,int currentPlayerIndex, bool isFinished, int maxCardsToChoose, int maxParticipants, Modus modus, int organisationId, int round, int subthemeId, DateTime start, DateTime end) {
+        public Session(bool cardCreationAllowed,int currentPlayerIndex, string description, bool isFinished, int maxCardsToChoose, int maxParticipants, Modus modus, int organisationId, int round, int subthemeId, DateTime start, DateTime end) {
             this.CardCreationAllowed = cardCreationAllowed;
             this.CurrentPlayerIndex = currentPlayerIndex;
+            this.Description = description;
             this.IsFinished = isFinished;
             this.End = end;
             this.MaxCardsToChoose = maxCardsToChoose;
@@ -21,6 +22,7 @@ namespace Kandoe.Business.Domain {
         public int Id { get; set; }
         public bool CardCreationAllowed { get; set; }
         public int CurrentPlayerIndex { get; set; }
+        public string Description { get; set; }
         public DateTime End { get; set; }
         public bool IsFinished { get; set; }
         public int MaxCardsToChoose { get; set; }
@@ -35,6 +37,7 @@ namespace Kandoe.Business.Domain {
         public ICollection<ChatMessage> ChatMessages { get; set; }
         public ICollection<Account> Organisers { get; set; }
         public ICollection<Account> Participants { get; set; }
+        public ICollection<Snapshot> Snapshots { get; set; }
     }
 
     public enum Modus {
