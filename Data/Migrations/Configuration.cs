@@ -567,9 +567,5 @@ namespace Kandoe.Data.Migrations {
             // seed
             base.Seed(context);
         }
-
-        private void AddOrUpdate<TEntity>(int id, TEntity entity) {
-            // meh
-        }
     }
 }

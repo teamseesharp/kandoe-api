@@ -270,6 +270,7 @@
     <Compile Include="Model\Dto\SubthemeDto.cs" />
     <Compile Include="Model\Dto\ThemeDto.cs" />
     <Compile Include="Model\Mapping\Actions\FilterSessionCircularReferences.cs" />
+    <Compile Include="Model\Mapping\Actions\SortChatMessagesByDatetime.cs" />
     <Compile Include="Model\Mapping\Converters\DtoToSnapshotConverter.cs" />
     <Compile Include="Model\Mapping\Converters\SnapshotToDtoConverter.cs" />
     <Compile Include="Model\Mapping\MapperExtensions.cs" />

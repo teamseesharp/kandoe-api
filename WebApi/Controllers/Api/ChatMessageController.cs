@@ -24,9 +24,7 @@ namespace Kandoe.Web.Controllers.Api {
 
         [Route("")]
         public IHttpActionResult Get() {
-            IEnumerable<ChatMessage> entities = this.service.Get();
-            IEnumerable<ChatMessageDto> dtos = ModelMapper.Map<IEnumerable<ChatMessage>, IEnumerable<ChatMessageDto>>(entities);
-            return Ok(dtos);
+            throw new NotSupportedException();
         }
 
         [Route("{id}")]
@@ -38,10 +36,13 @@ namespace Kandoe.Web.Controllers.Api {
 
         [Route("")]
         public IHttpActionResult Post([FromBody]ChatMessageDto dto) {
+            dto.Timestamp = dto.Timestamp ?? DateTime.Now;
+
             ChatMessage entity = ModelMapper.Map<ChatMessage>(dto);
-            entity.Timestamp = DateTime.Now;
+
             this.service.Add(entity);
             dto = ModelMapper.Map<ChatMessageDto>(entity);
+
             return Ok(dto);
         }
 

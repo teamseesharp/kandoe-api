@@ -14,7 +14,7 @@ namespace Kandoe.Web.Model.Mapping.Profiles {
                         dto.MessengerId,
                         dto.SessionId,
                         dto.Text,
-                        dto.Timestamp,
+                        dto.Timestamp.Value,
                         dto.SnapshotId
                     ));
         }

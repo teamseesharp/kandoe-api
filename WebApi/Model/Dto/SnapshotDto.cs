@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Kandoe.Web.Model.Dto{
+namespace Kandoe.Web.Model.Dto {
     public class SnapshotDto {
         public int Id { get; set; }
         public int SessionId { get; set; }

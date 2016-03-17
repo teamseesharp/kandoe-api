@@ -9,6 +9,7 @@ namespace Kandoe.Web.Model.Mapping.Profiles {
     public class SessionProfile : Profile {
         protected override void Configure() {
             this.CreateMap<Session, SessionDto>()
+                .AfterMap<SortChatMessagesByDatetime>()
                 .AfterMap<FilterSessionCircularReferences>();
 
             this.CreateMap<SessionDto, Session>()

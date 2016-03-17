@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity.Infrastructure;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http.Filters;
@@ -14,6 +15,7 @@ namespace WebApi.Tests.Filters {
 
         static object[] ExceptionCases = {
             new object[] { new ArgumentException(), HttpStatusCode.BadRequest },
+            new object[] { new DbUpdateException(), HttpStatusCode.Conflict },
             new object[] { new NotSupportedException(), HttpStatusCode.MethodNotAllowed },
             new object[] { Utilities.GetSqlException(), HttpStatusCode.Conflict },
             new object[] { new UnauthorizedAccessException(), HttpStatusCode.Unauthorized },

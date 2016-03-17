@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity.Infrastructure;
 using System.Data.SqlClient;
 using System.Net;
 using System.Net.Http;
@@ -14,6 +15,10 @@ namespace Kandoe.Web.Filters {
                 case nameof(ArgumentException):
                     this.status = HttpStatusCode.BadRequest;
                     this.message = "Provided arguments are not valid for this request.";
+                    break;
+                case nameof(DbUpdateException):
+                    this.status = HttpStatusCode.Conflict;
+                    this.message = "Unable to update database data.";
                     break;
                 case nameof(NotSupportedException):
                     this.status = HttpStatusCode.MethodNotAllowed;
