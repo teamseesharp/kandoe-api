@@ -88,24 +88,24 @@ namespace Kandoe.Data.Migrations {
             context.ChatMessages.AddOrUpdate(chatmessage);
 
             //SESSION 4
-            chatmessage = new ChatMessage(1, 4, "Kandoe is top !", DateTime.Now, 1);
+            chatmessage = new ChatMessage(1, 4, "Kandoe is top !", DateTime.Now);
             chatmessage.Id = ++chatmessageId;
             context.ChatMessages.AddOrUpdate(chatmessage);
 
-            chatmessage = new ChatMessage(2, 4, "joepiee", DateTime.Now, 1);
+            chatmessage = new ChatMessage(2, 4, "joepiee", DateTime.Now);
             chatmessage.Id = ++chatmessageId;
             context.ChatMessages.AddOrUpdate(chatmessage);
            
-            chatmessage = new ChatMessage(3, 4, "hoi allemaal", DateTime.Now, 1);
+            chatmessage = new ChatMessage(3, 4, "hoi allemaal", DateTime.Now);
             chatmessage.Id = ++chatmessageId;
             context.ChatMessages.AddOrUpdate(chatmessage);
 
             //SESSION 5
-            chatmessage = new ChatMessage(1, 5, "Testje", DateTime.Now, 1);
+            chatmessage = new ChatMessage(1, 5, "Testje", DateTime.Now);
             chatmessage.Id = ++chatmessageId;
             context.ChatMessages.AddOrUpdate(chatmessage);
 
-            chatmessage = new ChatMessage(5, 5, "lalalallaa", DateTime.Now, 1);
+            chatmessage = new ChatMessage(5, 5, "lalalallaa", DateTime.Now);
             chatmessage.Id = ++chatmessageId;
             context.ChatMessages.AddOrUpdate(chatmessage);
 
