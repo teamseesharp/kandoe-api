@@ -100,6 +100,47 @@ namespace Kandoe.Web.Controllers.Api {
             return Ok(dtos);
         }
 
+        [Route("by-user/{id}/finished")]
+        [HttpGet]
+        public IHttpActionResult GetByUserAndFinished(int id) {
+            Account account = this.accounts.Get(id);
+            IEnumerable<Session> entities = this.sessions.Get(
+                session => session.Participants.Contains(account),
+                session => session.IsFinished,
+                collections: true
+            );
+            IEnumerable<SessionDto> dtos = ModelMapper.Map<IEnumerable<Session>, IEnumerable<SessionDto>>(entities);
+            return Ok(dtos);
+        }
+
+        [Route("by-user/{id}/ongoing")]
+        [HttpGet]
+        public IHttpActionResult GetByUserByAndOngoing(int id) {
+            Account account = this.accounts.Get(id);
+            IEnumerable<Session> entities = this.sessions.Get(
+                session => session.Participants.Contains(account),
+                session => !session.IsFinished,
+                session => session.Start < DateTime.Now,
+                collections: true
+            );
+            IEnumerable<SessionDto> dtos = ModelMapper.Map<IEnumerable<Session>, IEnumerable<SessionDto>>(entities);
+            return Ok(dtos);
+        }
+
+        [Route("by-user/{id}/planned")]
+        [HttpGet]
+        public IHttpActionResult GetByUserAndPlanned(int id) {
+            Account account = this.accounts.Get(id);
+            IEnumerable<Session> entities = this.sessions.Get(
+                session => session.Participants.Contains(account),
+                session => !session.IsFinished,
+                session => session.Start > DateTime.Now,
+                collections: true
+            );
+            IEnumerable<SessionDto> dtos = ModelMapper.Map<IEnumerable<Session>, IEnumerable<SessionDto>>(entities);
+            return Ok(dtos);
+        }
+
         [Route("by-start-date/{date}")]
         [HttpGet]
         public IHttpActionResult GetByStartDate(DateTime date) {

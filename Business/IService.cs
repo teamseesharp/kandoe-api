@@ -8,6 +8,8 @@ namespace Kandoe.Business {
         T Get(int id, bool collections = false);
         IEnumerable<T> Get(bool collections = false);
         IEnumerable<T> Get(Func<T, bool> condition, bool collections = false);
+        IEnumerable<T> Get(Func<T, bool> primary, Func<T, bool> secondary, bool collections = false);
+        IEnumerable<T> Get(Func<T, bool> primary, Func<T, bool> secondary, Func<T, bool> tertiary, bool collections = false);
 
         void Change(T entity);
 

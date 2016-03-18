@@ -1,10 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using NUnit.Framework;
+
+using Kandoe.Data.EFDB.Connection;
 
 namespace WebApi.Tests.Handlers {
-    class ContextHandlerTests {
+    [TestFixture]
+    public class ContextHandlerTests {
+        [Test]
+        public void ContextCannotBeNull() {
+            Assert.NotNull(ContextFactory.GetContext());
+        }
+
+        [Test]
+        public void ContextShouldBeRefreshed() {
+            Context context = ContextFactory.GetContext();
+            ContextFactory.Refresh();
+            Context refresh = ContextFactory.GetContext();
+
+            Assert.AreNotSame(context, refresh);
+        }
     }
 }

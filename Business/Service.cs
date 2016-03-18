@@ -19,6 +19,17 @@ namespace Kandoe.Business {
         public virtual IEnumerable<T> Get(Func<T, bool> condition, bool collections = false) {
             return this.Repository.Read(eager: collections).Where(condition);
         }
+        public virtual IEnumerable<T> Get(Func<T, bool> primary, Func<T, bool> secondary, bool collections = false) {
+            return this.Repository.Read(eager: collections)
+                .Where(primary)
+                .Where(secondary);
+        }
+        public virtual IEnumerable<T> Get(Func<T, bool> primary, Func<T, bool> secondary, Func<T, bool> tertiary, bool collections = false) {
+            return this.Repository.Read(eager: collections)
+                .Where(primary)
+                .Where(secondary)
+                .Where(tertiary);
+        }
 
         public virtual void Change(T entity) { this.Repository.Update(entity); }
 
