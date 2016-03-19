@@ -95,11 +95,10 @@ namespace Kandoe.Web.Controllers.Api {
         [HttpGet]
         public IHttpActionResult GetByUser(int id) {
             Account account = this.accounts.Get(id);
-            IEnumerable<Session> invitedSessions = this.sessions.Get(session => session.Participants.Contains(account), collections: true);
-            IEnumerable<SessionDto> inviteesDtos = ModelMapper.Map<IEnumerable<Session>, IEnumerable<SessionDto>>(invitedSessions);
+            IEnumerable<Session> invitedSessions = this.sessions.Get(session => session.Invited.Contains(account), collections: true);
             IEnumerable<Session> participatingSessions = this.sessions.Get(session => session.Participants.Contains(account), collections: true);
-            IEnumerable<SessionDto> participantDtos = ModelMapper.Map<IEnumerable<Session>, IEnumerable<SessionDto>>(participatingSessions);
-            IEnumerable<SessionDto> dtos = inviteesDtos.Concat(participantDtos).Distinct();
+            IEnumerable<Session> entities = invitedSessions.Concat(participatingSessions).Distinct();
+            IEnumerable<SessionDto> dtos = ModelMapper.Map<IEnumerable<Session>, IEnumerable<SessionDto>>(entities);
             return Ok(dtos);
         }
 

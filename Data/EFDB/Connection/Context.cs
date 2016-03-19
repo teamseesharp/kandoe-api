@@ -139,6 +139,14 @@ namespace Kandoe.Data.EFDB.Connection {
                 .Map(t => t.MapLeftKey("ParticipantId")
                     .MapRightKey("ParticipatingSessionId")
                     .ToTable("ParticipatingSessions"));
+
+            // Accounts 1..n - 0..n Sessions (Invited)
+            modelBuilder.Entity<Account>()
+                .HasMany(a => a.InvitedSessions)
+                .WithMany(ms => ms.Invited)
+                .Map(t => t.MapLeftKey("InvitedId")
+                    .MapRightKey("InvitedSessionId")
+                    .ToTable("InvitedSessions"));
         }
 
         private void SetOptionalProperties(DbModelBuilder modelBuilder) {
