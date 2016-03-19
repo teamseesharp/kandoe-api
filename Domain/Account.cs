@@ -21,6 +21,7 @@ namespace Kandoe.Business.Domain {
         public ICollection<ChatMessage> ChatMessages { get; set; }
         public ICollection<Organisation> Organisations { get; set; }
         public ICollection<Session> OrganisedSessions { get; set; }
+        public ICollection<Session> InvitedSessions { get; set; }
         public ICollection<Session> ParticipatingSessions { get; set; }
         public ICollection<Subtheme> Subthemes { get; set; }
         public ICollection<Theme> Themes { get; set; }
