@@ -58,12 +58,18 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Fakes\FakeService.cs" />
+    <Compile Include="Fakes\FakeServiceFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Business\Business.csproj">
       <Project>{64366e24-753c-4f19-af3e-5a96f28a33f8}</Project>
       <Name>Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Data.Tests\Data.Tests.csproj">
+      <Project>{b042d1cd-53ca-434a-8367-f50811eb4bc8}</Project>
+      <Name>Data.Tests</Name>
     </ProjectReference>
     <ProjectReference Include="..\Data\Data.csproj">
       <Project>{2dd8cd5f-50b3-4829-80ff-564a2272052b}</Project>
@@ -76,6 +82,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Services\" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

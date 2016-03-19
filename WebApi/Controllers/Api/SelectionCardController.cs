@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 
 using Authenticate = System.Web.Http.AuthorizeAttribute;
@@ -11,7 +8,6 @@ using Kandoe.Business;
 using Kandoe.Business.Domain;
 using Kandoe.Web.Model.Dto;
 using Kandoe.Web.Model.Mapping;
-using Kandoe.Web.Results;
 
 namespace Kandoe.Web.Controllers.Api {
     [Authenticate]
@@ -26,27 +22,27 @@ namespace Kandoe.Web.Controllers.Api {
         [Route("")]
         public IHttpActionResult Get() {
             IEnumerable<SelectionCard> entities = this.service.Get();
-            IEnumerable<CardDto> dtos = ModelMapper.Map<IEnumerable<SelectionCard>, IEnumerable<CardDto>>(entities);
+            IEnumerable<SelectionCardDto> dtos = ModelMapper.Map<IEnumerable<SelectionCard>, IEnumerable<SelectionCardDto>>(entities);
             return Ok(dtos);
         }
 
         [Route("{id}")]
         public IHttpActionResult Get(int id) {
             SelectionCard entity = this.service.Get(id);
-            CardDto dto = ModelMapper.Map<CardDto>(entity);
+            SelectionCardDto dto = ModelMapper.Map<SelectionCardDto>(entity);
             return Ok(dto);
         }
 
         [Route("")]
-        public IHttpActionResult Post([FromBody]CardDto dto) {
+        public IHttpActionResult Post([FromBody]SelectionCardDto dto) {
             SelectionCard entity = ModelMapper.Map<SelectionCard>(dto);
             this.service.Add(entity);
-            dto = ModelMapper.Map<CardDto>(entity);
+            dto = ModelMapper.Map<SelectionCardDto>(entity);
             return Ok(dto);
         }
 
         [Route("")]
-        public IHttpActionResult Put([FromBody]CardDto dto) {
+        public IHttpActionResult Put([FromBody]SelectionCardDto dto) {
             SelectionCard entity = ModelMapper.Map<SelectionCard>(dto);
             this.service.Change(entity);
             return Ok();
@@ -61,7 +57,7 @@ namespace Kandoe.Web.Controllers.Api {
         [HttpGet]
         public IHttpActionResult GetBySubtheme(int id) {
             IEnumerable<SelectionCard> entities = this.service.Get(selectionCard => selectionCard.SubthemeId == id);
-            IEnumerable<CardDto> dtos = ModelMapper.Map<IEnumerable<SelectionCard>, IEnumerable<CardDto>>(entities);
+            IEnumerable<SelectionCardDto> dtos = ModelMapper.Map<IEnumerable<SelectionCard>, IEnumerable<SelectionCardDto>>(entities);
             return Ok(dtos);
         }
     }

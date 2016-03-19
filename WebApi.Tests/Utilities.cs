@@ -12,7 +12,7 @@ using Moq;
 namespace WebApi.Tests {
     public static class Utilities {
         #region Contexts
-        private static HttpControllerDescriptor CreateControllerDescriptor(HttpConfiguration config = null) {
+        public static HttpControllerDescriptor CreateControllerDescriptor(HttpConfiguration config = null) {
             if (config == null) {
                 config = new HttpConfiguration();
             }
@@ -26,7 +26,6 @@ namespace WebApi.Tests {
             HttpResponseMessage response = new HttpResponseMessage();
             return GetActionExecutedContext(request, response);
         }
-
         public static HttpActionExecutedContext GetActionExecutedContext(HttpRequestMessage request, HttpResponseMessage response) {
             HttpActionContext actionContext = CreateActionContext();
             actionContext.ControllerContext.Request = request;
@@ -34,7 +33,7 @@ namespace WebApi.Tests {
             return actionExecutedContext;
         }
 
-        private static HttpControllerContext CreateControllerContext(HttpConfiguration configuration = null, IHttpController instance = null, IHttpRouteData routeData = null, HttpRequestMessage request = null) {
+        public static HttpControllerContext CreateControllerContext(HttpConfiguration configuration = null, IHttpController instance = null, IHttpRouteData routeData = null, HttpRequestMessage request = null) {
             HttpConfiguration config = configuration ?? new HttpConfiguration();
             IHttpRouteData route = routeData ?? new HttpRouteData(new HttpRoute());
             HttpRequestMessage req = request ?? new HttpRequestMessage();

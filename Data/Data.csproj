@@ -60,7 +60,6 @@
     <Compile Include="EFDB\Repositories\SelectionCardRepository.cs" />
     <Compile Include="EFDB\Repositories\SessionCardRepository.cs" />
     <Compile Include="EFDB\Repositories\SessionRepository.cs" />
-    <Compile Include="EFDB\Repositories\SnapshotRepository.cs" />
     <Compile Include="EFDB\Repositories\SubthemeRepository.cs" />
     <Compile Include="EFDB\Repositories\ThemeRepository.cs" />
     <Compile Include="IRepository.cs" />

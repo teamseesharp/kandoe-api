@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Kandoe.Business.Domain {
     public class Session : Entity {
         protected Session() { }
-        public Session(bool cardCreationAllowed,int currentPlayerIndex, string description, bool isFinished, int maxCardsToChoose, int maxParticipants, Modus modus, int organisationId, int round, int subthemeId, DateTime start, DateTime end) {
+        public Session(bool cardCreationAllowed,int currentPlayerIndex, string description, bool isFinished, int maxCardsToChoose, int maxParticipants, int organisationId, int round, int subthemeId, DateTime start, DateTime end) {
             this.CardCreationAllowed = cardCreationAllowed;
             this.CurrentPlayerIndex = currentPlayerIndex;
             this.Description = description;
@@ -12,7 +12,6 @@ namespace Kandoe.Business.Domain {
             this.End = end;
             this.MaxCardsToChoose = maxCardsToChoose;
             this.MaxParticipants = maxParticipants;
-            this.Modus = modus;
             this.OrganisationId = organisationId;
             this.Round = round;
             this.SubthemeId = subthemeId;
@@ -26,7 +25,6 @@ namespace Kandoe.Business.Domain {
         public bool IsFinished { get; set; }
         public int MaxCardsToChoose { get; set; }
         public int MaxParticipants { get; set; }
-        public Modus Modus { get; set; }
         public int OrganisationId { get; set; }
         public int Round { get; set; }
         public int SubthemeId { get; set; }
@@ -34,13 +32,8 @@ namespace Kandoe.Business.Domain {
 
         public ICollection<SessionCard> SessionCards { get; set; }
         public ICollection<ChatMessage> ChatMessages { get; set; }
+        public ICollection<Account> Invited { get; set; }
         public ICollection<Account> Organisers { get; set; }
         public ICollection<Account> Participants { get; set; }
-        public ICollection<Snapshot> Snapshots { get; set; }
-    }
-
-    public enum Modus {
-        Async,
-        Sync
     }
 }

@@ -14,8 +14,6 @@ namespace Kandoe.Web.Model.Mapping.Profiles {
                         dto.Name,
                         dto.OrganiserId
                     ));
-
-            this.CreateMap<OrganisationDto, OrganisedDto>();
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Data.Entity.Infrastructure;
 using System.Net;
-using System.Net.Http;
 using System.Web.Http.Filters;
 
 using NUnit.Framework;
@@ -13,14 +13,16 @@ namespace WebApi.Tests.Filters {
     public class ExceptionFilterTests {
         private HttpActionExecutedContext httpActionExecutedContext;
 
-        static object[] ExceptionCases = {
-            new object[] { new ArgumentException(), HttpStatusCode.BadRequest },
-            new object[] { new DbUpdateException(), HttpStatusCode.Conflict },
-            new object[] { new NotSupportedException(), HttpStatusCode.MethodNotAllowed },
-            new object[] { Utilities.GetSqlException(), HttpStatusCode.Conflict },
-            new object[] { new UnauthorizedAccessException(), HttpStatusCode.Unauthorized },
-            new object[] { new Exception(), HttpStatusCode.InternalServerError }
-        };
+        public static IEnumerable ExceptionCases {
+            get {
+                yield return new TestCaseData(new ArgumentException(), HttpStatusCode.BadRequest);
+                yield return new TestCaseData(new DbUpdateException(), HttpStatusCode.Conflict);
+                yield return new TestCaseData(new NotSupportedException(), HttpStatusCode.MethodNotAllowed);
+                yield return new TestCaseData(Utilities.GetSqlException(), HttpStatusCode.Conflict);
+                yield return new TestCaseData(new UnauthorizedAccessException(), HttpStatusCode.Unauthorized);
+                yield return new TestCaseData(new Exception(), HttpStatusCode.InternalServerError);
+            }
+        }
 
         [SetUp]
         public void SetUp() {

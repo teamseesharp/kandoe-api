@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Kandoe.Web.Model.Dto {
     public class AccountDto { 
         public int Id { get; set; }
-        public String Email { get; set; }
-        public String Name { get; set; }
-        public String Picture { get; set; }
-        public String Secret { get; set; }
-        public String Surname { get; set; }
+        public string Email { get; set; }
+        public string Name { get; set; }
+        public string Picture { get; set; }
+        public string Secret { get; set; }
+        public string Surname { get; set; }
 
         public ICollection<ChatMessageDto> ChatMessages { get; set; }
         public ICollection<OrganisationDto> Organisations { get; set; }

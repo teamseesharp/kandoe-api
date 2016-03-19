@@ -48,7 +48,6 @@
     <Compile Include="SelectionCard.cs" />
     <Compile Include="Session.cs" />
     <Compile Include="SessionCard.cs" />
-    <Compile Include="Snapshot.cs" />
     <Compile Include="Subtheme.cs" />
     <Compile Include="Theme.cs" />
   </ItemGroup>

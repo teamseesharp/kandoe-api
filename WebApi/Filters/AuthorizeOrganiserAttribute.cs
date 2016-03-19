@@ -11,19 +11,19 @@ using Kandoe.Web.Model.Dto;
 
 namespace Kandoe.Web.Filters {
     public class AuthorizeOrganiserAttribute :  ActionFilterAttribute {
-        private readonly IService<Account> accounts;
-        private readonly IService<Organisation> organisations;
-        private readonly IService<Session> sessions;
-        private readonly IService<Subtheme> subthemes;
-        private readonly IService<Theme> themes;
-
         public AuthorizeOrganiserAttribute() {
-            this.accounts = new AccountService();
-            this.organisations = new OrganisationService();
-            this.sessions = new SessionService();
-            this.subthemes = new SubthemeService();
-            this.themes = new ThemeService();
+            this.Accounts = new AccountService();
+            this.Organisations = new OrganisationService();
+            this.Sessions = new SessionService();
+            this.Subthemes = new SubthemeService();
+            this.Themes = new ThemeService();
         }
+
+        public IService<Account> Accounts { get; set; }
+        public IService<Organisation> Organisations { get; set; }
+        public IService<Session> Sessions { get; set; }
+        public IService<Subtheme> Subthemes { get; set; }
+        public IService<Theme> Themes { get; set; }
 
         public override void OnActionExecuting(HttpActionContext actionContext) {
             switch (actionContext.Request.Method.Method) {
@@ -44,7 +44,7 @@ namespace Kandoe.Web.Filters {
             // issuer secret
             string secret = Thread.CurrentPrincipal.Identity.Name;
             // organiser secret
-            Account organiser = this.accounts.Get(organiserId);
+            Account organiser = this.Accounts.Get(organiserId);
 
             // if account does not exist
             if (organiser == null) {
@@ -61,7 +61,7 @@ namespace Kandoe.Web.Filters {
             // issuer secret
             string secret = Thread.CurrentPrincipal.Identity.Name;
             // organiser secret
-            Account organiser = this.accounts.Get(a => a.Secret == secret).First();
+            Account organiser = this.Accounts.Get(a => a.Secret == secret).First();
 
             // if account does not exist or there are no organisers
             if (organiser == null || organisers == null) {
@@ -82,24 +82,19 @@ namespace Kandoe.Web.Filters {
             switch (controller) {
                 case "Subtheme":
                     SubthemeDto subthemeDto = (SubthemeDto) actionContext.ActionArguments["dto"];
-                    Theme theme = this.themes.Get(subthemeDto.ThemeId);
+                    Theme theme = this.Themes.Get(subthemeDto.ThemeId);
                     organiserId = theme.OrganiserId;
                     break;
                 case "Theme":
                     ThemeDto themeDto = (ThemeDto) actionContext.ActionArguments["dto"];
-                    Organisation organisation = this.organisations.Get(themeDto.OrganisationId);
+                    Organisation organisation = this.Organisations.Get(themeDto.OrganisationId);
                     organiserId = organisation.OrganiserId;
                     break;
                 case "Session":
                     SessionDto sessionDto = (SessionDto) actionContext.ActionArguments["dto"];
-                    Subtheme subtheme = this.subthemes.Get(sessionDto.SubthemeId);
+                    Subtheme subtheme = this.Subthemes.Get(sessionDto.SubthemeId);
                     organiserId = subtheme.OrganiserId;
                     break;
-                case "Snapshot":
-                    SnapshotDto snapshotDto = (SnapshotDto) actionContext.ActionArguments["dto"];
-                    Session session = this.sessions.Get(snapshotDto.SessionId, collections: true);
-                    this.AuthorizeOrganiser(session.Organisers);
-                    return;
                 default:    // to prevent the dto from being null
                     organiserId = -1;
                     break;
@@ -116,22 +111,22 @@ namespace Kandoe.Web.Filters {
             switch (controller) {
                 case "Organisation":
                     OrganisationDto organisationDto = (OrganisationDto) actionContext.ActionArguments["dto"];
-                    Organisation organisation = this.organisations.Get(organisationDto.Id);
+                    Organisation organisation = this.Organisations.Get(organisationDto.Id);
                     organiserId = organisation.OrganiserId;
                     break;
                 case "Subtheme":
                     SubthemeDto subthemeDto = (SubthemeDto) actionContext.ActionArguments["dto"];
-                    Subtheme subtheme = this.subthemes.Get(subthemeDto.Id);
+                    Subtheme subtheme = this.Subthemes.Get(subthemeDto.Id);
                     organiserId = subtheme.OrganiserId;
                     break;
                 case "Theme":
                     ThemeDto themeDto = (ThemeDto) actionContext.ActionArguments["dto"];
-                    Theme theme = this.themes.Get(themeDto.Id);
+                    Theme theme = this.Themes.Get(themeDto.Id);
                     organiserId = themeDto.OrganiserId;
                     break;
                 case "Session":
                     SessionDto sessionDto = (SessionDto) actionContext.ActionArguments["dto"];
-                    Session session = this.sessions.Get(sessionDto.Id, collections: true);
+                    Session session = this.Sessions.Get(sessionDto.Id, collections: true);
 
                     this.AuthorizeOrganiser(session.Organisers);
                     

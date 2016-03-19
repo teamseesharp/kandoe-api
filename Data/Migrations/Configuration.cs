@@ -145,40 +145,40 @@ namespace Kandoe.Data.Migrations {
             #endregion
 
             #region SessionSeed
-            Session session = new Session(true, 1, "session1", true, 3, 8, Modus.Sync, 1, 0, 1, DateTime.Now, DateTime.Today);
+            Session session = new Session(true, 1, "session1", true, 3, 8, 1, 0, 1, DateTime.Now, DateTime.Today);
             session.Id = ++sessionId;
             context.Sessions.AddOrUpdate(session);
 
-            session = new Session(true, 1, "session2", false, 3, 8, Modus.Sync, 1, 0, 2, DateTime.Now, DateTime.Today);
+            session = new Session(true, 1, "session2", false, 3, 8, 1, 0, 2, DateTime.Now, DateTime.Today);
             session.Id = ++sessionId;
             context.Sessions.AddOrUpdate(session);
 
-            session = new Session(true, 1, "session3", false, 3, 8, Modus.Sync, 1, 0, 2, DateTime.Now.AddDays(2), DateTime.Today);
+            session = new Session(true, 1, "session3", false, 3, 8, 1, 0, 2, DateTime.Now.AddDays(2), DateTime.Today);
             session.Id = ++sessionId;
             context.Sessions.AddOrUpdate(session);
 
-            session = new Session(false, 2, "session4", true, 3, 8, Modus.Async, 1, 0, 3, DateTime.Now, DateTime.Today);
+            session = new Session(false, 2, "session4", true, 3, 8, 1, 0, 3, DateTime.Now, DateTime.Today);
             session.Id = ++sessionId;
             context.Sessions.AddOrUpdate(session);
 
-            session = new Session(false, 3, "session5", false, 3, 8, Modus.Async, 2, 0, 4, DateTime.Now.AddDays(10), DateTime.Today);
+            session = new Session(false, 3, "session5", false, 3, 8, 2, 0, 4, DateTime.Now.AddDays(10), DateTime.Today);
             session.Id = ++sessionId;
             context.Sessions.AddOrUpdate(session);
 
-            session = new Session(false, 3, "session6", false, 3, 8, Modus.Async, 3, 0, 7, DateTime.Now.AddDays(8), DateTime.Today);
+            session = new Session(false, 3, "session6", false, 3, 8, 3, 0, 7, DateTime.Now.AddDays(8), DateTime.Today);
             session.Id = ++sessionId;
             context.Sessions.AddOrUpdate(session);
 
-            session = new Session(false, 3, "session7", false, 3, 8, Modus.Async, 3, 0, 7, DateTime.Now, DateTime.Today);
+            session = new Session(false, 3, "session7", false, 3, 8, 3, 0, 7, DateTime.Now, DateTime.Today);
             session.Id = ++sessionId;
             context.Sessions.AddOrUpdate(session);
 
-            session = new Session(true, 1, "session8", false, 3, 8, Modus.Async, 3, 0, 7, DateTime.Now, DateTime.Today);
+            session = new Session(true, 1, "session8", false, 3, 8, 3, 0, 7, DateTime.Now, DateTime.Today);
             session.Id = ++sessionId;
             context.Sessions.AddOrUpdate(session);
 
             //bool cardCreationAllowed,int currentPlayerIndex, bool isFinished, int maxCardsToChoose, int maxParticipants, Modus modus, int organisationId, int round, int subthemeId, DateTime start, DateTime end
-            session = new Session(true, 3, "session9",false, 3, 6, Modus.Sync, 3, 0, 7, DateTime.Now.AddDays(-4), DateTime.Today.AddDays(-1));
+            session = new Session(true, 3, "session9",false, 3, 6, 3, 0, 7, DateTime.Now.AddDays(-4), DateTime.Today.AddDays(-1));
             session.Id = ++sessionId;
             context.Sessions.AddOrUpdate(session);
 

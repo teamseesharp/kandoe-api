@@ -9,11 +9,11 @@ namespace Kandoe.Web.Configuration {
             MapperConfiguration config = new MapperConfiguration(
                 cfg => {
                     cfg.AddProfile<AccountProfile>();
-                    cfg.AddProfile<CardProfile>();
                     cfg.AddProfile<ChatMessageProfile>();
                     cfg.AddProfile<OrganisationProfile>();
+                    cfg.AddProfile<SelectionCardProfile>();
+                    cfg.AddProfile<SessionCardProfile>();
                     cfg.AddProfile<SessionProfile>();
-                    cfg.AddProfile<SnapshotProfile>();
                     cfg.AddProfile<SubthemeProfile>();
                     cfg.AddProfile<ThemeProfile>();
                 }

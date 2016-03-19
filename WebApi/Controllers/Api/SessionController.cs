@@ -17,7 +17,7 @@ namespace Kandoe.Web.Controllers.Api {
     [RoutePrefix("api/sessions")]
     public class SessionController : ApiController {
         private readonly IService<Account> accounts;
-        private readonly SelectionCardService selectionCards;
+        private readonly IService<SelectionCard> selectionCards;
         private readonly IService<Session> sessions;
         private readonly IService<SessionCard> sessionCards;
 
@@ -70,6 +70,7 @@ namespace Kandoe.Web.Controllers.Api {
             return Ok();
         }
 
+        [AuthorizeOrganiser]
         [Route("{id}")]
         public IHttpActionResult Delete(int id) {
             throw new NotSupportedException();
@@ -157,6 +158,15 @@ namespace Kandoe.Web.Controllers.Api {
             return Ok(dtos);
         }
 
+        [Route("{id}/snapshot")]
+        [HttpGet]
+        public IHttpActionResult GetSessionSnapshot(int id) {
+            Session session = this.sessions.Get(id);
+            SessionDto sessionDto = ModelMapper.Map<SessionDto>(session);
+            SnapshotDto snapshotDto = ModelMapper.Map<SnapshotDto>(sessionDto);
+            return Ok(snapshotDto);
+        }
+
         [Route("{id}/end")]
         [HttpPatch]
         // auth organiser
@@ -194,10 +204,10 @@ namespace Kandoe.Web.Controllers.Api {
 
         [Route("{id}/select-cards")]
         [HttpPatch]
-        public IHttpActionResult PatchSelectCards(int id, [FromBody]ICollection<CardDto> dtos) {
+        public IHttpActionResult PatchSelectCards(int id, [FromBody]ICollection<SelectionCardDto> dtos) {
             IEnumerable<SessionCard> sessionCards = this.sessionCards.Get(sc => sc.SessionId == id);
 
-            foreach (CardDto dto in dtos) {
+            foreach (SelectionCardDto dto in dtos) {
                 SelectionCard slc = this.selectionCards.Get(dto.Id);
 
                 if (!sessionCards.Any(sc => sc.Text == slc.Text)) {
@@ -212,6 +222,7 @@ namespace Kandoe.Web.Controllers.Api {
         [Route("{sessionId}/level-up-card/{cardId}")]
         [HttpPatch]
         // auth: checken of de call van een participant komt en dat het de huidige speler is
+        // mss beter als businesslogica...
         public IHttpActionResult PatchSessionCardLevel(int sessionId, int cardId) {
             Session session = this.sessions.Get(sessionId, collections: true);
             SessionCard sessionCard = this.sessionCards.Get(cardId);
