@@ -8,6 +8,7 @@ using Kandoe.Data.EFDB.Connection;
 namespace Kandoe.Data.EFDB.Repositories {
     public class ChatMessageRepository : Repository<ChatMessage> {
         public ChatMessageRepository() : base(ContextFactory.GetContext()) { }
+        public ChatMessageRepository(Context context) : base(context) { }
 
         public override ChatMessage Create(ChatMessage entity) {
             this.context.ChatMessages.Add(entity);

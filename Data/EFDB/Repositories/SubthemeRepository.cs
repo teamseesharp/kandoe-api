@@ -8,6 +8,7 @@ using Kandoe.Data.EFDB.Connection;
 namespace Kandoe.Data.EFDB.Repositories {
     public class SubthemeRepository : Repository<Subtheme> {
         public SubthemeRepository() : base(ContextFactory.GetContext()) { }
+        public SubthemeRepository(Context context) : base(context) { }
 
         public override Subtheme Create(Subtheme entity) {
             this.context.Subthemes.Add(entity);

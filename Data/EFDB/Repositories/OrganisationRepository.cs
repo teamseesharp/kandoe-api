@@ -8,6 +8,7 @@ using Kandoe.Data.EFDB.Connection;
 namespace Kandoe.Data.EFDB.Repositories {
     public class OrganisationRepository : Repository<Organisation> {
         public OrganisationRepository() : base(ContextFactory.GetContext()) { }
+        public OrganisationRepository(Context context) : base(context) { }
 
         public override Organisation Create(Organisation entity) {
             this.context.Organisations.Add(entity);

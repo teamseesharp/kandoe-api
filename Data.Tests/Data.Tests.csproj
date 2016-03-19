@@ -47,8 +47,8 @@
       <HintPath>..\packages\Moq.4.2.1510.2205\lib\net40\Moq.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="nunit.framework, Version=3.2.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
-      <HintPath>..\packages\NUnit.3.2.0\lib\net45\nunit.framework.dll</HintPath>
+    <Reference Include="nunit.framework, Version=3.0.5813.39031, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnitTDNet.3.0.1.0\lib\net45\nunit.framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -68,12 +68,14 @@
   </Choose>
   <ItemGroup>
     <Compile Include="EFDB\Connection\ContextFactoryTests.cs" />
+    <Compile Include="EFDB\Repositories\AccountRepositoryTests.cs" />
+    <Compile Include="EFDB\Repositories\RepositoryTests.cs" />
     <Compile Include="Fakes\FakeContext.cs" />
     <Compile Include="Fakes\FakeRepository.cs" />
     <Compile Include="Fakes\FakeRepositoryFactory.cs" />
-    <Compile Include="Migrations\201603191437384_Initial.cs" />
-    <Compile Include="Migrations\201603191437384_Initial.Designer.cs">
-      <DependentUpon>201603191437384_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201603191613028_Initial.cs" />
+    <Compile Include="Migrations\201603191613028_Initial.Designer.cs">
+      <DependentUpon>201603191613028_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -93,8 +95,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201603191437384_Initial.resx">
-      <DependentUpon>201603191437384_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603191613028_Initial.resx">
+      <DependentUpon>201603191613028_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Choose>

@@ -17,6 +17,7 @@ namespace Kandoe.Web.Model.Mapping.Actions {
 
         private void Filter(ICollection<AccountDto> accounts) {
             foreach (AccountDto account in accounts) {
+                account.InvitedSessions = null;
                 account.OrganisedSessions = null;
                 account.ParticipatingSessions = null;
                 account.Organisations = null;

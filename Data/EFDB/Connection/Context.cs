@@ -7,27 +7,10 @@ using Kandoe.Data.Migrations;
 namespace Kandoe.Data.EFDB.Connection {
     [DbConfigurationType(typeof(Configuration))]
     public class Context : DbContext {
-        /*
-        public Context() : base("DB_9F4E1D_kandoedb4") {
-            Database.SetInitializer();
-        }
-        */
-
-        /*
-        public Context() : base("KandoeDB_EFCodeFirst_Local") {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<Context, Migrations.Configuration>("KandoeDB_EFCodeFirst_Local"));
-        }
-        */
-
-        /*
-        public Context() : base("kandoedb") {
-            Database.SetInitializer(new Initialiser());
-        }
-        */
-
         public Context() : base("KandoeDB_EFCodeFirst_Combell") {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<Context, Migrations.Configuration>("KandoeDB_EFCodeFirst_Combell"));
         }
+
         public Context(string nameOrConnectionString) : base(nameOrConnectionString) {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<Context, Migrations.Configuration>(nameOrConnectionString));
         }
@@ -146,7 +129,7 @@ namespace Kandoe.Data.EFDB.Connection {
             // Accounts 1..n - 0..n Sessions (Invited)
             modelBuilder.Entity<Account>()
                 .HasMany(a => a.InvitedSessions)
-                .WithMany(ms => ms.Invited)
+                .WithMany(invs => invs.Invitees)
                 .Map(t => t.MapLeftKey("InvitedId")
                     .MapRightKey("InvitedSessionId")
                     .ToTable("InvitedSessions"));

@@ -8,6 +8,7 @@ using Kandoe.Data.EFDB.Connection;
 namespace Kandoe.Data.EFDB.Repositories {
     public class SessionRepository : Repository<Session> {
         public SessionRepository() : base(ContextFactory.GetContext()) { }
+        public SessionRepository(Context context) : base(context) { }
 
         public override Session Create(Session entity) {
             this.context.Sessions.Add(entity);
@@ -19,6 +20,7 @@ namespace Kandoe.Data.EFDB.Repositories {
             if (eager) {
                 return this.context.Sessions
                     .Include(s => s.ChatMessages)
+                    .Include(s => s.Invitees)
                     .Include(s => s.Organisers)
                     .Include(s => s.Participants)
                     .Include(s => s.SessionCards)
@@ -31,6 +33,7 @@ namespace Kandoe.Data.EFDB.Repositories {
             if (eager) {
                 return this.context.Sessions
                     .Include(s => s.ChatMessages)
+                    .Include(s => s.Invitees)
                     .Include(s => s.Organisers)
                     .Include(s => s.Participants)
                     .Include(s => s.SessionCards)

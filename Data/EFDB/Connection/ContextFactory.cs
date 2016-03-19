@@ -11,5 +11,6 @@ namespace Kandoe.Data.EFDB.Connection {
         public static Context GetContext() { return context ?? (context = new Context()); }
 
         public static void Refresh() { context = new Context(); }
+        public static void Refresh(Context fresh) { context = fresh; }
     }
 }
