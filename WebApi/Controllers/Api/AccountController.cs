@@ -94,5 +94,17 @@ namespace Kandoe.Web.Controllers.Api {
             AccountDto dto = ModelMapper.Map<AccountDto>(entities.First());
             return Ok(dto);
         }
+
+        [Route("by-email/{email}")]
+        [HttpGet]
+        public IHttpActionResult GetByEmail(string email) {
+            IEnumerable<Account> entities = this.accounts.Get(a => a.Email == email);
+
+            // if no accounts were found
+            if (entities.Count() < 1) { return Ok(new AccountDto()); }
+
+            AccountDto dto = ModelMapper.Map<AccountDto>(entities.First());
+            return Ok(dto);
+        }
     }
 }
