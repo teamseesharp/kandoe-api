@@ -17,7 +17,7 @@ namespace Kandoe.Data.Tests.Fakes {
         }
 
         public void Delete(int id) {
-            this.entities.RemoveAt(id);
+            this.entities.RemoveAt(id - 1);
         }
 
         public IEnumerable<T> Read(bool eager = false) {
@@ -25,11 +25,11 @@ namespace Kandoe.Data.Tests.Fakes {
         }
 
         public T Read(int id, bool eager = false) {
-            return this.entities[id];
+            return this.entities[id - 1];
         }
 
         public void Update(T entity) {
-            this.entities[entity.Id] = entity;
+            this.entities[entity.Id - 1] = entity;
         }
     }
 }

@@ -28,6 +28,9 @@ namespace Kandoe.Data.EFDB.Connection {
         public Context() : base("KandoeDB_EFCodeFirst_Combell") {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<Context, Migrations.Configuration>("KandoeDB_EFCodeFirst_Combell"));
         }
+        public Context(string nameOrConnectionString) : base(nameOrConnectionString) {
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<Context, Migrations.Configuration>(nameOrConnectionString));
+        }
 
         public DbSet<Account> Accounts { get; set; }
         public DbSet<ChatMessage> ChatMessages { get; set; }

@@ -34,13 +34,14 @@ namespace Kandoe.Web.Filters {
                     this.AuthorizePut(actionContext);
                     break;
                 default:
+                    this.Unauthorize();
                     break;
             }
 
             base.OnActionExecuting(actionContext);
         }
 
-        private void AuthorizeOrganiser(int organiserId) {
+        public void AuthorizeOrganiser(int organiserId) {
             // issuer secret
             string secret = Thread.CurrentPrincipal.Identity.Name;
             // organiser secret
@@ -48,29 +49,29 @@ namespace Kandoe.Web.Filters {
 
             // if account does not exist
             if (organiser == null) {
-                throw new UnauthorizedAccessException();
+                this.Unauthorize();
             }
 
             // unauthorized action if issuer != organiser
             if (organiser.Secret != secret) {
-                throw new UnauthorizedAccessException();
+                this.Unauthorize();
             }
         }
 
-        private void AuthorizeOrganiser(ICollection<Account> organisers) {
+        public void AuthorizeOrganiser(ICollection<Account> organisers) {
             // issuer secret
             string secret = Thread.CurrentPrincipal.Identity.Name;
             // organiser secret
-            Account organiser = this.Accounts.Get(a => a.Secret == secret).First();
+            Account organiser = this.Accounts.Get(a => a.Secret == secret).FirstOrDefault();
 
             // if account does not exist or there are no organisers
             if (organiser == null || organisers == null) {
-                throw new UnauthorizedAccessException();
+                this.Unauthorize();
             }
 
             // unauthorized action if issuer != organiser
             if (!organisers.Contains(organiser)) {
-                throw new UnauthorizedAccessException();
+                this.Unauthorize();
             }
         }
 
@@ -137,6 +138,10 @@ namespace Kandoe.Web.Filters {
             }
 
             this.AuthorizeOrganiser(organiserId);
+        }
+
+        public void Unauthorize() {
+            throw new UnauthorizedAccessException();
         }
     }
 }
