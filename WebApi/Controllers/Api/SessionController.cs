@@ -95,9 +95,11 @@ namespace Kandoe.Web.Controllers.Api {
         [HttpGet]
         public IHttpActionResult GetByUser(int id) {
             Account account = this.accounts.Get(id);
-            IEnumerable<Session> entities = this.sessions.Get(session => session.Participants.Contains(account), collections: true);
-            IEnumerable<SessionDto> dtos = ModelMapper.Map<IEnumerable<Session>, IEnumerable<SessionDto>>(entities);
-            return Ok(dtos);
+            IEnumerable<Session> invitees = this.sessions.Get(session => session.Participants.Contains(account), collections: true);
+            IEnumerable<SessionDto> inviteesDtos = ModelMapper.Map<IEnumerable<Session>, IEnumerable<SessionDto>>(invitees);
+            IEnumerable<Session> participants = this.sessions.Get(session => session.Participants.Contains(account), collections: true);
+            IEnumerable<SessionDto> participantDtos = ModelMapper.Map<IEnumerable<Session>, IEnumerable<SessionDto>>(participants);
+            return Ok(inviteesDtos.Concat(participantDtos));
         }
 
         [Route("by-user/{id}/finished")]
