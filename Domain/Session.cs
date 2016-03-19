@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 namespace Kandoe.Business.Domain {
-    public class Session {
+    public class Session : Entity {
         protected Session() { }
         public Session(bool cardCreationAllowed,int currentPlayerIndex, string description, bool isFinished, int maxCardsToChoose, int maxParticipants, Modus modus, int organisationId, int round, int subthemeId, DateTime start, DateTime end) {
             this.CardCreationAllowed = cardCreationAllowed;
@@ -19,7 +19,6 @@ namespace Kandoe.Business.Domain {
             this.Start = start;
         }
 
-        public int Id { get; set; }
         public bool CardCreationAllowed { get; set; }
         public int CurrentPlayerIndex { get; set; }
         public string Description { get; set; }

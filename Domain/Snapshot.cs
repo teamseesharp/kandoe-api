@@ -1,15 +1,15 @@
 ﻿using System.Collections.Generic;
 
 namespace Kandoe.Business.Domain {
-    public class Snapshot {
+    public class Snapshot : Entity {
         protected Snapshot() { }
+
         public Snapshot(int sessionId, string organisers, string participants) {
             this.SessionId = sessionId;
             this.Organisers = organisers;
             this.Participants = participants;
         }
 
-        public int Id { get; set; }
         public int SessionId { get; set; }
 
         public string Organisers { get; set; }

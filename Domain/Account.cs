@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Kandoe.Business.Domain {
-    public class Account {
+    public class Account : Entity {
         protected Account() { }
-        public Account(String email, String name, String surname, String picture, String secret) {
+
+        public Account(string email, string name, string surname, string picture, string secret) {
             this.Email = email;
             this.Name = name;
             this.Picture = picture;
@@ -12,12 +12,11 @@ namespace Kandoe.Business.Domain {
             this.Surname = surname;
         }
 
-        public int Id { get; set; }
-        public String Email { get; set; }
-        public String Name { get; set; }
-        public String Surname { get; set; }
-        public String Picture { get; set; }
-        public String Secret { get; set; }
+        public string Email { get; set; }
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public string Picture { get; set; }
+        public string Secret { get; set; }
         
         public ICollection<ChatMessage> ChatMessages { get; set; }
         public ICollection<Organisation> Organisations { get; set; }

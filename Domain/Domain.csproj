@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Account.cs" />
     <Compile Include="ChatMessage.cs" />
+    <Compile Include="Entity.cs" />
     <Compile Include="Organisation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SelectionCard.cs" />
