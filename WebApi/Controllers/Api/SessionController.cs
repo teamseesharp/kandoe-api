@@ -53,6 +53,8 @@ namespace Kandoe.Web.Controllers.Api {
             entity.Organisers.Add(organiser);
             organiser.OrganisedSessions.Add(entity);
 
+            this.sessions.Add(entity);
+
             this.sessions.Change(entity);
             this.accounts.Change(organiser);
 
@@ -178,6 +180,27 @@ namespace Kandoe.Web.Controllers.Api {
             entity.IsFinished = true;
 
             this.sessions.Change(entity);
+
+            return Ok();
+        }
+
+        [Route("{id}/invite")]
+        [HttpPatch]
+        public IHttpActionResult PatchInvitedUsers(int id, [FromBody]ICollection<string> emails) {
+            ICollection<Account> accountList = new List<Account>();
+            foreach (string email in emails) {
+                Account account = this.accounts.Get(a => a.Email.Equals(email)).First();
+                if (account != null)
+                    accountList.Add(account);
+            }
+
+            Session session = this.sessions.Get(id);
+            if (session.Invitees == null) {
+                session.Invitees = accountList;
+            } else {
+                session.Invitees = (ICollection<Account>)session.Invitees.Concat(accountList).Distinct();
+            }
+            this.sessions.Change(session);
 
             return Ok();
         }
