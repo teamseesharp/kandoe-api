@@ -22,27 +22,27 @@ namespace Kandoe.Web.Controllers.Api {
         [Route("")]
         public IHttpActionResult Get() {
             IEnumerable<SelectionCard> entities = this.service.Get();
-            IEnumerable<SelectionCardDto> dtos = ModelMapper.Map<IEnumerable<SelectionCard>, IEnumerable<SelectionCardDto>>(entities);
+            IEnumerable<CardDto> dtos = ModelMapper.Map<IEnumerable<SelectionCard>, IEnumerable<CardDto>>(entities);
             return Ok(dtos);
         }
 
         [Route("{id}")]
         public IHttpActionResult Get(int id) {
             SelectionCard entity = this.service.Get(id);
-            SelectionCardDto dto = ModelMapper.Map<SelectionCardDto>(entity);
+            CardDto dto = ModelMapper.Map<CardDto>(entity);
             return Ok(dto);
         }
 
         [Route("")]
-        public IHttpActionResult Post([FromBody]SelectionCardDto dto) {
+        public IHttpActionResult Post([FromBody]CardDto dto) {
             SelectionCard entity = ModelMapper.Map<SelectionCard>(dto);
             this.service.Add(entity);
-            dto = ModelMapper.Map<SelectionCardDto>(entity);
+            dto = ModelMapper.Map<CardDto>(entity);
             return Ok(dto);
         }
 
         [Route("")]
-        public IHttpActionResult Put([FromBody]SelectionCardDto dto) {
+        public IHttpActionResult Put([FromBody]CardDto dto) {
             SelectionCard entity = ModelMapper.Map<SelectionCard>(dto);
             this.service.Change(entity);
             return Ok();
@@ -57,7 +57,7 @@ namespace Kandoe.Web.Controllers.Api {
         [HttpGet]
         public IHttpActionResult GetBySubtheme(int id) {
             IEnumerable<SelectionCard> entities = this.service.Get(selectionCard => selectionCard.SubthemeId == id);
-            IEnumerable<SelectionCardDto> dtos = ModelMapper.Map<IEnumerable<SelectionCard>, IEnumerable<SelectionCardDto>>(entities);
+            IEnumerable<CardDto> dtos = ModelMapper.Map<IEnumerable<SelectionCard>, IEnumerable<CardDto>>(entities);
             return Ok(dtos);
         }
     }

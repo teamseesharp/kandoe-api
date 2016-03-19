@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="AccountService.cs" />
     <Compile Include="ChatMessageService.cs" />
+    <Compile Include="Logic\ISessionLogic.cs" />
     <Compile Include="IService.cs" />
     <Compile Include="OrganisationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

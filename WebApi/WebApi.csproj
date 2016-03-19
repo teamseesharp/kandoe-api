@@ -260,10 +260,9 @@
     <Compile Include="Handlers\AuthenticationHandler.cs" />
     <Compile Include="Handlers\ContextHandler.cs" />
     <Compile Include="Model\Dto\AccountDto.cs" />
+    <Compile Include="Model\Dto\CardDto.cs" />
     <Compile Include="Model\Dto\ChatMessageDto.cs" />
     <Compile Include="Model\Dto\OrganisationDto.cs" />
-    <Compile Include="Model\Dto\SelectionCardDto.cs" />
-    <Compile Include="Model\Dto\SessionCardDto.cs" />
     <Compile Include="Model\Dto\SessionDto.cs" />
     <Compile Include="Model\Dto\SnapshotDto.cs" />
     <Compile Include="Model\Dto\SubthemeDto.cs" />

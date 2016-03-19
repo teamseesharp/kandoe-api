@@ -50,12 +50,11 @@ namespace Kandoe.Web.Controllers.Api {
             string secret = Thread.CurrentPrincipal.Identity.Name;
             Account organiser = this.accounts.Get(a => a.Secret == secret, collections: true).First();
 
-            organiser.OrganisedSessions.Add(entity);
-            entity.Organisers = new List<Account>();
             entity.Organisers.Add(organiser);
+            organiser.OrganisedSessions.Add(entity);
 
+            this.sessions.Change(entity);
             this.accounts.Change(organiser);
-            this.sessions.Add(entity);
 
             dto = ModelMapper.Map<SessionDto>(entity);
 
@@ -204,10 +203,10 @@ namespace Kandoe.Web.Controllers.Api {
 
         [Route("{id}/select-cards")]
         [HttpPatch]
-        public IHttpActionResult PatchSelectCards(int id, [FromBody]ICollection<SelectionCardDto> dtos) {
+        public IHttpActionResult PatchSelectCards(int id, [FromBody]ICollection<CardDto> dtos) {
             IEnumerable<SessionCard> sessionCards = this.sessionCards.Get(sc => sc.SessionId == id);
 
-            foreach (SelectionCardDto dto in dtos) {
+            foreach (CardDto dto in dtos) {
                 SelectionCard slc = this.selectionCards.Get(dto.Id);
 
                 if (!sessionCards.Any(sc => sc.Text == slc.Text)) {

@@ -44,16 +44,18 @@ namespace WebApi.Tests.Filters.Authorization {
             }
         }
 
-        static object[] AuthorizationFailedCases = {
-            new object[] { "POST", "Subtheme" },
-            new object[] { "POST", "Theme" },
-            new object[] { "POST", "Session" },
-            new object[] { "POST", "Snapshot" },
-            new object[] { "PUT", "Organisation" },
-            new object[] { "PUT", "Subtheme" },
-            new object[] { "PUT", "Theme" },
-            new object[] { "PUT", "Session" }
-        };
+        public static IEnumerable AuthorizationFailedCases {
+            get {
+                yield return new TestCaseData("POST", "Subtheme");
+                yield return new TestCaseData("POST", "Theme");
+                yield return new TestCaseData("POST", "Session");
+                yield return new TestCaseData("POST", "Snapshot");
+                yield return new TestCaseData("PUT", "Organisation");
+                yield return new TestCaseData("PUT", "Subtheme");
+                yield return new TestCaseData("PUT", "Theme");
+                yield return new TestCaseData("PUT", "Session");
+            }
+        }
 
         [OneTimeSetUp]
         public void TestFixtureSetUp() {

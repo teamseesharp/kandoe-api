@@ -6,9 +6,9 @@ using Kandoe.Web.Model.Dto;
 namespace Kandoe.Web.Model.Mapping.Profiles {
     public class SessionCardProfile : Profile {
         protected override void Configure() {
-            this.CreateMap<SessionCard, SessionCardDto>();
+            this.CreateMap<SessionCard, CardDto>();
 
-            this.CreateMap<SessionCardDto, SessionCard>()
+            this.CreateMap<CardDto, SessionCard>()
                 .ConstructUsing(
                     dto => new SessionCard(
                         dto.Image,

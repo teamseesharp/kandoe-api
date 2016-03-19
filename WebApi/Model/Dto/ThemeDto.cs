@@ -9,7 +9,7 @@ namespace Kandoe.Web.Model.Dto {
         public int OrganiserId { get; set; }
         public string Tags { get; set; }
 
-        public ICollection<SelectionCardDto> SelectionCards { get; set; }
+        public ICollection<CardDto> SelectionCards { get; set; }
         public ICollection<SubthemeDto> Subthemes { get; set; }
     }
 }

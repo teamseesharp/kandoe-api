@@ -6,9 +6,9 @@ using Kandoe.Web.Model.Dto;
 namespace Kandoe.Web.Model.Mapping.Profiles {
     public class SelectionCardProfile : Profile {
          protected override void Configure() {
-            this.CreateMap<SelectionCard, SelectionCardDto>();
+            this.CreateMap<SelectionCard, CardDto>();
 
-            this.CreateMap<SelectionCardDto, SelectionCard>()
+            this.CreateMap<CardDto, SelectionCard>()
                 .ConstructUsing(
                     dto => new SelectionCard(
                         dto.Image,
