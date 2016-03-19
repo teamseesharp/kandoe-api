@@ -13,6 +13,9 @@ namespace Kandoe.Web.Model.Mapping.Actions {
 
             // filter out many-to-many circular reference collections
             this.Filter(destination.Organisers);
+
+            // filter out many-to-many circular reference collections
+            this.Filter(destination.Invitees);
         }
 
         private void Filter(ICollection<AccountDto> accounts) {
