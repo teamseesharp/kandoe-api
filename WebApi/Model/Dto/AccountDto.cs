@@ -10,7 +10,7 @@ namespace Kandoe.Web.Model.Dto {
         public string Surname { get; set; }
 
         public ICollection<ChatMessageDto> ChatMessages { get; set; }
-        public ICollection<AccountDto> InvitedSessions { get; set; }
+        public ICollection<SessionDto> InvitedSessions { get; set; }
         public ICollection<OrganisationDto> Organisations { get; set; }
         public ICollection<SessionDto> OrganisedSessions { get; set; }
         public ICollection<SessionDto> ParticipatingSessions { get; set; }
