@@ -35,7 +35,7 @@ namespace Kandoe.Web.Controllers.Api {
             return Ok(dto);
         }
 
-        //[AuthorizeParticipant]
+        [AuthorizeParticipant]
         [Route("")]
         // messenger id van dto vervangen met current principal id
         public IHttpActionResult Post([FromBody]ChatMessageDto dto) {

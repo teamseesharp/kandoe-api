@@ -240,7 +240,7 @@ namespace Kandoe.Web.Controllers.Api {
         }
 
         [AuthorizeParticipant]
-        [Route("{sessionId}/level-up-card/{cardId}")]
+        [Route("{id}/level-up-card/{cardId}")]
         [HttpPatch]
         // validation: dat het de huidige speler is
         // mss beter als businesslogica...

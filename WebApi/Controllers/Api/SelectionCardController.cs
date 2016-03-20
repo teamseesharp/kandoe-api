@@ -34,7 +34,7 @@ namespace Kandoe.Web.Controllers.Api {
             return Ok(dto);
         }
 
-        //[AuthorizeOrganiser]
+        [AuthorizeOrganiser]
         [Route("")]
         // validation of stuffs, also see note in organiser auth
         public IHttpActionResult Post([FromBody]CardDto dto) {
