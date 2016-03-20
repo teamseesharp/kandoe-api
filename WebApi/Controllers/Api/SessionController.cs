@@ -77,10 +77,10 @@ namespace Kandoe.Web.Controllers.Api {
             throw new NotSupportedException();
         }
 
-        [Route("by-organisation/{id}")]
+        [Route("~/api/verbose/sessions/by-organisation/{id}")]
         [HttpGet]
         public IHttpActionResult GetByOrganisation(int id) {
-            IEnumerable<Session> entities = this.sessions.Get(session => session.OrganisationId == id);
+            IEnumerable<Session> entities = this.sessions.Get(session => session.OrganisationId == id, collections: true);
             IEnumerable<SessionDto> dtos = ModelMapper.Map<IEnumerable<Session>, IEnumerable<SessionDto>>(entities);
             return Ok(dtos);
         }
