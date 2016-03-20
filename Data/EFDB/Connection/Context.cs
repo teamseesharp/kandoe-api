@@ -130,7 +130,7 @@ namespace Kandoe.Data.EFDB.Connection {
             modelBuilder.Entity<Account>()
                 .HasMany(a => a.InvitedSessions)
                 .WithMany(invs => invs.Invitees)
-                .Map(t => t.MapLeftKey("InvitedId")
+                .Map(t => t.MapLeftKey("InviteeId")
                     .MapRightKey("InvitedSessionId")
                     .ToTable("InvitedSessions"));
         }

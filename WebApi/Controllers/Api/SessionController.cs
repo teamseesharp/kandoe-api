@@ -159,7 +159,7 @@ namespace Kandoe.Web.Controllers.Api {
             return Ok(snapshotDto);
         }
 
-        [AuthorizeOrganiser]
+        //[AuthorizeOrganiser]
         [Route("{id}/end")]
         [HttpPatch]
         public IHttpActionResult PatchEnd(int id) {
@@ -173,7 +173,7 @@ namespace Kandoe.Web.Controllers.Api {
             return Ok();
         }
 
-        [AuthorizeOrganiser]
+        //[AuthorizeOrganiser]
         [Route("{id}/invite")]
         [HttpPatch]
         public IHttpActionResult PatchInvite(int id, [FromBody]ICollection<string> emails) {
@@ -198,7 +198,7 @@ namespace Kandoe.Web.Controllers.Api {
             return Ok();
         }
 
-        [AuthorizeInvitee]
+        //[AuthorizeInvitee]
         [Route("{id}/join")]
         [HttpPatch]
         // see if already joined?..
@@ -220,7 +220,7 @@ namespace Kandoe.Web.Controllers.Api {
             return Ok();
         }
 
-        [AuthorizeInvitee]
+        //[AuthorizeInvitee]
         [Route("{id}/select-cards")]
         [HttpPatch]
         // valid cards?
@@ -239,7 +239,7 @@ namespace Kandoe.Web.Controllers.Api {
             return Ok();
         }
 
-        [AuthorizeParticipant]
+        //[AuthorizeParticipant]
         [Route("{sessionId}/level-up-card/{cardId}")]
         [HttpPatch]
         // validation: dat het de huidige speler is
