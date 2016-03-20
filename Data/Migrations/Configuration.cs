@@ -14,7 +14,7 @@ namespace Kandoe.Data.Migrations {
 
         protected override void Seed(Context context) {
             int accountId = 0;
-            int chatmessageId = 0;
+            //int chatmessageId = 0;
             int sessionId = 0;
             int themeId = 0;
             int subthemeId = 0;

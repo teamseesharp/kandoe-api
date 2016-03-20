@@ -30,14 +30,14 @@ namespace Kandoe.Web.Controllers.Api {
 
         [Route("")]
         public IHttpActionResult Get() {
-            IEnumerable<Session> entities = this.sessions.Get();
+            IEnumerable<Session> entities = this.sessions.Get(collections: false);
             IEnumerable<SessionDto> dtos = ModelMapper.Map<IEnumerable<Session>, IEnumerable<SessionDto>>(entities);
             return Ok(dtos);
         }
 
         [Route("{id}")]
         public IHttpActionResult Get(int id) {
-            Session entity = this.sessions.Get(id);
+            Session entity = this.sessions.Get(id, collections: false);
             SessionDto dto = ModelMapper.Map<SessionDto>(entity);
             return Ok(dto);
         }
@@ -54,8 +54,6 @@ namespace Kandoe.Web.Controllers.Api {
             organiser.OrganisedSessions.Add(entity);
 
             this.sessions.Add(entity);
-
-            this.sessions.Change(entity);
             this.accounts.Change(organiser);
 
             dto = ModelMapper.Map<SessionDto>(entity);
@@ -71,7 +69,6 @@ namespace Kandoe.Web.Controllers.Api {
             return Ok();
         }
 
-        [AuthorizeOrganiser]
         [Route("{id}")]
         public IHttpActionResult Delete(int id) {
             throw new NotSupportedException();
@@ -80,7 +77,7 @@ namespace Kandoe.Web.Controllers.Api {
         [Route("by-subtheme/{id}")]
         [HttpGet]
         public IHttpActionResult GetBySubtheme(int id) {
-            IEnumerable<Session> entities = this.sessions.Get(session => session.SubthemeId == id);
+            IEnumerable<Session> entities = this.sessions.Get(session => session.SubthemeId == id, collections: false);
             IEnumerable<SessionDto> dtos = ModelMapper.Map<IEnumerable<Session>, IEnumerable<SessionDto>>(entities);
             return Ok(dtos);
         }
@@ -89,9 +86,9 @@ namespace Kandoe.Web.Controllers.Api {
         [HttpGet]
         public IHttpActionResult GetByUser(int id) {
             Account account = this.accounts.Get(id);
-            IEnumerable<Session> invitedSessions = this.sessions.Get(session => session.Invitees.Contains(account));
-            IEnumerable<Session> participatingSessions = this.sessions.Get(session => session.Participants.Contains(account));
-            IEnumerable<Session> entities = (invitedSessions.Concat(participatingSessions)).Distinct();
+            IEnumerable<Session> invitedSessions = this.sessions.Get(session => session.Invitees.Contains(account), collections: false);
+            IEnumerable<Session> participatingSessions = this.sessions.Get(session => session.Participants.Contains(account), collections: false);
+            IEnumerable<Session> entities = invitedSessions.Concat(participatingSessions).Distinct();
             IEnumerable<SessionDto> dtos = ModelMapper.Map<IEnumerable<Session>, IEnumerable<SessionDto>>(entities);
             return Ok(dtos);
         }
@@ -140,7 +137,7 @@ namespace Kandoe.Web.Controllers.Api {
         [Route("by-start-date/{date}")]
         [HttpGet]
         public IHttpActionResult GetByStartDate(DateTime date) {
-            IEnumerable<Session> entities = this.sessions.Get(session => session.Start.Date == date.Date);
+            IEnumerable<Session> entities = this.sessions.Get(session => session.Start.Date == date.Date, collections: false);
             IEnumerable<SessionDto> dtos = ModelMapper.Map<IEnumerable<Session>, IEnumerable<SessionDto>>(entities);
             return Ok(dtos);
         }
@@ -148,7 +145,7 @@ namespace Kandoe.Web.Controllers.Api {
         [Route("by-end-date/{date}")]
         [HttpGet]
         public IHttpActionResult GetByEndDate(DateTime date) {
-            IEnumerable<Session> entities = this.sessions.Get(session => session.End.Date == date.Date);
+            IEnumerable<Session> entities = this.sessions.Get(session => session.End.Date == date.Date, collections: false);
             IEnumerable<SessionDto> dtos = ModelMapper.Map<IEnumerable<Session>, IEnumerable<SessionDto>>(entities);
             return Ok(dtos);
         }
@@ -156,17 +153,17 @@ namespace Kandoe.Web.Controllers.Api {
         [Route("{id}/snapshot")]
         [HttpGet]
         public IHttpActionResult GetSessionSnapshot(int id) {
-            Session session = this.sessions.Get(id);
+            Session session = this.sessions.Get(id, collections: true);
             SessionDto sessionDto = ModelMapper.Map<SessionDto>(session);
             SnapshotDto snapshotDto = ModelMapper.Map<SnapshotDto>(sessionDto);
             return Ok(snapshotDto);
         }
 
+        [AuthorizeOrganiser]
         [Route("{id}/end")]
         [HttpPatch]
-        // auth organiser
         public IHttpActionResult PatchEnd(int id) {
-            Session entity = this.sessions.Get(id);
+            Session entity = this.sessions.Get(id, collections: false);
 
             entity.End = DateTime.Now;
             entity.IsFinished = true;
@@ -176,27 +173,32 @@ namespace Kandoe.Web.Controllers.Api {
             return Ok();
         }
 
+        [AuthorizeOrganiser]
         [Route("{id}/invite")]
         [HttpPatch]
-        public IHttpActionResult PatchInvitedUsers(int id, [FromBody]ICollection<string> emails) {
-            ICollection<Account> accountList = new List<Account>();
+        public IHttpActionResult PatchInvite(int id, [FromBody]ICollection<string> emails) {
+            Session session = this.sessions.Get(id, collections: true);
+
+            emails = emails.Distinct().ToList();
+
             foreach (string email in emails) {
-                Account account = this.accounts.Get(a => a.Email.Equals(email)).First();
-                if (account != null)
-                    accountList.Add(account);
+                Account account = this.accounts.Get(a => a.Email == email, collections: true).First();
+
+                bool exists = account != null;
+                bool isInvited = session.Invitees.Contains(account);
+
+                if (exists && !isInvited) {
+                    session.Invitees.Add(account);
+                    account.InvitedSessions.Add(session);
+                }
             }
 
-            Session session = this.sessions.Get(id);
-            if (session.Invitees == null) {
-                session.Invitees = accountList;
-            } else {
-                session.Invitees = (ICollection<Account>)session.Invitees.Concat(accountList).Distinct();
-            }
             this.sessions.Change(session);
 
             return Ok();
         }
 
+        [AuthorizeInvitee]
         [Route("{id}/join")]
         [HttpPatch]
         // see if already joined?..
@@ -218,8 +220,10 @@ namespace Kandoe.Web.Controllers.Api {
             return Ok();
         }
 
+        [AuthorizeInvitee]
         [Route("{id}/select-cards")]
         [HttpPatch]
+        // valid cards?
         public IHttpActionResult PatchSelectCards(int id, [FromBody]ICollection<CardDto> dtos) {
             IEnumerable<SessionCard> sessionCards = this.sessionCards.Get(sc => sc.SessionId == id);
 
@@ -235,12 +239,13 @@ namespace Kandoe.Web.Controllers.Api {
             return Ok();
         }
 
+        [AuthorizeParticipant]
         [Route("{sessionId}/level-up-card/{cardId}")]
         [HttpPatch]
-        // auth: checken of de call van een participant komt en dat het de huidige speler is
+        // validation: dat het de huidige speler is
         // mss beter als businesslogica...
-        public IHttpActionResult PatchSessionCardLevel(int sessionId, int cardId) {
-            Session session = this.sessions.Get(sessionId, collections: true);
+        public IHttpActionResult PatchSessionCardLevel(int id, int cardId) {
+            Session session = this.sessions.Get(id, collections: true);
             SessionCard sessionCard = this.sessionCards.Get(cardId);
 
             int index = session.CurrentPlayerIndex;

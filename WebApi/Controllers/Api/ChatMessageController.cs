@@ -9,6 +9,7 @@ using Authenticate = System.Web.Http.AuthorizeAttribute;
 
 using Kandoe.Business;
 using Kandoe.Business.Domain;
+using Kandoe.Web.Filters;
 using Kandoe.Web.Model.Dto;
 using Kandoe.Web.Model.Mapping;
 
@@ -29,12 +30,14 @@ namespace Kandoe.Web.Controllers.Api {
 
         [Route("{id}")]
         public IHttpActionResult Get(int id) {
-            ChatMessage entity = this.service.Get(id);
+            ChatMessage entity = this.service.Get(id, collections: false);
             ChatMessageDto dto = ModelMapper.Map<ChatMessageDto>(entity);
             return Ok(dto);
         }
 
+        [AuthorizeParticipant]
         [Route("")]
+        // messenger id van dto vervangen met current principal id
         public IHttpActionResult Post([FromBody]ChatMessageDto dto) {
             dto.Timestamp = dto.Timestamp ?? DateTime.Now;
 
@@ -48,9 +51,7 @@ namespace Kandoe.Web.Controllers.Api {
 
         [Route("")]
         public IHttpActionResult Put([FromBody]ChatMessageDto dto) {
-            ChatMessage entity = ModelMapper.Map<ChatMessage>(dto);
-            this.service.Change(entity);
-            return Ok();
+            throw new NotSupportedException();
         }
 
         [Route("{id}")]
@@ -61,7 +62,7 @@ namespace Kandoe.Web.Controllers.Api {
         [Route("by-session/{id}")]
         [HttpGet]
         public IHttpActionResult GetBySession(int id) {
-            IEnumerable<ChatMessage> entities = this.service.Get(cm => cm.SessionId == id);
+            IEnumerable<ChatMessage> entities = this.service.Get(cm => cm.SessionId == id, collections: false);
             IEnumerable<ChatMessageDto> dtos = ModelMapper.Map<IEnumerable<ChatMessage>, IEnumerable<ChatMessageDto>>(entities);
             return Ok(dtos);
         }

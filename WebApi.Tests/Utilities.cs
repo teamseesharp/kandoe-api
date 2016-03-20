@@ -9,7 +9,7 @@ using System.Web.Http.Routing;
 
 using Moq;
 
-namespace WebApi.Tests {
+namespace Kandoe.Web.Tests {
     public static class Utilities {
         #region Contexts
         public static HttpControllerDescriptor CreateControllerDescriptor(HttpConfiguration config = null) {

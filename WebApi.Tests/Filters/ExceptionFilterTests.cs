@@ -8,7 +8,7 @@ using NUnit.Framework;
 
 using Kandoe.Web.Filters;
 
-namespace WebApi.Tests.Filters {
+namespace Kandoe.Web.Tests.Filters {
     [TestFixture]
     public class ExceptionFilterTests {
         private HttpActionExecutedContext httpActionExecutedContext;

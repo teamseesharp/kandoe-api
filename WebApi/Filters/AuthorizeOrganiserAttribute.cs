@@ -10,7 +10,7 @@ using Kandoe.Business.Domain;
 using Kandoe.Web.Model.Dto;
 
 namespace Kandoe.Web.Filters {
-    public class AuthorizeOrganiserAttribute :  ActionFilterAttribute {
+    public class AuthorizeOrganiserAttribute : ActionFilterAttribute {
         public AuthorizeOrganiserAttribute() {
             this.Accounts = new AccountService();
             this.Organisations = new OrganisationService();
@@ -27,6 +27,9 @@ namespace Kandoe.Web.Filters {
 
         public override void OnActionExecuting(HttpActionContext actionContext) {
             switch (actionContext.Request.Method.Method) {
+                case "PATCH":
+                    this.AuthorizePatch(actionContext);
+                    break;
                 case "POST":
                     this.AuthorizePost(actionContext);
                     break;
@@ -75,26 +78,75 @@ namespace Kandoe.Web.Filters {
             }
         }
 
+        private void AuthorizePatch(HttpActionContext actionContext) {
+            int organiserId;
+
+            string controller = actionContext.ControllerContext.ControllerDescriptor.ControllerName;
+
+            switch (controller) {
+                case "Session":
+                    int id = (int) actionContext.RequestContext.RouteData.Values["id"];
+                    Session session = this.Sessions.Get(id, collections: true);
+
+                    this.AuthorizeOrganiser(session.Organisers);
+
+                    return;
+                default:    // will be unauthorized
+                    organiserId = -1;
+                    break;
+            }
+
+            this.AuthorizeOrganiser(organiserId);
+        }
+
         private void AuthorizePost(HttpActionContext actionContext) {
             int organiserId;
 
             string controller = actionContext.ControllerContext.ControllerDescriptor.ControllerName;
 
             switch (controller) {
-                case "Subtheme":
-                    SubthemeDto subthemeDto = (SubthemeDto) actionContext.ActionArguments["dto"];
-                    Theme theme = this.Themes.Get(subthemeDto.ThemeId);
-                    organiserId = theme.OrganiserId;
-                    break;
-                case "Theme":
-                    ThemeDto themeDto = (ThemeDto) actionContext.ActionArguments["dto"];
-                    Organisation organisation = this.Organisations.Get(themeDto.OrganisationId);
-                    organiserId = organisation.OrganiserId;
+                case "SelectionCard":
+                    {
+                        CardDto cardDto = (CardDto) actionContext.ActionArguments["dto"];
+                        Theme theme = this.Themes.Get(cardDto.ThemeId);
+
+                        organiserId = theme.OrganiserId;
+
+                        if (cardDto.SubthemeId != null) {
+                            Subtheme subtheme = this.Subthemes.Get(cardDto.SubthemeId.Value);
+
+                            // more a validation kind of thing..
+                            bool haveDifferentOrganisers = (subtheme.OrganiserId != theme.OrganiserId);
+                            bool noRelation = subtheme.ThemeId != theme.Id;
+
+                            if (haveDifferentOrganisers || noRelation) {
+                                this.Unauthorize();
+                            }
+
+                            organiserId = subtheme.OrganiserId;
+                        }
+                    }
                     break;
                 case "Session":
-                    SessionDto sessionDto = (SessionDto) actionContext.ActionArguments["dto"];
-                    Subtheme subtheme = this.Subthemes.Get(sessionDto.SubthemeId);
-                    organiserId = subtheme.OrganiserId;
+                    {
+                        SessionDto sessionDto = (SessionDto) actionContext.ActionArguments["dto"];
+                        Subtheme subtheme = this.Subthemes.Get(sessionDto.SubthemeId);
+                        organiserId = subtheme.OrganiserId;
+                    }
+                    break;
+                case "Subtheme":
+                    {
+                        SubthemeDto subthemeDto = (SubthemeDto) actionContext.ActionArguments["dto"];
+                        Theme theme = this.Themes.Get(subthemeDto.ThemeId);
+                        organiserId = theme.OrganiserId;
+                    }
+                    break;
+                case "Theme":
+                    {
+                        ThemeDto themeDto = (ThemeDto) actionContext.ActionArguments["dto"];
+                        Organisation organisation = this.Organisations.Get(themeDto.OrganisationId);
+                        organiserId = organisation.OrganiserId;
+                    }
                     break;
                 default:    // to prevent the dto from being null
                     organiserId = -1;
@@ -130,7 +182,7 @@ namespace Kandoe.Web.Filters {
                     Session session = this.Sessions.Get(sessionDto.Id, collections: true);
 
                     this.AuthorizeOrganiser(session.Organisers);
-                    
+
                     return;
                 default:    // will be unauthorized
                     organiserId = -1;

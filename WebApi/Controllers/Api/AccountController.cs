@@ -8,7 +8,6 @@ using Authenticate = System.Web.Http.AuthorizeAttribute;
 
 using Kandoe.Business;
 using Kandoe.Business.Domain;
-using Kandoe.Web.Filters;
 using Kandoe.Web.Model.Dto;
 using Kandoe.Web.Model.Mapping;
 
@@ -24,14 +23,14 @@ namespace Kandoe.Web.Controllers.Api {
 
         [Route("")]
         public IHttpActionResult Get() {
-            IEnumerable<Account> entities = this.accounts.Get();
+            IEnumerable<Account> entities = this.accounts.Get(collections: false);
             IEnumerable<AccountDto> dtos = ModelMapper.Map<IEnumerable<Account>, IEnumerable<AccountDto>>(entities);
             return Ok(dtos);
         }
 
         [Route("{id}")]
         public IHttpActionResult Get(int id) {
-            Account entity = this.accounts.Get(id);
+            Account entity = this.accounts.Get(id, collections: false);
             AccountDto dto = ModelMapper.Map<AccountDto>(entity);
             return Ok(dto);
         }
@@ -39,7 +38,7 @@ namespace Kandoe.Web.Controllers.Api {
         [Route("")]
         // validation of DTO very needed - geen bestaande id toelaten?
         public IHttpActionResult Post([FromBody]AccountDto dto) {
-            IEnumerable<Account> accounts = this.accounts.Get(a => a.Secret == dto.Secret);
+            IEnumerable<Account> accounts = this.accounts.Get(a => a.Secret == dto.Secret, collections: false);
             bool exists = (accounts.Count() >= 1);
 
             if (exists) {
@@ -86,7 +85,7 @@ namespace Kandoe.Web.Controllers.Api {
         [Route("by-auth0-user-id/{secret}")]
         [HttpGet]
         public IHttpActionResult GetByAuth0UserId(string secret) {
-            IEnumerable<Account> entities = this.accounts.Get(a => a.Secret == secret);
+            IEnumerable<Account> entities = this.accounts.Get(a => a.Secret == secret, collections: false);
 
             // if no accounts were found
             if (entities.Count() < 1) { return Ok(new AccountDto()); }
@@ -98,7 +97,7 @@ namespace Kandoe.Web.Controllers.Api {
         [Route("by-email/{email}")]
         [HttpGet]
         public IHttpActionResult GetByEmail(string email) {
-            IEnumerable<Account> entities = this.accounts.Get(a => a.Email == email);
+            IEnumerable<Account> entities = this.accounts.Get(a => a.Email == email, collections: false);
 
             // if no accounts were found
             if (entities.Count() < 1) { return Ok(new AccountDto()); }

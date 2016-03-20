@@ -1,22 +1,16 @@
-﻿using System;
-using System.Globalization;
-using System.IO;
-using System.Net;
+﻿using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading;
-using System.Web;
 using System.Web.Configuration;
-using System.Web.Hosting;
-using System.Web.Http;
-using System.Web.Http.Dispatcher;
 
 using NUnit.Framework;
 
 using Kandoe.Web.Auth0;
 using Kandoe.Web.Handlers;
+using Kandoe.Web.Tests.Fakes;
 
-namespace WebApi.Tests.Handlers {
+namespace Kandoe.Web.Tests.Handlers {
     [TestFixture]
     public class AuthenticationHandlerTests {
         private string validToken;
@@ -41,11 +35,8 @@ namespace WebApi.Tests.Handlers {
             this.handler = new AuthenticationHandler {
                 Audience = clientId,            // client id
                 SymmetricKey = clientSecret,     // client secret
-                InnerHandler = new HttpControllerDispatcher(new HttpConfiguration())
+                InnerHandler = new FakeHttpMessageHandler()
             };
-
-            HttpWorkerRequest initWorkerRequest = new SimpleWorkerRequest("", "", "", "", new StringWriter(CultureInfo.InvariantCulture));
-            HttpContext.Current = new HttpContext(initWorkerRequest);
         }
 
         [Test]
@@ -76,12 +67,28 @@ namespace WebApi.Tests.Handlers {
 
         [Test]
         public void ShouldFillCurrentPrincipalOnSuccessfulAuthentication() {
+            CancellationToken cancellationToken = CancellationToken.None;
+            HttpRequestMessage request = new HttpRequestMessage();
 
+            request.Headers.Authorization = new AuthenticationHeaderValue(this.scheme, this.validToken);
+
+            HttpMessageInvoker invoker = Utilities.createHttpMessageInvoker(this.handler);
+            HttpResponseMessage response = invoker.SendAsync(request, cancellationToken).Result;
+
+            Assert.NotNull(Thread.CurrentPrincipal.Identity.Name);
         }
 
         [Test]
         public void ShouldNotFillCurrentPrincipalOnFailedAuthentication() {
+            CancellationToken cancellationToken = CancellationToken.None;
+            HttpRequestMessage request = new HttpRequestMessage();
 
+            request.Headers.Authorization = new AuthenticationHeaderValue(this.scheme, this.invalidToken);
+
+            HttpMessageInvoker invoker = Utilities.createHttpMessageInvoker(this.handler);
+            HttpResponseMessage response = invoker.SendAsync(request, cancellationToken).Result;
+
+            Assert.IsEmpty(Thread.CurrentPrincipal.Identity.Name);
         }
     }
 }

@@ -5,18 +5,19 @@ using NUnit.Framework;
 
 using Kandoe.Data.EFDB.Connection;
 using Kandoe.Web.Handlers;
+using Kandoe.Web.Tests.Fakes;
 
-namespace WebApi.Tests.Handlers {
+namespace Kandoe.Web.Tests.Handlers {
     [TestFixture]
     public class ContextHandlerTests {
         [Test]
         public void ProjectContextShouldBeRefreshed() {
-            Context context = ContextFactory.GetContext();
             ContextHandler handler = new ContextHandler() {
-                InnerHandler = new ContextHandler()
+                InnerHandler = new FakeHttpMessageHandler()
             };
 
-            // async shit hier
+            Context context = ContextFactory.GetContext();
+
             HttpMessageInvoker invoker = Utilities.createHttpMessageInvoker(handler);
             HttpResponseMessage response = invoker.SendAsync(new HttpRequestMessage(), CancellationToken.None).Result;
 

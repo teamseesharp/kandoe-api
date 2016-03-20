@@ -18,7 +18,7 @@ using Kandoe.Web.Model.Dto;
 
 namespace Kandoe.Web.Tests.Filters.Authorization {
     [TestFixture]
-    public class AuthorizeOrganiserAttributeTest {
+    public class AuthorizeParticipantAttributeTest {
         private Mock<IIdentity> identity;
         private Mock<IPrincipal> principal;
 
@@ -32,31 +32,12 @@ namespace Kandoe.Web.Tests.Filters.Authorization {
         private string authorized;
 
         private HttpActionContext context;
-        private AuthorizeOrganiserAttribute filter;
+        private AuthorizeParticipantAttribute filter;
 
         public static IEnumerable AuthorizationCases {
             get {
                 yield return new TestCaseData("PATCH", "Session", null);
-                yield return new TestCaseData("POST", "SelectionCard", new CardDto { Image = "image", Text = "some text", ThemeId = 1 });
-                yield return new TestCaseData("POST", "SelectionCard", new CardDto { Image = "image", Text = "some text", ThemeId = 1, SubthemeId = 1 });
-                yield return new TestCaseData("POST", "Session",
-                    new SessionDto {
-                        CardCreationAllowed = true, CurrentPlayerIndex = 0, Description = "descr",
-                        IsFinished = false, MaxCardsToChoose = 10, MaxParticipants = 10, Round = 1,
-                        SubthemeId = 1, Start = DateTime.Now, End = DateTime.Now.AddDays(6)
-                    });
-
-                yield return new TestCaseData("POST", "Theme", new ThemeDto { Name = "name", Description = "descr", OrganisationId = 1, OrganiserId = 1, Tags = "tags" });
-
-                yield return new TestCaseData("PUT", "Organisation", new OrganisationDto { Id = 1, Name = "changedname", OrganiserId = 1 });
-                yield return new TestCaseData("PUT", "Session",
-                    new SessionDto {
-                        Id = 1, CardCreationAllowed = true, CurrentPlayerIndex = 0, Description = "changeddescr",
-                        IsFinished = false, MaxCardsToChoose = 10, MaxParticipants = 10, Round = 1,
-                        SubthemeId = 1, Start = DateTime.Now, End = DateTime.Now.AddDays(6)
-                    });
-                yield return new TestCaseData("PUT", "Subtheme", new SubthemeDto { Id = 1, Name = "changedname", OrganiserId = 1, ThemeId = 1 });
-                yield return new TestCaseData("PUT", "Theme", new ThemeDto { Id = 1, Name = "changedname", Description = "descr", OrganisationId = 1, OrganiserId = 1, Tags = "tags" });
+                yield return new TestCaseData("POST", "ChatMessage", new ChatMessageDto { MessengerId = 1, SessionId = 1, Text = "some text", Timestamp = DateTime.Now });
             }
         }
 
@@ -81,6 +62,7 @@ namespace Kandoe.Web.Tests.Filters.Authorization {
             Account account1 = new Account("mail1@mail.com", "name1", "surname1", "picture1", this.authorized) {
                 Organisations = new List<Organisation>(),
                 OrganisedSessions = new List<Session>(),
+                ParticipatingSessions = new List<Session>(),
                 Subthemes = new List<Subtheme>(),
                 Themes = new List<Theme>()
             };
@@ -115,13 +97,16 @@ namespace Kandoe.Web.Tests.Filters.Authorization {
             this.accounts.Change(account1);
 
             Session session = new Session(true, 0, "descr", false, 10, 10, organisation.Id, 0, subtheme.Id, DateTime.Now, DateTime.Now.AddDays(5)) {
-                Organisers = new List<Account>()
+                Organisers = new List<Account>(),
+                Participants = new List<Account>()
             };
             session = this.sessions.Add(session);
             subtheme.Sessions.Add(session);
             this.subthemes.Change(subtheme);
             account1.OrganisedSessions.Add(session);
             session.Organisers.Add(account1);
+            account1.ParticipatingSessions.Add(session);
+            session.Participants.Add(account1);
             this.accounts.Change(account1);
             this.sessions.Change(session);
         }
@@ -133,17 +118,14 @@ namespace Kandoe.Web.Tests.Filters.Authorization {
 
             this.context = Utilities.CreateActionContext();
 
-            this.filter = new AuthorizeOrganiserAttribute() {
+            this.filter = new AuthorizeParticipantAttribute() {
                 Accounts = this.accounts,
-                Organisations = this.organisations,
-                Sessions = this.sessions,
-                Subthemes = this.subthemes,
-                Themes = this.themes
+                Sessions = this.sessions
             };
         }
 
         [Test, TestCaseSource("AuthorizationCases")]
-        public void OrganiserShouldBeAuthorized(string method, string controller, object dto) {
+        public void ParticipantShouldBeAuthorized(string method, string controller, object dto) {
             this.identity.SetupGet(i => i.Name).Returns(this.authorized);
             this.principal.SetupGet(p => p.Identity).Returns(this.identity.Object);
             Thread.CurrentPrincipal = this.principal.Object;
@@ -159,7 +141,7 @@ namespace Kandoe.Web.Tests.Filters.Authorization {
         }
 
         [Test, TestCaseSource("AuthorizationCases")]
-        public void NonOrganiserShouldNotBeAuthorized(string method, string controller, object dto) {
+        public void NonParticipantShouldNotBeAuthorized(string method, string controller, object dto) {
             this.identity.SetupGet(i => i.Name).Returns(this.unauthorized);
             this.principal.SetupGet(p => p.Identity).Returns(this.identity.Object);
             Thread.CurrentPrincipal = this.principal.Object;
@@ -179,15 +161,15 @@ namespace Kandoe.Web.Tests.Filters.Authorization {
         }
 
         [Test, TestCaseSource("UnauthenticatedCases")]
-        public void UnauthenticatedOrganiserShouldNotBeAuthorized(string method) {
+        public void UnauthenticatedParticipantShouldNotBeAuthorized(string method) {
             this.principal.SetupGet(p => p.Identity).Returns(this.identity.Object);
             Thread.CurrentPrincipal = this.principal.Object;
 
-            Assert.Throws<UnauthorizedAccessException>(() => this.filter.AuthorizeOrganiser(2));
+            Assert.Throws<UnauthorizedAccessException>(() => this.filter.AuthorizeParticipant(2));
 
-            ICollection<Account> nonOrganisers = new List<Account>();
-            nonOrganisers.Add(this.accounts.Get(2));
-            Assert.Throws<UnauthorizedAccessException>(() => this.filter.AuthorizeOrganiser(nonOrganisers));
+            ICollection<Account> nonParticipants = new List<Account>();
+            nonParticipants.Add(this.accounts.Get(2));
+            Assert.Throws<UnauthorizedAccessException>(() => this.filter.AuthorizeParticipant(nonParticipants));
         }
     }
 }

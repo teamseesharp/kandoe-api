@@ -60,7 +60,7 @@ namespace Kandoe.Web.Controllers.Api {
         [Route("by-organiser/{id}")]
         [HttpGet]
         public IHttpActionResult GetByOrganiser(int id) {
-            IEnumerable<Organisation> entities = this.organisations.Get(o => o.OrganiserId == id);
+            IEnumerable<Organisation> entities = this.organisations.Get(o => o.OrganiserId == id, collections: false);
             IEnumerable<OrganisationDto> dtos = ModelMapper.Map<IEnumerable<Organisation>, IEnumerable<OrganisationDto>>(entities);
             return Ok(dtos);
         }

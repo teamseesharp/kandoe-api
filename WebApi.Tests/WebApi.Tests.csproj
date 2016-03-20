@@ -9,7 +9,7 @@
     <ProjectGuid>{C65A5385-4853-4463-8018-E58626496087}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WebApi.Tests</RootNamespace>
+    <RootNamespace>Kandoe.Web.Tests</RootNamespace>
     <AssemblyName>WebApi.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -147,7 +147,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Fakes\FakeHttpMessageHandler.cs" />
+    <Compile Include="Filters\AuthorizeInviteeAttributeTests.cs" />
     <Compile Include="Filters\AuthorizeOrganiserAttributeTests.cs" />
+    <Compile Include="Filters\AuthorizeParticipantTests.cs" />
     <Compile Include="Filters\ExceptionFilterTests.cs" />
     <Compile Include="Handlers\AuthenticationHandlerTests.cs" />
     <Compile Include="Handlers\ContextHandlerTests.cs" />
