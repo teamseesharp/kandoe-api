@@ -77,15 +77,7 @@ namespace Kandoe.Web.Controllers.Api {
             throw new NotSupportedException();
         }
 
-        [Route("~/api/verbose/sessions/by-organisation/{id}")]
-        [HttpGet]
-        public IHttpActionResult GetByOrganisation(int id) {
-            IEnumerable<Session> entities = this.sessions.Get(session => session.OrganisationId == id, collections: true);
-            IEnumerable<SessionDto> dtos = ModelMapper.Map<IEnumerable<Session>, IEnumerable<SessionDto>>(entities);
-            return Ok(dtos);
-        }
-
-        [Route("by-subtheme/{id}")]
+        [Route("~/api/verbose/sessions/by-subtheme/{id}")]
         [HttpGet]
         public IHttpActionResult GetBySubtheme(int id) {
             IEnumerable<Session> entities = this.sessions.Get(session => session.SubthemeId == id);
@@ -93,12 +85,12 @@ namespace Kandoe.Web.Controllers.Api {
             return Ok(dtos);
         }
 
-        [Route("by-user/{id}")]
+        [Route("~/api/verbose/sessions/by-user/{id}")]
         [HttpGet]
         public IHttpActionResult GetByUser(int id) {
             Account account = this.accounts.Get(id);
-            IEnumerable<Session> invitedSessions = this.sessions.Get(session => session.Invitees != null, session => session.Invitees.Contains(account), collections: true);
-            IEnumerable<Session> participatingSessions = this.sessions.Get(session => session.Participants != null && session.Participants.Contains(account), collections: true);
+            IEnumerable<Session> invitedSessions = this.sessions.Get(session => session.Invitees.Contains(account));
+            IEnumerable<Session> participatingSessions = this.sessions.Get(session => session.Participants.Contains(account));
             IEnumerable<Session> entities = (invitedSessions.Concat(participatingSessions)).Distinct();
             IEnumerable<SessionDto> dtos = ModelMapper.Map<IEnumerable<Session>, IEnumerable<SessionDto>>(entities);
             return Ok(dtos);
@@ -269,6 +261,33 @@ namespace Kandoe.Web.Controllers.Api {
             Session entity = this.sessions.Get(id, collections: true);
             SessionDto dto = ModelMapper.Map<SessionDto>(entity);
             return Ok(dto); 
+        }
+
+        [Route("~/api/verbose/sessions/by-organisation/{id}")]
+        [HttpGet]
+        public IHttpActionResult GetVerboseByOrganisation(int id) {
+            IEnumerable<Session> entities = this.sessions.Get(session => session.OrganisationId == id, collections: true);
+            IEnumerable<SessionDto> dtos = ModelMapper.Map<IEnumerable<Session>, IEnumerable<SessionDto>>(entities);
+            return Ok(dtos);
+        }
+
+        [Route("~/api/verbose/sessions/by-subtheme/{id}")]
+        [HttpGet]
+        public IHttpActionResult GetVerboseBySubtheme(int id) {
+            IEnumerable<Session> entities = this.sessions.Get(session => session.SubthemeId == id, collections: true);
+            IEnumerable<SessionDto> dtos = ModelMapper.Map<IEnumerable<Session>, IEnumerable<SessionDto>>(entities);
+            return Ok(dtos);
+        }
+
+        [Route("~/api/verbose/sessions/by-user/{id}")]
+        [HttpGet]
+        public IHttpActionResult GetVerboseByUser(int id) {
+            Account account = this.accounts.Get(id);
+            IEnumerable<Session> invitedSessions = this.sessions.Get(session => session.Invitees.Contains(account), collections: true);
+            IEnumerable<Session> participatingSessions = this.sessions.Get(session => session.Participants.Contains(account), collections: true);
+            IEnumerable<Session> entities = (invitedSessions.Concat(participatingSessions)).Distinct();
+            IEnumerable<SessionDto> dtos = ModelMapper.Map<IEnumerable<Session>, IEnumerable<SessionDto>>(entities);
+            return Ok(dtos);
         }
     }
 }
