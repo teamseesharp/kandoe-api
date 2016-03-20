@@ -150,7 +150,7 @@ namespace Kandoe.Web.Tests.Filters.Authorization {
 
             HttpMethod httpMethod = new HttpMethod(method);
             this.context.Request.Method = httpMethod;
-            this.context.RequestContext.RouteData.Values["id"] = 1;
+            this.context.RequestContext.RouteData.Values["id"] = "1";
             this.context.ControllerContext.ControllerDescriptor.ControllerName = controller;
 
             this.context.ActionArguments["dto"] = dto;
@@ -166,7 +166,7 @@ namespace Kandoe.Web.Tests.Filters.Authorization {
 
             HttpMethod httpMethod = new HttpMethod(method);
             this.context.Request.Method = httpMethod;
-            this.context.RequestContext.RouteData.Values["id"] = 1;
+            this.context.RequestContext.RouteData.Values["id"] = "1";
             this.context.ControllerContext.ControllerDescriptor.ControllerName = controller;
 
             this.context.ActionArguments["dto"] = dto;

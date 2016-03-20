@@ -85,8 +85,8 @@ namespace Kandoe.Web.Filters {
 
             switch (controller) {
                 case "Session":
-                    int id = (int) actionContext.RequestContext.RouteData.Values["id"];
-                    Session session = this.Sessions.Get(id, collections: true);
+                    string id = (string) actionContext.RequestContext.RouteData.Values["id"];
+                    Session session = this.Sessions.Get(Int32.Parse(id), collections: true);
 
                     this.AuthorizeOrganiser(session.Organisers);
 
