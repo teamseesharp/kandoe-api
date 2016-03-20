@@ -186,59 +186,59 @@ namespace Kandoe.Data.Migrations {
             #endregion
 
             #region ChatmsgSeed
-            //SESSION 1
-            ChatMessage chatmessage = new ChatMessage(1, 1, "hoi", DateTime.Today.AddDays(-2));
-            chatmessage.Id = ++chatmessageId;
-            context.ChatMessages.AddOrUpdate(chatmessage);
+            ////SESSION 1
+            //ChatMessage chatmessage = new ChatMessage(1, 1, "hoi", DateTime.Today.AddDays(-2));
+            //chatmessage.Id = ++chatmessageId;
+            //context.ChatMessages.AddOrUpdate(chatmessage);
 
-            chatmessage = new ChatMessage(2, 1, "hey", DateTime.Today.AddDays(-1));
-            chatmessage.Id = ++chatmessageId;
-            context.ChatMessages.AddOrUpdate(chatmessage);
+            //chatmessage = new ChatMessage(2, 1, "hey", DateTime.Today.AddDays(-1));
+            //chatmessage.Id = ++chatmessageId;
+            //context.ChatMessages.AddOrUpdate(chatmessage);
 
-            chatmessage = new ChatMessage(1, 1, "hihi", DateTime.Today.AddDays(-1));
-            chatmessage.Id = ++chatmessageId;
-            context.ChatMessages.AddOrUpdate(chatmessage);
+            //chatmessage = new ChatMessage(1, 1, "hihi", DateTime.Today.AddDays(-1));
+            //chatmessage.Id = ++chatmessageId;
+            //context.ChatMessages.AddOrUpdate(chatmessage);
 
-            //SESSION 2
-            chatmessage = new ChatMessage(1, 2, "Dit", DateTime.Now);
-            chatmessage.Id = ++chatmessageId;
-            context.ChatMessages.AddOrUpdate(chatmessage);
+            ////SESSION 2
+            //chatmessage = new ChatMessage(1, 2, "Dit", DateTime.Now);
+            //chatmessage.Id = ++chatmessageId;
+            //context.ChatMessages.AddOrUpdate(chatmessage);
 
-            chatmessage = new ChatMessage(2, 2, "is", DateTime.Now);
-            chatmessage.Id = ++chatmessageId;
-            context.ChatMessages.AddOrUpdate(chatmessage);
+            //chatmessage = new ChatMessage(2, 2, "is", DateTime.Now);
+            //chatmessage.Id = ++chatmessageId;
+            //context.ChatMessages.AddOrUpdate(chatmessage);
 
-            chatmessage = new ChatMessage(4, 2, "een", DateTime.Now);
-            chatmessage.Id = ++chatmessageId;
-            context.ChatMessages.AddOrUpdate(chatmessage);
+            //chatmessage = new ChatMessage(4, 2, "een", DateTime.Now);
+            //chatmessage.Id = ++chatmessageId;
+            //context.ChatMessages.AddOrUpdate(chatmessage);
 
-            chatmessage = new ChatMessage(5, 2, "chatmessage", DateTime.Now);
-            chatmessage.Id = ++chatmessageId;
-            context.ChatMessages.AddOrUpdate(chatmessage);
+            //chatmessage = new ChatMessage(5, 2, "chatmessage", DateTime.Now);
+            //chatmessage.Id = ++chatmessageId;
+            //context.ChatMessages.AddOrUpdate(chatmessage);
 
-            //SESSION 4
-            chatmessage = new ChatMessage(1, 4, "Kandoe is top !", DateTime.Now);
-            chatmessage.Id = ++chatmessageId;
-            context.ChatMessages.AddOrUpdate(chatmessage);
+            ////SESSION 4
+            //chatmessage = new ChatMessage(1, 4, "Kandoe is top !", DateTime.Now);
+            //chatmessage.Id = ++chatmessageId;
+            //context.ChatMessages.AddOrUpdate(chatmessage);
 
-            chatmessage = new ChatMessage(2, 4, "joepiee", DateTime.Now);
-            chatmessage.Id = ++chatmessageId;
-            context.ChatMessages.AddOrUpdate(chatmessage);
+            //chatmessage = new ChatMessage(2, 4, "joepiee", DateTime.Now);
+            //chatmessage.Id = ++chatmessageId;
+            //context.ChatMessages.AddOrUpdate(chatmessage);
 
-            chatmessage = new ChatMessage(3, 4, "hoi allemaal", DateTime.Now);
-            chatmessage.Id = ++chatmessageId;
-            context.ChatMessages.AddOrUpdate(chatmessage);
+            //chatmessage = new ChatMessage(3, 4, "hoi allemaal", DateTime.Now);
+            //chatmessage.Id = ++chatmessageId;
+            //context.ChatMessages.AddOrUpdate(chatmessage);
 
-            //SESSION 5
-            chatmessage = new ChatMessage(1, 5, "Testje", DateTime.Now);
-            chatmessage.Id = ++chatmessageId;
-            context.ChatMessages.AddOrUpdate(chatmessage);
+            ////SESSION 5
+            //chatmessage = new ChatMessage(1, 5, "Testje", DateTime.Now);
+            //chatmessage.Id = ++chatmessageId;
+            //context.ChatMessages.AddOrUpdate(chatmessage);
 
-            chatmessage = new ChatMessage(5, 5, "lalalallaa", DateTime.Now);
-            chatmessage.Id = ++chatmessageId;
-            context.ChatMessages.AddOrUpdate(chatmessage);
+            //chatmessage = new ChatMessage(5, 5, "lalalallaa", DateTime.Now);
+            //chatmessage.Id = ++chatmessageId;
+            //context.ChatMessages.AddOrUpdate(chatmessage);
 
-            context.SaveChanges();
+            //context.SaveChanges();
 
             #endregion
 
