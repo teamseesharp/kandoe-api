@@ -220,7 +220,7 @@ namespace Kandoe.Web.Controllers.Api {
             return Ok();
         }
 
-        //[AuthorizeInvitee]
+        [AuthorizeInvitee]
         [Route("{id}/select-cards")]
         [HttpPatch]
         // valid cards?
