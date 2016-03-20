@@ -69,7 +69,13 @@
   <ItemGroup>
     <Compile Include="EFDB\Connection\ContextFactoryTests.cs" />
     <Compile Include="EFDB\Repositories\AccountRepositoryTests.cs" />
-    <Compile Include="EFDB\Repositories\RepositoryTests.cs" />
+    <Compile Include="EFDB\Repositories\ChatMessageRepositoryTests.cs" />
+    <Compile Include="EFDB\Repositories\OrganisationRepositoryTests.cs" />
+    <Compile Include="EFDB\Repositories\SelectionCardRepositoryTests.cs" />
+    <Compile Include="EFDB\Repositories\SessionCardRepositoryTests.cs" />
+    <Compile Include="EFDB\Repositories\SessionRepositoryTests.cs" />
+    <Compile Include="EFDB\Repositories\SubthemeRepositoryTests.cs" />
+    <Compile Include="EFDB\Repositories\ThemeRepositoryTests.cs" />
     <Compile Include="Fakes\FakeContext.cs" />
     <Compile Include="Fakes\FakeRepository.cs" />
     <Compile Include="Fakes\FakeRepositoryFactory.cs" />

@@ -32,7 +32,7 @@ namespace Kandoe.Web.Configuration {
             // Configure the mapper
             MapperConfig.Configure();
 
-            // Configure auth0 token factory
+            // Configure auth0 token factory for debugging purposes
             TokenFactory.Configure();
             string token = TokenFactory.GetToken();
         }

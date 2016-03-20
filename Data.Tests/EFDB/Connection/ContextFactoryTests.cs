@@ -13,7 +13,9 @@ namespace Kandoe.Data.Tests.EFDB.Connection {
         [Test]
         public void ContextShouldBeRefreshed() {
             Context context = ContextFactory.GetContext();
+
             ContextFactory.Refresh();
+
             Context refresh = ContextFactory.GetContext();
 
             Assert.AreNotSame(context, refresh);

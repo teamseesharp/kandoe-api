@@ -141,11 +141,6 @@ namespace Kandoe.Data.EFDB.Connection {
                 .Property(a => a.Picture)
                 .IsOptional();
 
-            //ChatMessage
-            modelBuilder.Entity<ChatMessage>()
-               .Property(a => a.SnapshotId)
-               .IsOptional();
-
             // SelectionCard
             modelBuilder.Entity<SelectionCard>()
                 .Property(slc => slc.Image)
