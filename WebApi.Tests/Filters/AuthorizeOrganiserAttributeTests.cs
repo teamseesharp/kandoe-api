@@ -37,8 +37,6 @@ namespace Kandoe.Web.Tests.Filters.Authorization {
         public static IEnumerable AuthorizationCases {
             get {
                 yield return new TestCaseData("PATCH", "Session", null);
-                yield return new TestCaseData("POST", "SelectionCard", new CardDto { Image = "image", Text = "some text", ThemeId = 1 });
-                yield return new TestCaseData("POST", "SelectionCard", new CardDto { Image = "image", Text = "some text", ThemeId = 1, SubthemeId = 1 });
                 yield return new TestCaseData("POST", "Session",
                     new SessionDto {
                         CardCreationAllowed = true, CurrentPlayerIndex = 0, Description = "descr",

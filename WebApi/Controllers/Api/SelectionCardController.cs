@@ -34,9 +34,8 @@ namespace Kandoe.Web.Controllers.Api {
             return Ok(dto);
         }
 
-        [AuthorizeOrganiser]
         [Route("")]
-        // validation of stuffs, also see note in organiser auth
+        // validation of stuffs
         public IHttpActionResult Post([FromBody]CardDto dto) {
             SelectionCard entity = ModelMapper.Map<SelectionCard>(dto);
             this.service.Add(entity);

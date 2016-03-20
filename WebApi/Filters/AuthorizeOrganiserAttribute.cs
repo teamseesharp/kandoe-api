@@ -105,28 +105,6 @@ namespace Kandoe.Web.Filters {
             string controller = actionContext.ControllerContext.ControllerDescriptor.ControllerName;
 
             switch (controller) {
-                case "SelectionCard":
-                    {
-                        CardDto cardDto = (CardDto) actionContext.ActionArguments["dto"];
-                        Theme theme = this.Themes.Get(cardDto.ThemeId);
-
-                        organiserId = theme.OrganiserId;
-
-                        if (cardDto.SubthemeId != null) {
-                            Subtheme subtheme = this.Subthemes.Get(cardDto.SubthemeId.Value);
-
-                            // more a validation kind of thing..
-                            bool haveDifferentOrganisers = (subtheme.OrganiserId != theme.OrganiserId);
-                            bool noRelation = subtheme.ThemeId != theme.Id;
-
-                            if (haveDifferentOrganisers || noRelation) {
-                                this.Unauthorize();
-                            }
-
-                            organiserId = subtheme.OrganiserId;
-                        }
-                    }
-                    break;
                 case "Session":
                     {
                         SessionDto sessionDto = (SessionDto) actionContext.ActionArguments["dto"];
