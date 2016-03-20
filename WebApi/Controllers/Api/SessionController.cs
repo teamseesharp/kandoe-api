@@ -225,6 +225,7 @@ namespace Kandoe.Web.Controllers.Api {
         [HttpPatch]
         // valid cards?
         public IHttpActionResult PatchSelectCards(int id, [FromBody]ICollection<CardDto> dtos) {
+            Session session = this.sessions.Get(id, collections: true);
             IEnumerable<SessionCard> sessionCards = this.sessionCards.Get(sc => sc.SessionId == id);
 
             foreach (CardDto dto in dtos) {
@@ -232,9 +233,12 @@ namespace Kandoe.Web.Controllers.Api {
 
                 if (!sessionCards.Any(sc => sc.Text == slc.Text)) {
                     SessionCard sc = new SessionCard(slc.Image, id, slc.Text);
+                    session.SessionCards.Add(sc);
                     this.sessionCards.Add(sc);
                 }
             }
+
+            this.sessions.Change(session);
 
             return Ok();
         }
