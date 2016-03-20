@@ -77,7 +77,7 @@ namespace Kandoe.Web.Controllers.Api {
             throw new NotSupportedException();
         }
 
-        [Route("~/api/verbose/sessions/by-subtheme/{id}")]
+        [Route("by-subtheme/{id}")]
         [HttpGet]
         public IHttpActionResult GetBySubtheme(int id) {
             IEnumerable<Session> entities = this.sessions.Get(session => session.SubthemeId == id);
@@ -85,7 +85,7 @@ namespace Kandoe.Web.Controllers.Api {
             return Ok(dtos);
         }
 
-        [Route("~/api/verbose/sessions/by-user/{id}")]
+        [Route("by-user/{id}")]
         [HttpGet]
         public IHttpActionResult GetByUser(int id) {
             Account account = this.accounts.Get(id);
